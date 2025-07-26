@@ -155,15 +155,16 @@ const Shop = () => {
   const checkPremiumStatus = async () => {
     if (!user) return;
     
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('memberships')
       .select('tier')
       .eq('user_id', user.id)
-      .eq('is_active', true)
-      .single();
+      .eq('is_active', true);
 
-    if (!error && data) {
-      setIsPremiumMember(data.tier === 'premium');
+    if (data && data.length > 0) {
+      setIsPremiumMember(data.some(membership => membership.tier === 'premium'));
+    } else {
+      setIsPremiumMember(false);
     }
   };
 
