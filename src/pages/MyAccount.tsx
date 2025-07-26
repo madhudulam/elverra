@@ -12,7 +12,8 @@ import { Progress } from '@/components/ui/progress';
 import { 
   Camera, Save, Edit, CreditCard, History, Settings, Gift, ShoppingBag, Users, Briefcase, HelpCircle,
   Download, Bell, Shield, Eye, EyeOff, Phone, Mail, MessageSquare, Star, TrendingUp, Calendar,
-  DollarSign, Percent, Award, RefreshCw, ExternalLink, Lock, Smartphone, Package
+  DollarSign, Percent, Award, RefreshCw, ExternalLink, Lock, Smartphone, Package, Key, 
+  CreditCard as CreditCardIcon, AlertCircle, CheckCircle
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -20,6 +21,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import Layout from '@/components/layout/Layout';
 import ProductManagement from '@/components/products/ProductManagement';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
 
 const MyAccount = () => {
   const { user } = useAuth();
@@ -43,6 +46,14 @@ const MyAccount = () => {
   });
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [cardActivated, setCardActivated] = useState(true);
+  const [showPinDialog, setShowPinDialog] = useState(false);
+  const [showActivationDialog, setShowActivationDialog] = useState(false);
+  const [showRenewalDialog, setShowRenewalDialog] = useState(false);
+  const [currentPin, setCurrentPin] = useState('');
+  const [newPin, setNewPin] = useState('');
+  const [confirmPin, setConfirmPin] = useState('');
+  const [activationCode, setActivationCode] = useState('');
 
   // Mock data for demonstration
   const mockData = {
@@ -61,6 +72,83 @@ const MyAccount = () => {
       referrals: 8,
       earnings: 45000,
       pendingCommission: 12000
+    }
+  };
+
+  const handleCardRenewal = () => {
+    setShowRenewalDialog(true);
+  };
+
+  const handleDownloadCard = async () => {
+    try {
+      // In a real implementation, this would generate and download a PDF card
+      toast.success('Card download started. Check your downloads folder.');
+      
+      // Mock download functionality
+      const link = document.createElement('a');
+      link.href = 'data:text/plain;charset=utf-8,ZENIKA Digital Card - ' + (profile?.full_name || 'Member');
+      link.download = 'zenika-card.txt';
+      link.click();
+    } catch (error) {
+      toast.error('Failed to download card');
+    }
+  };
+
+  const handleCardActivation = async () => {
+    if (!activationCode || activationCode.length < 6) {
+      toast.error('Please enter a valid activation code');
+      return;
+    }
+
+    try {
+      // Mock activation process
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setCardActivated(true);
+      setShowActivationDialog(false);
+      setActivationCode('');
+      toast.success('Card activated successfully!');
+    } catch (error) {
+      toast.error('Failed to activate card');
+    }
+  };
+
+  const handlePinChange = async () => {
+    if (!currentPin || !newPin || !confirmPin) {
+      toast.error('Please fill in all PIN fields');
+      return;
+    }
+
+    if (newPin !== confirmPin) {
+      toast.error('New PIN and confirmation do not match');
+      return;
+    }
+
+    if (newPin.length !== 4) {
+      toast.error('PIN must be 4 digits');
+      return;
+    }
+
+    try {
+      // Mock PIN change process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setShowPinDialog(false);
+      setCurrentPin('');
+      setNewPin('');
+      setConfirmPin('');
+      toast.success('PIN changed successfully!');
+    } catch (error) {
+      toast.error('Failed to change PIN');
+    }
+  };
+
+  const handleRenewalRequest = async () => {
+    try {
+      // Mock renewal process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setShowRenewalDialog(false);
+      toast.success('Renewal request submitted successfully! You will receive confirmation via email.');
+    } catch (error) {
+      toast.error('Failed to submit renewal request');
     }
   };
 
@@ -282,7 +370,14 @@ const MyAccount = () => {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   My ZENIKA Card
-                  <Badge variant="default">Active</Badge>
+                  <div className="flex items-center gap-2">
+                    {cardActivated ? (
+                      <Badge className="bg-green-500">Active</Badge>
+                    ) : (
+                      <Badge variant="destructive">Inactive</Badge>
+                    )}
+                    <Badge variant="outline">{membership?.tier || 'Essential'}</Badge>
+                  </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -362,18 +457,229 @@ const MyAccount = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 mt-6">
-                  <Button variant="outline" className="w-full">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={handleCardRenewal}
+                  >
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Request Renewal
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={handleDownloadCard}
+                  >
                     <Download className="h-4 w-4 mr-2" />
                     Download Card
                   </Button>
+                  
+                  {!cardActivated && (
+                    <Button 
+                      variant="default" 
+                      className="w-full bg-green-600 hover:bg-green-700"
+                      onClick={() => setShowActivationDialog(true)}
+                    >
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Activate Card
+                    </Button>
+                  )}
+                  
+                  {cardActivated && (
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                      onClick={() => setShowPinDialog(true)}
+                    >
+                      <Key className="h-4 w-4 mr-2" />
+                      Change PIN
+                    </Button>
+                  )}
+                </div>
+
+                {/* Card Status Information */}
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-medium mb-3">Card Information</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Card Number:</span>
+                      <span className="font-medium">**** **** **** {membership?.member_id?.slice(-4) || '8550'}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Status:</span>
+                      <span className={`font-medium ${cardActivated ? 'text-green-600' : 'text-red-600'}`}>
+                        {cardActivated ? 'Active' : 'Inactive'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Expiry Date:</span>
+                      <span className="font-medium">
+                        {membership?.expiry_date ? new Date(membership.expiry_date).toLocaleDateString() : '03/26'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Membership Type:</span>
+                      <span className="font-medium">{membership?.tier || 'Essential'}</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Card Activation Dialog */}
+            <Dialog open={showActivationDialog} onOpenChange={setShowActivationDialog}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Activate Your ZENIKA Card</DialogTitle>
+                  <DialogDescription>
+                    Enter the activation code sent to your email or phone number.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="activationCode">Activation Code</Label>
+                    <Input
+                      id="activationCode"
+                      type="text"
+                      placeholder="Enter 6-digit activation code"
+                      value={activationCode}
+                      onChange={(e) => setActivationCode(e.target.value)}
+                      maxLength={6}
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button onClick={handleCardActivation} className="flex-1">
+                      Activate Card
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowActivationDialog(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Didn't receive the code? <Button variant="link" className="p-0 h-auto">Resend Code</Button>
+                  </p>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* PIN Management Dialog */}
+            <Dialog open={showPinDialog} onOpenChange={setShowPinDialog}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Change Card PIN</DialogTitle>
+                  <DialogDescription>
+                    Enter your current PIN and choose a new 4-digit PIN for your card.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="currentPin">Current PIN</Label>
+                    <Input
+                      id="currentPin"
+                      type="password"
+                      placeholder="Enter current PIN"
+                      value={currentPin}
+                      onChange={(e) => setCurrentPin(e.target.value)}
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="newPin">New PIN</Label>
+                    <Input
+                      id="newPin"
+                      type="password"
+                      placeholder="Enter new 4-digit PIN"
+                      value={newPin}
+                      onChange={(e) => setNewPin(e.target.value)}
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="confirmPin">Confirm New PIN</Label>
+                    <Input
+                      id="confirmPin"
+                      type="password"
+                      placeholder="Confirm new PIN"
+                      value={confirmPin}
+                      onChange={(e) => setConfirmPin(e.target.value)}
+                      maxLength={4}
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button onClick={handlePinChange} className="flex-1">
+                      Change PIN
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowPinDialog(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                  <div className="bg-yellow-50 p-3 rounded-lg">
+                    <div className="flex items-start">
+                      <AlertCircle className="h-4 w-4 text-yellow-600 mr-2 mt-0.5" />
+                      <p className="text-sm text-yellow-800">
+                        Your PIN is used for secure transactions and card verification. 
+                        Choose a PIN that's easy to remember but hard for others to guess.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* Card Renewal Dialog */}
+            <Dialog open={showRenewalDialog} onOpenChange={setShowRenewalDialog}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Request Card Renewal</DialogTitle>
+                  <DialogDescription>
+                    Submit a request to renew your ZENIKA card membership.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-blue-900 mb-2">Current Membership Details</h4>
+                    <div className="text-sm text-blue-800 space-y-1">
+                      <p>Membership Type: {membership?.tier || 'Essential'}</p>
+                      <p>Expiry Date: {membership?.expiry_date ? new Date(membership.expiry_date).toLocaleDateString() : 'N/A'}</p>
+                      <p>Member ID: {membership?.member_id || 'ML-2025896550'}</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="renewalNotes">Additional Notes (Optional)</Label>
+                    <Textarea
+                      id="renewalNotes"
+                      placeholder="Any special requests or notes for your renewal..."
+                      rows={3}
+                    />
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-green-900 mb-2">Renewal Benefits</h4>
+                    <ul className="text-sm text-green-800 space-y-1">
+                      <li>• Extended membership validity for 12 months</li>
+                      <li>• Continued access to all member benefits</li>
+                      <li>• Updated digital card with new expiry date</li>
+                      <li>• Priority customer support during renewal period</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button onClick={handleRenewalRequest} className="flex-1">
+                      Submit Renewal Request
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowRenewalDialog(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                  
+                  <p className="text-sm text-gray-500">
+                    You will receive an email confirmation with payment instructions and renewal timeline.
+                  </p>
+                </div>
+              </DialogContent>
+            </Dialog>
           </TabsContent>
 
           <TabsContent value="rewards" className="space-y-6">
