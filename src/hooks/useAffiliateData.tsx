@@ -43,15 +43,16 @@ export const useAffiliateData = () => {
           .from('agents')
           .select('*')
           .eq('user_id', user.id)
-          .single();
+          .maybeSingle();
 
         if (agentError) {
-          // Handle case where user doesn't have an agent profile yet
-          if (agentError.code === 'PGRST116') {
-            setAffiliateData(null);
-            return;
-          }
           throw new Error('Failed to fetch agent data');
+        }
+
+        // Handle case where user doesn't have an agent profile yet
+        if (!agentData) {
+          setAffiliateData(null);
+          return;
         }
 
         // Fetch referrals data with user profiles
@@ -133,15 +134,16 @@ export const useAffiliateData = () => {
             .from('agents')
             .select('*')
             .eq('user_id', user.id)
-            .single();
+            .maybeSingle();
 
           if (agentError) {
-            // Handle case where user doesn't have an agent profile yet
-            if (agentError.code === 'PGRST116') {
-              setAffiliateData(null);
-              return;
-            }
             throw new Error('Failed to fetch agent data');
+          }
+
+          // Handle case where user doesn't have an agent profile yet
+          if (!agentData) {
+            setAffiliateData(null);
+            return;
           }
 
           const { data: referralsData, error: referralsError } = await supabase
