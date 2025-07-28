@@ -13,12 +13,36 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/hooks/useAuth';
 import CountrySelector from './CountrySelector';
+import { supabase } from '@/integrations/supabase/client';
+import { useEffect } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-logo.png');
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const { data } = supabase.storage
+          .from('club66')
+          .getPublicUrl('logo.png');
+        
+        if (data?.publicUrl) {
+          // Check if the logo exists by trying to fetch it
+          const response = await fetch(data.publicUrl);
+          if (response.ok) {
+            setLogoUrl(data.publicUrl);
+          }
+        }
+      } catch (error) {
+        console.log('Using default logo');
+      }
+    };
+
+    fetchLogo();
+  }, []);
   const handleSignOut = async () => {
     await signOut();
     navigate('/');
@@ -34,10 +58,12 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold">
-              <span className="text-elverra-purple">Elverra</span>
-              <span className="text-elverra-gold"> Global</span>
-            </span>
+            <img 
+              src={logoUrl} 
+              alt="Elverra Global" 
+              className="h-10 w-auto"
+              onError={() => setLogoUrl('/lovable-uploads/elverra-logo.png')}
+            />
           </Link>
 
           {/* Desktop Navigation */}

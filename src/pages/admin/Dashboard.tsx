@@ -32,6 +32,11 @@ const AdminDashboard = () => {
 
       toast.success('Logo uploaded successfully!');
       setLogoFile(null);
+      
+      // Trigger a page reload to update the logo in header/footer
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.error('Error uploading logo:', error);
       toast.error('Failed to upload logo');

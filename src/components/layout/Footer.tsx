@@ -1,17 +1,47 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
+  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-logo.png');
+
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const { data } = supabase.storage
+          .from('club66')
+          .getPublicUrl('logo.png');
+        
+        if (data?.publicUrl) {
+          // Check if the logo exists by trying to fetch it
+          const response = await fetch(data.publicUrl);
+          if (response.ok) {
+            setLogoUrl(data.publicUrl);
+          }
+        }
+      } catch (error) {
+        console.log('Using default logo');
+      }
+    };
+
+    fetchLogo();
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold mb-6 flex items-center">
-              <span className="text-elverra-gold">Elverra</span>
-              <span className="text-elverra-purple"> Global</span>
-            </h3>
+            <div className="mb-6">
+              <img 
+                src={logoUrl} 
+                alt="Elverra Global" 
+                className="h-8 w-auto"
+                onError={() => setLogoUrl('/lovable-uploads/elverra-logo.png')}
+              />
+            </div>
             <p className="text-gray-300 mb-6 text-sm">
               Empowering communities across West Africa with exclusive member benefits,
               discounts, and opportunities for growth and prosperity.
