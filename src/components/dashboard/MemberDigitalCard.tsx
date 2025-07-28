@@ -106,8 +106,8 @@ const MemberDigitalCard = ({
         {/* Card Header */}
         <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white px-6 py-3 relative">
           <div className="flex items-center justify-between">
-            <img src="/lovable-uploads/club66-logo.png" alt="Elverra Global Logo" className="h-12 w-auto brightness-0 invert" />
-            <h2 className="text-4xl font-bold text-white">Elverra</h2>
+            <img src="/lovable-uploads/el-logo.png" alt="El Global Logo" className="h-12 w-auto brightness-0 invert" />
+            <h2 className="text-4xl font-bold text-white">El</h2>
           </div>
         </div>
 

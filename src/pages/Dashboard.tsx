@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useAuth } from '@/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import DashboardStats from '@/components/dashboard/DashboardStats';
 import MembershipStatus from '@/components/dashboard/MembershipStatus';
 import MemberDigitalCard from '@/components/dashboard/MemberDigitalCard';
@@ -25,6 +27,7 @@ const Dashboard = () => {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
   const { getUserApplications } = useJobApplications();
+  const [userRole, setUserRole] = useState<'user' | 'agent' | 'admin'>('user');
   
   const [applications, setApplications] = useState<any[]>([]);
   const [membership, setMembership] = useState<any>(null);
@@ -38,8 +41,39 @@ const Dashboard = () => {
   useEffect(() => {
     if (user) {
       fetchUserData();
+      determineUserRole();
     }
   }, [user]);
+
+  const determineUserRole = async () => {
+    if (!user) return;
+
+    try {
+      // Check if user is an agent
+      const { data: agentData } = await supabase
+        .from('agents')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('is_active', true)
+        .single();
+
+      if (agentData) {
+        setUserRole('agent');
+        return;
+      }
+
+      // Check if user is admin (you can add admin role logic here)
+      // For now, checking if user email contains 'admin'
+      if (user.email?.includes('admin')) {
+        setUserRole('admin');
+        return;
+      }
+
+      setUserRole('user');
+    } catch (error) {
+      setUserRole('user');
+    }
+  };
 
   const fetchUserData = async () => {
     if (!user) return;
@@ -138,6 +172,15 @@ const Dashboard = () => {
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  // Redirect to appropriate dashboard based on role
+  if (userRole === 'agent') {
+    return <Navigate to="/affiliate-dashboard" replace />;
+  }
+
+  if (userRole === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
   }
 
   return (

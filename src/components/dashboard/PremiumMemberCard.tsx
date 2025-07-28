@@ -155,7 +155,7 @@ const PremiumMemberCard = ({
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <div className={`text-xs font-semibold uppercase tracking-wider ${cardDesign.textSecondary} mb-1`}>
-                    Club66
+                    El Global
                   </div>
                   <div className={`text-sm font-medium ${cardDesign.textSecondary}`}>
                     {membershipTier} Member

@@ -214,6 +214,36 @@ const MyAccount = () => {
     }
   };
 
+  const downloadPaymentHistory = (format: 'pdf' | 'csv') => {
+    // Mock download functionality
+    const data = recentTransactions.map(payment => ({
+      date: payment.created_at,
+      description: payment.payment_type,
+      amount: payment.amount,
+      status: payment.status
+    }));
+    
+    if (format === 'csv') {
+      const csvContent = [
+        'Date,Description,Amount,Status',
+        ...data.map(row => `${row.date},${row.description},${row.amount},${row.status}`)
+      ].join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'payment-history.csv';
+      link.click();
+      window.URL.revokeObjectURL(url);
+    } else {
+      // For PDF, you would typically use a library like jsPDF
+      toast.success('PDF download feature coming soon!');
+    }
+    
+    toast.success(`Payment history downloaded as ${format.toUpperCase()}`);
+  };
+
   const handlePasswordReset = async () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       toast.error('Please fill in all password fields');
@@ -1180,10 +1210,24 @@ const MyAccount = () => {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   Payment History
-                  <Button onClick={() => navigate('/membership-payment')} variant="outline">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Make Payment
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => downloadPaymentHistory('pdf')}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download PDF
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => downloadPaymentHistory('csv')}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download CSV
+                    </Button>
+                  </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
