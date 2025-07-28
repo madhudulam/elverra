@@ -142,7 +142,7 @@ export const useAffiliateData = () => {
               return;
             }
             throw new Error('Failed to fetch agent data');
-          }</parameter>
+          }
 
           const { data: referralsData, error: referralsError } = await supabase
             .from('referrals')
