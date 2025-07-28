@@ -53,7 +53,7 @@ const Dashboard = () => {
         .select('id')
         .eq('user_id', user.id)
         .eq('is_active', true)
-        .single();
+        .maybeSingle();
 
       if (agentData) {
         setUserRole('agent');
