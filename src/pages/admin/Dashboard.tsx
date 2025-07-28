@@ -158,7 +158,7 @@ const AdminDashboard = () => {
       icon: ShoppingBag,
       route: "/admin/shop-management",
       color: "bg-teal-50 hover:bg-teal-100 border-teal-200"
-    }
+    },
     {
       title: "Payment Gateway Management",
       description: "Configure payment methods and gateways",
