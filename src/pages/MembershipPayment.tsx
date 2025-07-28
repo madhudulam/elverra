@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import MembershipTiers from '@/components/membership/MembershipTiers';
 import PaymentForm from '@/components/membership/PaymentForm';
@@ -8,9 +9,19 @@ import { CheckCircle, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const MembershipPayment = () => {
+  const [searchParams] = useSearchParams();
+  const planFromUrl = searchParams.get('plan');
   const [selectedTier, setSelectedTier] = useState<string>('');
   const [showPayment, setShowPayment] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
+
+  // Auto-select plan from URL if provided
+  useState(() => {
+    if (planFromUrl && plans[planFromUrl as keyof typeof plans]) {
+      setSelectedTier(planFromUrl);
+      setShowPayment(true);
+    }
+  }, [planFromUrl]);
 
   const plans = {
     essential: { name: 'Essential', price: '10,000', monthly: '1,000' },

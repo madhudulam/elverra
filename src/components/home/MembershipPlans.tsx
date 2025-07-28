@@ -27,8 +27,8 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
 
   const handleSelectPlan = (planName: string) => {
     if (user) {
-      // User is logged in, go directly to payment
-      navigate('/membership-payment');
+      // User is logged in, go directly to payment with plan selected
+      navigate(`/membership-payment?plan=${planName.toLowerCase()}`);
     } else {
       // User not logged in, redirect to register with plan info
       navigate(`/register?plan=${planName.toLowerCase()}`);

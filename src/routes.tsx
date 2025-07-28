@@ -219,7 +219,7 @@ const routes = [
     element: <Affiliates />,
   },
   {
-    path: '/affiliate-program',
+    path: '/affiliates',
     element: <AffiliateProgram />,
   },
   {

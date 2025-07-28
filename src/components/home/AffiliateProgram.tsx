@@ -35,7 +35,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
               
               <p className="text-gray-300 mb-6">
                 Join our affiliate program and earn 10% commission on membership fees paid by members you refer to
-                Elverra Global. It's simple, transparent, and rewarding.
+                El Global. It's simple, transparent, and rewarding.
               </p>
               
               <div className="space-y-4 mb-8">
