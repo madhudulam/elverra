@@ -26,18 +26,14 @@ const Header = () => {
     const fetchLogo = async () => {
       try {
         const { data } = supabase.storage
-          .from('club66')
+          .from('elverra')
           .getPublicUrl('logo.png');
         
         if (data?.publicUrl) {
-          // Check if the logo exists by trying to fetch it
-          const response = await fetch(data.publicUrl);
-          if (response.ok) {
-            setLogoUrl(data.publicUrl);
-          }
+          setLogoUrl(data.publicUrl);
         }
       } catch (error) {
-        console.log('Using default logo');
+        // Silently use default logo if there's an error
       }
     };
 

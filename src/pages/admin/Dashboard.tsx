@@ -25,7 +25,7 @@ const AdminDashboard = () => {
       const fileName = `logo.${fileExt}`;
       
       const { error: uploadError } = await supabase.storage
-        .from('club66')
+        .from('elverra')
         .upload(fileName, logoFile, { upsert: true });
 
       if (uploadError) throw uploadError;
