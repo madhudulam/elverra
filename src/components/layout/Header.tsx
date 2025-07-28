@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings, Briefcase, Building, Users, Search, Plus, ChevronDown, Info, UserCheck, ShoppingCart, Heart } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, Briefcase, Building, Users, Search, Plus, ChevronDown, Info, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -18,27 +18,41 @@ import { useEffect } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-logo.png');
+  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-global-logo.png');
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const { data } = supabase.storage
+        // Try to get the uploaded logo from Supabase storage
+        const { data: logoData } = await supabase.storage
           .from('elverra')
-          .getPublicUrl('logo.png');
+          .list('', { limit: 10 });
         
-        if (data?.publicUrl) {
-          setLogoUrl(data.publicUrl);
+        // Look for logo files (png, jpg, jpeg)
+        const logoFile = logoData?.find(file => 
+          file.name.toLowerCase().startsWith('logo.') && 
+          ['png', 'jpg', 'jpeg', 'webp'].includes(file.name.toLowerCase().split('.').pop() || '')
+        );
+        
+        if (logoFile) {
+          const { data: urlData } = supabase.storage
+            .from('elverra')
+            .getPublicUrl(logoFile.name);
+          
+          if (urlData?.publicUrl) {
+            setLogoUrl(urlData.publicUrl);
+          }
         }
       } catch (error) {
-        // Silently use default logo if there's an error
+        console.log('Using default logo');
       }
     };
 
     fetchLogo();
   }, []);
+
   const handleSignOut = async () => {
     await signOut();
     navigate('/');
@@ -57,8 +71,8 @@ const Header = () => {
             <img 
               src={logoUrl} 
               alt="Elverra Global" 
-              className="h-10 w-auto"
-              onError={() => setLogoUrl('/lovable-uploads/elverra-logo.png')}
+              className="h-10 w-auto object-contain"
+              onError={() => setLogoUrl('/lovable-uploads/elverra-global-logo.png')}
             />
           </Link>
 

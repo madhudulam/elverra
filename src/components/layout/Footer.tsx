@@ -4,20 +4,33 @@ import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
-  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-logo.png');
+  const [logoUrl, setLogoUrl] = useState<string>('/lovable-uploads/elverra-global-logo.png');
 
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const { data } = supabase.storage
+        // Try to get the uploaded logo from Supabase storage
+        const { data: logoData } = await supabase.storage
           .from('elverra')
-          .getPublicUrl('logo.png');
+          .list('', { limit: 10 });
         
-        if (data?.publicUrl) {
-          setLogoUrl(data.publicUrl);
+        // Look for logo files (png, jpg, jpeg)
+        const logoFile = logoData?.find(file => 
+          file.name.toLowerCase().startsWith('logo.') && 
+          ['png', 'jpg', 'jpeg', 'webp'].includes(file.name.toLowerCase().split('.').pop() || '')
+        );
+        
+        if (logoFile) {
+          const { data: urlData } = supabase.storage
+            .from('elverra')
+            .getPublicUrl(logoFile.name);
+          
+          if (urlData?.publicUrl) {
+            setLogoUrl(urlData.publicUrl);
+          }
         }
       } catch (error) {
-        // Silently use default logo if there's an error
+        console.log('Using default logo');
       }
     };
 
@@ -34,8 +47,8 @@ const Footer = () => {
               <img 
                 src={logoUrl} 
                 alt="Elverra Global" 
-                className="h-8 w-auto"
-                onError={() => setLogoUrl('/lovable-uploads/elverra-logo.png')}
+                className="h-8 w-auto object-contain"
+                onError={() => setLogoUrl('/lovable-uploads/elverra-global-logo.png')}
               />
             </div>
             <p className="text-gray-300 mb-6 text-sm">

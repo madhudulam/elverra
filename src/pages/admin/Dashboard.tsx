@@ -24,6 +24,24 @@ const AdminDashboard = () => {
       const fileExt = logoFile.name.split('.').pop();
       const fileName = `logo.${fileExt}`;
       
+      // Delete existing logo files first
+      const { data: existingFiles } = await supabase.storage
+        .from('elverra')
+        .list('', { limit: 10 });
+      
+      if (existingFiles) {
+        const logoFiles = existingFiles.filter(file => 
+          file.name.toLowerCase().startsWith('logo.')
+        );
+        
+        for (const file of logoFiles) {
+          await supabase.storage
+            .from('elverra')
+            .remove([file.name]);
+        }
+      }
+      
+      // Upload new logo
       const { error: uploadError } = await supabase.storage
         .from('elverra')
         .upload(fileName, logoFile, { upsert: true });
@@ -33,7 +51,7 @@ const AdminDashboard = () => {
       toast.success('Logo uploaded successfully!');
       setLogoFile(null);
       
-      // Trigger a page reload to update the logo in header/footer
+      // Force refresh the page to update logo everywhere
       setTimeout(() => {
         window.location.reload();
       }, 1000);
