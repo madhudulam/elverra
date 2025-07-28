@@ -143,21 +143,20 @@ export const usePaymentGateways = () => {
       if (updates.icon) dbUpdates.icon = updates.icon;
       if (updates.description) dbUpdates.description = updates.description;
 
+      console.log('Updating gateway:', gatewayId, 'with updates:', dbUpdates);
       const { error } = await supabase
         .from('payment_gateways')
         .update(dbUpdates)
         .eq('id', gatewayId);
 
       if (error) {
-        console.error('Error updating payment gateway:', error);
+        console.error('Supabase error updating payment gateway:', error);
         toast.error('Failed to save gateway settings');
+        return;
       } else {
         toast.success('Payment gateway updated successfully');
-        // Update local state
-        const updatedGateways = gateways.map(gateway =>
-          gateway.id === gatewayId ? { ...gateway, ...updates } : gateway
-        );
-        setGateways(updatedGateways);
+        // Refetch data to ensure consistency
+        await fetchGateways();
       }
     } catch (error) {
       console.error('Error updating payment gateway:', error);
