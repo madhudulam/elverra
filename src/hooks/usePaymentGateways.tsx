@@ -101,21 +101,27 @@ export const usePaymentGateways = () => {
     try {
       setLoading(true);
       
-      // Try to fetch from database first
       const { data, error } = await supabase
         .from('payment_gateways')
         .select('*')
         .order('name');
 
-      if (error && error.code !== 'PGRST116') {
+      if (error) {
         console.error('Error fetching payment gateways:', error);
-        // Fall back to default gateways
         setGateways(defaultGateways);
-      } else if (data && data.length > 0) {
-        setGateways(data);
       } else {
-        // Use default gateways if none in database
-        setGateways(defaultGateways);
+        // Transform database data to match PaymentGateway interface
+        const transformedGateways = (data || []).map(gateway => ({
+          id: gateway.id,
+          name: gateway.name,
+          type: gateway.type,
+          isActive: gateway.is_active,
+          config: gateway.config || {},
+          fees: gateway.fees || { percentage: 0, fixed: 0 },
+          icon: gateway.icon || '💳',
+          description: gateway.description || ''
+        }));
+        setGateways(transformedGateways);
       }
     } catch (error) {
       console.error('Error fetching payment gateways:', error);
@@ -127,26 +133,31 @@ export const usePaymentGateways = () => {
 
   const updateGateway = async (gatewayId: string, updates: Partial<PaymentGateway>) => {
     try {
-      const updatedGateways = gateways.map(gateway =>
-        gateway.id === gatewayId ? { ...gateway, ...updates } : gateway
-      );
-      setGateways(updatedGateways);
-      
-      // Try to update in database
+      // Transform updates to match database schema
+      const dbUpdates: any = {};
+      if (updates.name) dbUpdates.name = updates.name;
+      if (updates.type) dbUpdates.type = updates.type;
+      if (updates.isActive !== undefined) dbUpdates.is_active = updates.isActive;
+      if (updates.config) dbUpdates.config = updates.config;
+      if (updates.fees) dbUpdates.fees = updates.fees;
+      if (updates.icon) dbUpdates.icon = updates.icon;
+      if (updates.description) dbUpdates.description = updates.description;
+
       const { error } = await supabase
         .from('payment_gateways')
-        .upsert({
-          id: gatewayId,
-          ...updates
-        });
+        .update(dbUpdates)
+        .eq('id', gatewayId);
 
       if (error) {
         console.error('Error updating payment gateway:', error);
         toast.error('Failed to save gateway settings');
-        // Revert changes
-        fetchGateways();
       } else {
         toast.success('Payment gateway updated successfully');
+        // Update local state
+        const updatedGateways = gateways.map(gateway =>
+          gateway.id === gatewayId ? { ...gateway, ...updates } : gateway
+        );
+        setGateways(updatedGateways);
       }
     } catch (error) {
       console.error('Error updating payment gateway:', error);
