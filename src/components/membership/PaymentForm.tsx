@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CreditCard, Smartphone, DollarSign, QrCode } from 'lucide-react';
 import { toast } from 'sonner';
+import UnifiedPaymentWindow from '@/components/payment/UnifiedPaymentWindow';
 
 interface PaymentFormProps {
   selectedPlan: {
@@ -19,6 +20,7 @@ interface PaymentFormProps {
 
 const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
   const [paymentMethod, setPaymentMethod] = useState<string>('');
+  const [showUnifiedPayment, setShowUnifiedPayment] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
     cardNumber: '',
@@ -132,8 +134,18 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
     }
   };
 
+  const handleUnifiedPayment = () => {
+    setShowUnifiedPayment(true);
+  };
+
+  const handlePaymentSuccess = (transactionId: string) => {
+    toast.success('Payment processed successfully!');
+    onPaymentComplete();
+  };
+
   return (
-    <Card className="w-full max-w-md">
+    <>
+      <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle className="text-center">Complete Payment</CardTitle>
         <div className="text-center">
@@ -156,6 +168,12 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
                   <div className="flex items-center">
                     <Smartphone className="h-4 w-4 mr-2 text-orange-500" />
                     Orange Money
+                  </div>
+                </SelectItem>
+                <SelectItem value="sama_money">
+                  <div className="flex items-center">
+                    <Smartphone className="h-4 w-4 mr-2 text-green-500" />
+                    Sama Money
                   </div>
                 </SelectItem>
                 <SelectItem value="moov">
@@ -330,6 +348,17 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
             )}
           </Button>
 
+          <div className="text-center">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleUnifiedPayment}
+              className="w-full mb-4"
+            >
+              Use Unified Payment Window
+            </Button>
+          </div>
+
           {paymentMethod && (
             <div className="text-xs text-gray-500 text-center mt-2">
               Your payment will be processed securely through {
@@ -343,6 +372,14 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
         </form>
       </CardContent>
     </Card>
+
+      <UnifiedPaymentWindow
+        isOpen={showUnifiedPayment}
+        onClose={() => setShowUnifiedPayment(false)}
+        onSuccess={handlePaymentSuccess}
+        preSelectedService={`membership_${selectedPlan.name.toLowerCase()}`}
+      />
+    </>
   );
 };
 

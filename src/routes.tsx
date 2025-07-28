@@ -75,6 +75,7 @@ import Wishlist from '@/pages/Wishlist';
 import ShopManagement from '@/pages/admin/ShopManagement';
 import UserManagement from '@/pages/admin/UserManagement';
 import ProjectRequests from '@/pages/ProjectRequests';
+import PaymentGatewayManagement from '@/pages/admin/PaymentGatewayManagement';
 
 // Add the new route to the existing routes array
 const routes = [
@@ -361,6 +362,10 @@ const routes = [
   {
     path: '/cookies',
     element: <Cookies />,
+  },
+  {
+    path: '/admin/payment-gateways',
+    element: <PaymentGatewayManagement />,
   },
 ];
 

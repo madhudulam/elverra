@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { CreditCard, Calendar, DollarSign, Check } from 'lucide-react';
 import { toast } from 'sonner';
+import UnifiedPaymentWindow from '@/components/payment/UnifiedPaymentWindow';
 
 interface JobPostingPaymentProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ interface JobPostingPaymentProps {
 const JobPostingPayment = ({ isOpen, onClose, onSuccess, jobTitle, duration }: JobPostingPaymentProps) => {
   const [paymentMethod, setPaymentMethod] = useState('mobile_money');
   const [processing, setProcessing] = useState(false);
+  const [showUnifiedPayment, setShowUnifiedPayment] = useState(false);
 
   const COST_PER_DAY = 2000; // CFA per day
   const totalCost = duration * COST_PER_DAY;
@@ -72,8 +74,28 @@ const JobPostingPayment = ({ isOpen, onClose, onSuccess, jobTitle, duration }: J
     }
   };
 
+  const handleUnifiedPayment = () => {
+    setShowUnifiedPayment(true);
+  };
+
+  const handlePaymentSuccess = (transactionId: string) => {
+    const paymentData = {
+      amount: totalCost,
+      duration,
+      paymentMethod: 'unified_payment',
+      jobTitle,
+      transactionId,
+      status: 'completed',
+      paidAt: new Date().toISOString()
+    };
+    
+    onSuccess(paymentData);
+    onClose();
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <>
+      <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Job Posting Payment</DialogTitle>
@@ -150,6 +172,17 @@ const JobPostingPayment = ({ isOpen, onClose, onSuccess, jobTitle, duration }: J
             </div>
           </div>
 
+          <div className="text-center mb-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleUnifiedPayment}
+              className="w-full"
+            >
+              Use Unified Payment Window
+            </Button>
+          </div>
+
           {/* Action Buttons */}
           <div className="flex space-x-3">
             <Button variant="outline" onClick={onClose} className="flex-1">
@@ -173,6 +206,14 @@ const JobPostingPayment = ({ isOpen, onClose, onSuccess, jobTitle, duration }: J
         </div>
       </DialogContent>
     </Dialog>
+
+      <UnifiedPaymentWindow
+        isOpen={showUnifiedPayment}
+        onClose={() => setShowUnifiedPayment(false)}
+        onSuccess={handlePaymentSuccess}
+        preSelectedService="job_posting"
+      />
+    </>
   );
 };
 
