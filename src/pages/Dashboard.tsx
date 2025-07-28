@@ -96,7 +96,7 @@ const Dashboard = () => {
         .from('memberships')
         .select('*')
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
 
       setMembership(membershipData);
       setStats({
