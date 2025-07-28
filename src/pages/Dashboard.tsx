@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useAuth } from '@/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import DashboardStats from '@/components/dashboard/DashboardStats';
 import MembershipStatus from '@/components/dashboard/MembershipStatus';
@@ -21,7 +20,6 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, MapPin, Users, Star, TrendingUp, Briefcase } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useJobApplications } from '@/hooks/useJobs';
-import { supabase } from '@/integrations/supabase/client';
 
 const Dashboard = () => {
   const { user, loading: authLoading } = useAuth();
