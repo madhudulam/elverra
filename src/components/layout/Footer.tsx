@@ -9,8 +9,8 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-lg font-bold mb-6 flex items-center">
-              <span className="text-club66-gold">El</span>
-              <span className="text-club66-purple"> Global</span>
+              <span className="text-elverra-gold">Elverra</span>
+              <span className="text-elverra-purple"> Global</span>
             </h3>
             <p className="text-gray-300 mb-6 text-sm">
               Empowering communities across West Africa with exclusive member benefits,
@@ -71,13 +71,13 @@ const Footer = () => {
                 <Link to="/faq" className="text-gray-300 hover:text-club66-gold text-sm">FAQ</Link>
               </li>
               <li>
-                <Link to="/about/contact" className="text-gray-300 hover:text-club66-gold text-sm">Contact Us</Link>
+                <Link to="/about/contact" className="text-gray-300 hover:text-elverra-gold text-sm">Contact Us</Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-300 hover:text-club66-gold text-sm">Privacy Policy</Link>
+                <Link to="/privacy" className="text-gray-300 hover:text-elverra-gold text-sm">Privacy Policy</Link>
               </li>
               <li>
-                <Link to="/terms" className="text-gray-300 hover:text-club66-gold text-sm">Terms of Use</Link>
+                <Link to="/terms" className="text-gray-300 hover:text-elverra-gold text-sm">Terms of Use</Link>
               </li>
             </ul>
           </div>
@@ -121,7 +121,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} El Global. All rights reserved.
+              &copy; {new Date().getFullYear()} Elverra Global. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0">
               <div className="flex space-x-6">

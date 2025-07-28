@@ -23,13 +23,13 @@ const CTA = ({ cmsContent }: CTAProps) => {
     <section className="py-16 bg-gradient-to-br from-club66-purple to-club66-darkpurple text-white">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join El Global?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Elverra Global?</h2>
           <p className="text-lg mb-8 opacity-90">
             Become a member today and unlock a world of exclusive benefits, discounts, and opportunities.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg" variant="secondary" className="bg-club66-gold hover:bg-club66-gold/90 text-gray-900">
+            <Button asChild size="lg" variant="secondary" className="bg-elverra-gold hover:bg-elverra-gold/90 text-gray-900">
               <Link to="/register">Sign Up Now</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">

@@ -34,11 +34,10 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/el-logo.png" 
-              alt="El Global" 
-              className="h-10 w-auto"
-            />
+            <span className="text-2xl font-bold">
+              <span className="text-elverra-purple">Elverra</span>
+              <span className="text-elverra-gold"> Global</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -73,17 +72,17 @@ const Header = () => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/about/projects" className="flex items-center">
+                  <Link to="/project-requests" className="flex items-center">
                     Projects
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/about/partners" className="flex items-center">
+                  <Link to="/faq" className="flex items-center">
                     Partners
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/about/news" className="flex items-center">
+                  <Link to="/faq" className="flex items-center">
                     News
                   </Link>
                 </DropdownMenuItem>
@@ -93,18 +92,18 @@ const Header = () => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/about/changing-lives" className="flex items-center">
+                  <Link to="/about/mission" className="flex items-center">
                     Changing Lives
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/about/terms" className="flex items-center">
+                  <Link to="/terms" className="flex items-center">
                     Terms of Use
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/about/privacy" className="flex items-center">
+                  <Link to="/privacy" className="flex items-center">
                     Privacy Policy
                   </Link>
                 </DropdownMenuItem>
@@ -269,18 +268,6 @@ const Header = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-3">
-            <Link to="/cart" className="text-gray-600 hover:text-blue-600 transition-colors relative">
-              <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-600 text-white">
-                0
-              </Badge>
-            </Link>
-            <Link to="/wishlist" className="text-gray-600 hover:text-blue-600 transition-colors relative">
-              <Heart className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white">
-                0
-              </Badge>
-            </Link>
             <CountrySelector />
             
             {user ? (

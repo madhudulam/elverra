@@ -3,11 +3,42 @@ import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Users, ShoppingBag, CreditCard, TrendingUp, Shield, Settings, FileText, UserCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleLogoUpload = async () => {
+    if (!logoFile) return;
+
+    setUploading(true);
+    try {
+      const fileExt = logoFile.name.split('.').pop();
+      const fileName = `logo.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('club66')
+        .upload(fileName, logoFile, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      toast.success('Logo uploaded successfully!');
+      setLogoFile(null);
+    } catch (error) {
+      console.error('Error uploading logo:', error);
+      toast.error('Failed to upload logo');
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const stats = [
     {
@@ -111,8 +142,37 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage your Club66 platform from here</p>
+          <p className="text-gray-600">Manage your Elverra platform from here</p>
         </div>
+
+        {/* Logo Upload Section */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Logo Management</CardTitle>
+            <CardDescription>Upload and manage the platform logo</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="logo-upload">Upload New Logo</Label>
+                <Input
+                  id="logo-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+                  className="mt-1"
+                />
+              </div>
+              <Button 
+                onClick={handleLogoUpload} 
+                disabled={!logoFile || uploading}
+                className="w-full sm:w-auto"
+              >
+                {uploading ? 'Uploading...' : 'Upload Logo'}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
