@@ -17,7 +17,7 @@ export const usePaymentGateways = () => {
       config: {
         baseUrl: 'https://api.orange.com/orange-money-webpay/dev/v1',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: process.env.VITE_ORANGE_MERCHANT_ID || ''
+        merchantId: import.meta.env.VITE_ORANGE_MERCHANT_ID || ''
       },
       fees: { percentage: 1.5, fixed: 0 },
       icon: '📱',
@@ -31,7 +31,7 @@ export const usePaymentGateways = () => {
       config: {
         baseUrl: 'https://api.sama.money/v1',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: process.env.VITE_SAMA_MERCHANT_ID || ''
+        merchantId: import.meta.env.VITE_SAMA_MERCHANT_ID || ''
       },
       fees: { percentage: 1.2, fixed: 0 },
       icon: '💰',
@@ -45,7 +45,7 @@ export const usePaymentGateways = () => {
       config: {
         baseUrl: 'https://api.wave.com/v1',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: process.env.VITE_WAVE_MERCHANT_ID || ''
+        merchantId: import.meta.env.VITE_WAVE_MERCHANT_ID || ''
       },
       fees: { percentage: 1.0, fixed: 0 },
       icon: '🌊',
@@ -59,7 +59,7 @@ export const usePaymentGateways = () => {
       config: {
         baseUrl: 'https://api.moov-africa.com/v1',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: process.env.VITE_MOOV_MERCHANT_ID || ''
+        merchantId: import.meta.env.VITE_MOOV_MERCHANT_ID || ''
       },
       fees: { percentage: 1.8, fixed: 0 },
       icon: '📲',
@@ -85,7 +85,7 @@ export const usePaymentGateways = () => {
       config: {
         baseUrl: 'https://api.stripe.com/v1',
         supportedCurrencies: ['USD', 'EUR', 'XOF'],
-        apiKey: process.env.VITE_STRIPE_PUBLISHABLE_KEY || ''
+        apiKey: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || ''
       },
       fees: { percentage: 2.9, fixed: 30 },
       icon: '💳',
