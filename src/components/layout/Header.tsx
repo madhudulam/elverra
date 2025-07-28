@@ -25,10 +25,15 @@ const Header = () => {
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        // Try to get the uploaded logo from Supabase storage
-        const { data: logoData } = await supabase.storage
-          .from('elverra')
+        // Try to get the uploaded logo from club66 storage bucket
+        const { data: logoData, error: listError } = await supabase.storage
+          .from('club66')
           .list('', { limit: 10 });
+        
+        if (listError) {
+          console.log('Storage bucket not accessible, using default logo');
+          return;
+        }
         
         // Look for logo files (png, jpg, jpeg)
         const logoFile = logoData?.find(file => 
@@ -38,7 +43,7 @@ const Header = () => {
         
         if (logoFile) {
           const { data: urlData } = supabase.storage
-            .from('elverra')
+            .from('club66')
             .getPublicUrl(logoFile.name);
           
           if (urlData?.publicUrl) {
@@ -46,7 +51,7 @@ const Header = () => {
           }
         }
       } catch (error) {
-        console.log('Using default logo');
+        console.log('Error fetching logo, using default:', error);
       }
     };
 

@@ -24,30 +24,31 @@ const AdminDashboard = () => {
       const fileExt = logoFile.name.split('.').pop();
       const fileName = `logo.${fileExt}`;
       
-      // Delete existing logo files first
-      const { data: existingFiles } = await supabase.storage
-        .from('elverra')
-        .list('', { limit: 10 });
+      // Check if bucket exists, if not create it
+      const { data: buckets } = await supabase.storage.listBuckets();
+      const bucketExists = buckets?.some(bucket => bucket.name === 'club66');
       
-      if (existingFiles) {
-        const logoFiles = existingFiles.filter(file => 
-          file.name.toLowerCase().startsWith('logo.')
-        );
+      if (!bucketExists) {
+        const { error: bucketError } = await supabase.storage.createBucket('club66', {
+          public: true,
+          fileSizeLimit: 5242880, // 5MB
+          allowedMimeTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+        });
         
-        for (const file of logoFiles) {
-          await supabase.storage
-            .from('elverra')
-            .remove([file.name]);
+        if (bucketError) {
+          console.error('Error creating bucket:', bucketError);
+          throw new Error('Failed to create storage bucket');
         }
       }
       
       // Upload new logo
-      const { error: uploadError } = await supabase.storage
-        .from('elverra')
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('club66')
         .upload(fileName, logoFile, { upsert: true });
 
       if (uploadError) throw uploadError;
 
+      console.log('Logo uploaded successfully:', uploadData);
       toast.success('Logo uploaded successfully!');
       setLogoFile(null);
       
@@ -57,7 +58,7 @@ const AdminDashboard = () => {
       }, 1000);
     } catch (error) {
       console.error('Error uploading logo:', error);
-      toast.error('Failed to upload logo');
+      toast.error(`Failed to upload logo: ${error.message}`);
     } finally {
       setUploading(false);
     }
