@@ -100,7 +100,6 @@ const CardShowcase = () => {
                               <div className="bg-black"></div>
                             </div>
                           </div>
-                          <div className="w-6 h-6 bg-black opacity-80"></div>
                         </div>
                       </div>
                     </div>
