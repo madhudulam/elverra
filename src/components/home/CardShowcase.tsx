@@ -104,7 +104,6 @@ const CardShowcase = () => {
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           ))}
