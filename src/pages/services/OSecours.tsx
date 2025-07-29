@@ -162,7 +162,7 @@ const OSecours = () => {
                   </p>
                   <Badge variant="outline" className="text-lg px-6 py-3 bg-gradient-to-r from-purple-100 to-indigo-100 border-purple-300">
                     <Shield className="h-5 w-5 mr-2" />
-                    Trusted by 10,000+ Members
+                    Trusted by 10,000+ Clients
                   </Badge>
                 </div>
                 

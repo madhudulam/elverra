@@ -62,9 +62,7 @@ const CardShowcase = () => {
                     <div className="absolute top-1 right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                       <div className="w-5 h-5 bg-white rounded-full opacity-90"></div>
                     </div>
-                  </div>
                 </div>
-
                 <div className="relative p-4 h-full flex flex-col">
                   {/* ZENIKA Header */}
                   <div className="mb-6">
@@ -79,16 +77,26 @@ const CardShowcase = () => {
                       <h3 className="text-lg font-semibold">{card.name}</h3>
                       <p className="text-sm opacity-90">Status: {card.tier}</p>
                       <p className="text-sm opacity-90">Sokorodji, Bamako, Mali</p>
-                    </div>
+                    {/* Client Info */}
                     
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-xs opacity-90">ID: ML-2025896550</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold">03/26</span>
-                        {/* QR Code placeholder */}
-                        <div className="w-8 h-8 bg-white rounded border border-black flex items-center justify-center">
+                          {/* QR Code */}
+                          <div className="w-8 h-8 bg-white rounded border border-black flex items-center justify-center">
+                            <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
+                              <div className="bg-black"></div>
+                              <div className="bg-white"></div>
+                              <div className="bg-black"></div>
+                              <div className="bg-white"></div>
+                              <div className="bg-black"></div>
+                              <div className="bg-white"></div>
+                              <div className="bg-black"></div>
+                              <div className="bg-white"></div>
+                              <div className="bg-black"></div>
+                            </div>
                           <div className="w-6 h-6 bg-black opacity-80"></div>
                         </div>
                       </div>

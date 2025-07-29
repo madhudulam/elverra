@@ -238,7 +238,7 @@ const Affiliates = () => {
               <CardContent className="p-12 text-center">
                 <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
                 <p className="text-xl mb-8 opacity-90">
-                  Join our affiliate program and start earning 10% commission on every referral. 
+                  Join our affiliate program and start earning 10% commission on every referral.
                   Note: Your affiliate code becomes active only after manager approval to ensure proper orientation.
                 </p>
                 <Button 

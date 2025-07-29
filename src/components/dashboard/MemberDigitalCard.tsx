@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, Share2, QrCode } from 'lucide-react';
@@ -102,88 +101,76 @@ const MemberDigitalCard = ({
         <p className="text-sm text-gray-500">Present this at participating merchants for discounts</p>
       </div>
       
-      <Card id="member-card" className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-200 bg-white">
-        {/* Card Header */}
-        <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white px-6 py-3 relative">
-          <div className="flex items-center justify-between">
-            <img src="/lovable-uploads/el-logo.png" alt="El Global Logo" className="h-12 w-auto brightness-0 invert" />
-            <h2 className="text-4xl font-bold text-white">El</h2>
+      {/* ZENIKA Card Design */}
+      <div 
+        id="member-card"
+        className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-3xl"
+        style={{
+          border: '3px solid #22c55e',
+          background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+          aspectRatio: '1.6/1',
+          width: '100%',
+          maxWidth: '400px'
+        }}
+      >
+        {/* Background wave pattern */}
+        <div className="absolute inset-0">
+          <svg viewBox="0 0 400 250" className="w-full h-full">
+            <path d="M0,150 Q100,100 200,120 T400,110 L400,250 L0,250 Z" fill="rgba(255,255,255,0.1)" />
+          </svg>
+        </div>
+        
+        {/* Globe and hand logo */}
+        <div className="absolute top-4 right-4 w-12 h-12">
+          <div className="relative w-full h-full">
+            <div className="absolute inset-0 bg-blue-500 rounded-full opacity-80"></div>
+            <div className="absolute top-1 right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="w-5 h-5 bg-white rounded-full opacity-90"></div>
+            </div>
           </div>
         </div>
 
-        {/* Main Card Content */}
-        <div className="bg-white p-6 relative">
-          <div className="flex items-start space-x-6">
-            {/* Profile Image - positioned to overlap with header */}
-            <div className="flex-shrink-0 relative -mt-16">
-              {profileImage ? (
-                <div className="w-24 h-32 rounded-lg overflow-hidden border-2 border-white shadow-lg">
-                  <img 
-                    src={profileImage} 
-                    alt={memberName} 
-                    className="w-full h-full object-cover"
+        <div className="relative p-4 h-full flex flex-col">
+          {/* ZENIKA Header */}
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold tracking-wider text-green-500">
+              ZENIKA
+            </h2>
+          </div>
+
+          {/* Client Info */}
+          <div className="mt-auto text-white">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold">{memberName}</h3>
+              <p className="text-sm opacity-90">Status: {membershipTier}</p>
+              {address && (
+                <p className="text-sm opacity-90">{address}</p>
+              )}
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs opacity-90">ID: {memberID}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-bold">
+                  {new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toLocaleDateString('en-US', { month: '2-digit', year: '2-digit' })}
+                </span>
+                {/* QR Code */}
+                <div className="w-8 h-8 bg-white rounded border border-black flex items-center justify-center">
+                  <QRCodeGenerator
+                    data={qrData}
+                    size={28}
+                    showDownload={false}
+                    showShare={false}
+                    showData={false}
                   />
                 </div>
-              ) : (
-                <div className="w-24 h-32 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-white shadow-lg">
-                  <span className="text-3xl font-bold text-gray-600">
-                    {memberName.charAt(0).toUpperCase()}
-                  </span>
-                </div>
-              )}
-              {/* ID Number under photo */}
-              <div className="text-center mt-2">
-                <p className="text-xs font-bold text-gray-900">{memberID}</p>
-              </div>
-            </div>
-
-            {/* Member Details */}
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                {memberName}
-              </h3>
-              <p className="text-base font-medium text-gray-800 mb-3">
-                Statut : {membershipTier}
-              </p>
-              
-              {/* Address and Valid Date with QR Code */}
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  {address && (
-                    <p className="text-sm text-gray-700 mb-3">
-                      {address}
-                    </p>
-                  )}
-                  
-                  <p className="text-sm text-gray-600 mb-2">
-                    Valide jusqu'au : {new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toLocaleDateString('fr-FR')}
-                  </p>
-                </div>
-                
-                {/* QR Code */}
-                <div className="flex-shrink-0 ml-4">
-                  <div className="w-20 h-20 bg-white border border-gray-300 rounded p-1">
-                    <QRCodeGenerator
-                      data={qrData}
-                      size={76}
-                      showDownload={false}
-                      showShare={false}
-                      showData={false}
-                    />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Changing Lives Footer */}
-        <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-3 px-6">
-          <h4 className="text-left italic text-lg" style={{ fontFamily: 'Times New Roman, serif' }}>
-            Empowerment and Progress
-          </h4>
-        </div>
-      </Card>
+      </div>
       
       {/* Action Buttons */}
       <div className="flex space-x-2 mt-4">

@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Crown, Users, Gift, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -129,17 +128,17 @@ const HeroSlider = ({ cmsContent }: HeroSliderProps) => {
                           <>
                             ZENIKA<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Cards</span>
                           </>
-                        ) : slide.title.includes('Solutions') ? (
+                        ) : slide.title.includes('Professional') ? (
                           <>
-                            Solutions<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Professionnelles</span>
+                            Professional<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Solutions</span>
                           </>
-                        ) : slide.title.includes('Carrière') ? (
+                        ) : slide.title.includes('Career') ? (
                           <>
-                            Carrière &<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Emploi</span>
+                            Career &<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Employment</span>
                           </>
-                        ) : slide.title.includes('Éducation') ? (
+                        ) : slide.title.includes('Education') ? (
                           <>
-                            Éducation &<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Bourses</span>
+                            Education &<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-purple-300"> Scholarships</span>
                           </>
                         ) : (
                           <>
@@ -189,59 +188,115 @@ const HeroSlider = ({ cmsContent }: HeroSliderProps) => {
 
                     <div className="relative">
                       <div className="relative z-20 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                        {/* Elite Card */}
-                        <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl shadow-2xl p-8 transform rotate-2 relative z-10 border border-purple-400/20 transition-all duration-500 hover:rotate-1 hover:scale-105">
-                          <div className="flex justify-between items-start mb-6">
-                            <div className="text-white">
-                              <p className="text-sm uppercase tracking-wider opacity-90">Elite Member</p>
-                              <p className="text-2xl font-bold">Club66 Global</p>
-                            </div>
-                            <div className="bg-white/20 text-white rounded-full w-16 h-16 flex items-center justify-center backdrop-blur-sm">
-                              <span className="font-bold text-xl">66</span>
+                        {/* ZENIKA Card Design - Elite */}
+                        <div className="relative overflow-hidden rounded-2xl shadow-2xl transform rotate-2 z-10 transition-all duration-500 hover:rotate-1 hover:scale-105"
+                             style={{
+                               border: '3px solid #22c55e',
+                               background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                               aspectRatio: '1.6/1',
+                               width: '300px'
+                             }}>
+                          {/* Background wave pattern */}
+                          <div className="absolute inset-0">
+                            <svg viewBox="0 0 400 250" className="w-full h-full">
+                              <path d="M0,150 Q100,100 200,120 T400,110 L400,250 L0,250 Z" fill="rgba(255,255,255,0.1)" />
+                            </svg>
+                          </div>
+                          
+                          {/* Globe and hand logo */}
+                          <div className="absolute top-4 right-4 w-12 h-12">
+                            <div className="relative w-full h-full">
+                              <div className="absolute inset-0 bg-blue-500 rounded-full opacity-80"></div>
+                              <div className="absolute top-1 right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                <div className="w-5 h-5 bg-white rounded-full opacity-90"></div>
+                              </div>
                             </div>
                           </div>
-                          <div className="space-y-4">
-                            <div>
-                              <p className="text-white/80 text-sm">Member Name</p>
-                              <p className="font-semibold text-white text-lg">Ahmed Traore</p>
+
+                          <div className="relative p-4 h-full flex flex-col">
+                            {/* ZENIKA Header */}
+                            <div className="mb-6">
+                              <h2 className="text-2xl font-bold tracking-wider text-green-500">
+                                ZENIKA
+                              </h2>
                             </div>
-                            <div className="flex justify-between items-end">
-                              <div>
-                                <p className="text-white/80 text-xs">Member ID</p>
-                                <p className="text-sm font-medium text-white">C66-ML-21058</p>
+
+                            {/* Client Info */}
+                            <div className="mt-auto text-white">
+                              <div className="mb-3">
+                                <h3 className="text-lg font-semibold">Ahmed Traore</h3>
+                                <p className="text-sm opacity-90">Status: Elite</p>
+                                <p className="text-sm opacity-90">Sokorodji, Bamako, Mali</p>
                               </div>
-                              <div>
-                                <p className="text-white/80 text-xs">Valid until</p>
-                                <p className="text-sm font-medium text-white">01/28</p>
+                              
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-xs opacity-90">ID: ML-2025896550</p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  <span className="text-sm font-bold">03/26</span>
+                                  {/* QR Code placeholder */}
+                                  <div className="w-8 h-8 bg-white rounded border border-black flex items-center justify-center">
+                                    <div className="w-6 h-6 bg-black opacity-80"></div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                         
-                        {/* Premium Card */}
-                        <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl shadow-xl p-8 transform -rotate-3 absolute -top-8 -left-8 z-0 border border-yellow-300/30 transition-all duration-500 hover:-rotate-2">
-                          <div className="flex justify-between items-start mb-6">
-                            <div className="text-gray-900">
-                              <p className="text-sm uppercase tracking-wider opacity-70">Premium Member</p>
-                              <p className="text-2xl font-bold">Club66 Global</p>
-                            </div>
-                            <div className="bg-white/30 text-gray-900 rounded-full w-16 h-16 flex items-center justify-center">
-                              <span className="font-bold text-xl">66</span>
+                        {/* ZENIKA Card Design - Premium */}
+                        <div className="relative overflow-hidden rounded-2xl shadow-xl transform -rotate-3 absolute -top-8 -left-8 z-0 transition-all duration-500 hover:-rotate-2"
+                             style={{
+                               border: '3px solid #22c55e',
+                               background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                               aspectRatio: '1.6/1',
+                               width: '280px'
+                             }}>
+                          {/* Background wave pattern */}
+                          <div className="absolute inset-0">
+                            <svg viewBox="0 0 400 250" className="w-full h-full">
+                              <path d="M0,150 Q100,100 200,120 T400,110 L400,250 L0,250 Z" fill="rgba(255,255,255,0.1)" />
+                            </svg>
+                          </div>
+                          
+                          {/* Globe and hand logo */}
+                          <div className="absolute top-4 right-4 w-12 h-12">
+                            <div className="relative w-full h-full">
+                              <div className="absolute inset-0 bg-blue-500 rounded-full opacity-80"></div>
+                              <div className="absolute top-1 right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                <div className="w-5 h-5 bg-white rounded-full opacity-90"></div>
+                              </div>
                             </div>
                           </div>
-                          <div className="space-y-4">
-                            <div>
-                              <p className="text-gray-700 text-sm">Member Name</p>
-                              <p className="font-semibold text-gray-900 text-lg">Fatima Diallo</p>
+
+                          <div className="relative p-4 h-full flex flex-col">
+                            {/* ZENIKA Header */}
+                            <div className="mb-6">
+                              <h2 className="text-2xl font-bold tracking-wider text-yellow-400">
+                                ZENIKA
+                              </h2>
                             </div>
-                            <div className="flex justify-between items-end">
-                              <div>
-                                <p className="text-gray-700 text-xs">Member ID</p>
-                                <p className="text-sm font-medium text-gray-900">C66-ML-18593</p>
+
+                            {/* Client Info */}
+                            <div className="mt-auto text-white">
+                              <div className="mb-3">
+                                <h3 className="text-lg font-semibold">Fatima Diallo</h3>
+                                <p className="text-sm opacity-90">Status: Premium</p>
+                                <p className="text-sm opacity-90">Sokorodji, Bamako, Mali</p>
                               </div>
-                              <div>
-                                <p className="text-gray-700 text-xs">Valid until</p>
-                                <p className="text-sm font-medium text-gray-900">10/27</p>
+                              
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-xs opacity-90">ID: ML-2025896551</p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  <span className="text-sm font-bold">10/27</span>
+                                  {/* QR Code placeholder */}
+                                  <div className="w-8 h-8 bg-white rounded border border-black flex items-center justify-center">
+                                    <div className="w-6 h-6 bg-black opacity-80"></div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>

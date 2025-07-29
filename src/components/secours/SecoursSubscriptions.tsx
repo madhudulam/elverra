@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -154,13 +153,13 @@ const SecoursSubscriptions = () => {
       <Card className="max-w-2xl mx-auto">
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900">Club66 Membership Required</h3>
+            <h3 className="text-lg font-semibold text-gray-900">Elverra Client Status Required</h3>
             <p className="text-gray-600">
-              Only Club66 card holders can subscribe to Ô Secours services. 
-              Please become a member first to access these emergency assistance services.
+              Only Elverra card holders can subscribe to Ô Secours services. 
+              Please become a client first to access these emergency assistance services.
             </p>
             <Button asChild>
-              <a href="/register">Become a Member</a>
+              <a href="/register">Become a Client</a>
             </Button>
           </div>
         </CardContent>

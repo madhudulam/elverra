@@ -264,7 +264,7 @@ const AffiliateProgram = () => {
               <CardContent className="p-12 text-center">
                 <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
                 <p className="text-xl mb-8 opacity-90">
-                  Join thousands of successful affiliates earning recurring income with Club66
+                  Join thousands of successful affiliates earning recurring income with Elverra
                 </p>
                 <Button 
                   size="lg" 

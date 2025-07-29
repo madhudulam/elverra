@@ -277,7 +277,7 @@ const Discounts = () => {
               <CardContent className="p-12 text-center">
                 <h2 className="text-3xl font-bold mb-4">Start Saving Today!</h2>
                 <p className="text-xl mb-8 opacity-90">
-                  Join millions of Club66 Global clients and unlock exclusive discounts across West Africa
+                  Join millions of Elverra Global clients and unlock exclusive discounts across West Africa
                 </p>
                 <Button size="lg" variant="outline" className="bg-white text-purple-600 hover:bg-gray-100">
                   Become a Client

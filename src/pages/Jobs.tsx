@@ -227,7 +227,7 @@ const Jobs = () => {
                         <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
                           <div className="flex items-center">
                             <Building className="h-4 w-4 mr-1" />
-                            {user ? job.company || 'Club66 Global' : 'Login to view company'}
+                            {user ? job.company || 'Elverra Global' : 'Login to view company'}
                           </div>
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />

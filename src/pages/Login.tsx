@@ -46,7 +46,7 @@ const Login = () => {
                   <div className="text-sm text-center">
                     Don't have an account?{' '}
                     <Link to="/register" className="text-purple-600 hover:underline">
-                      Join Club66 now
+                      Join Elverra now
                     </Link>
                   </div>
                 </CardFooter>

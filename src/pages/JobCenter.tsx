@@ -16,7 +16,7 @@ const JobCenter = () => {
   const [featuredJobs, setFeaturedJobs] = useState([]);
   const [userMembership, setUserMembership] = useState(null);
   const topCompanies = [
-    { name: 'Club66 Global', jobs: 12, logo: '/placeholder.svg' },
+    { name: 'Elverra Global', jobs: 12, logo: '/placeholder.svg' },
     { name: 'TechCorp Africa', jobs: 8, logo: '/placeholder.svg' },
     { name: 'Innovation Hub', jobs: 6, logo: '/placeholder.svg' },
     { name: 'Digital Solutions', jobs: 5, logo: '/placeholder.svg' }
