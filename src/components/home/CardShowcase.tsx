@@ -117,6 +117,9 @@ const CardShowcase = () => {
           </div>
         </div>
       </div>
+    )
+    )
+    }
     </section>
   );
 };
