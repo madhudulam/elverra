@@ -79,9 +79,9 @@ const MembershipPayment = () => {
                 Back to Home
               </Link>
             </Button>
-            <h1 className="text-4xl font-bold mb-4">Choose Your Membership</h1>
+            <h1 className="text-4xl font-bold mb-4">Choose Your Client Plan</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Select the perfect membership tier for your lifestyle and unlock exclusive benefits.
+              Select the perfect client tier for your lifestyle and unlock exclusive benefits.
             </p>
           </div>
 

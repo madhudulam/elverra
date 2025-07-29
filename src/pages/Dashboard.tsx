@@ -189,10 +189,10 @@ const Dashboard = () => {
             {/* Welcome Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome back, {profile?.full_name || user.email?.split('@')[0] || 'Member'}!
+                Welcome back, {profile?.full_name || user.email?.split('@')[0] || 'Client'}!
               </h1>
               <p className="text-gray-600">
-                Here's what's happening with your Club66 Global membership and job applications.
+                Here's what's happening with your Elverra Global client account and job applications.
               </p>
             </div>
 

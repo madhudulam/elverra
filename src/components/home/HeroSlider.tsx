@@ -54,38 +54,38 @@ const HeroSlider = ({ cmsContent }: HeroSliderProps) => {
     {
       id: 1,
       title: 'ZENIKA Cards',
-      subtitle: 'Votre Carte Membre Digitale',
-      description: 'Profitez de votre carte membre numérique avec QR code pour un accès rapide aux services et réductions exclusives dans notre réseau.',
+      subtitle: 'Your Digital Value Card',
+      description: 'Enjoy your digital value card with QR code for quick access to services and exclusive discounts in our network.',
       backgroundImage: '/lovable-uploads/c94bd4e1-3730-468c-8b9b-8b350b608a41.png',
-      primaryButton: { text: 'Obtenir Ma Carte', link: '/register' },
-      secondaryButton: { text: 'Voir Avantages', link: '/cards' }
+      primaryButton: { text: 'Get My Card', link: '/register' },
+      secondaryButton: { text: 'View Benefits', link: '/cards' }
     },
     {
       id: 2,
-      title: 'Solutions Professionnelles',
-      subtitle: 'Services Business & Partenariats',
-      description: 'Solutions financières innovantes, conseils stratégiques et opportunités de partenariat pour développer votre activité professionnelle.',
+      title: 'Professional Solutions',
+      subtitle: 'Business Services & Partnerships',
+      description: 'Innovative financial solutions, strategic advice and partnership opportunities to develop your professional activity.',
       backgroundImage: '/lovable-uploads/a271f525-8c4f-49b3-9a86-3a96666d8730.png',
-      primaryButton: { text: 'Services Pro', link: '/services' },
-      secondaryButton: { text: 'Devenir Partenaire', link: '/affiliates' }
+      primaryButton: { text: 'Pro Services', link: '/services' },
+      secondaryButton: { text: 'Become Partner', link: '/affiliates' }
     },
     {
       id: 3,
-      title: 'Carrière & Emploi',
-      subtitle: 'Opportunités Professionnelles',
-      description: 'Trouvez l\'emploi de vos rêves ou recrutez les meilleurs talents grâce à notre plateforme dédiée aux professionnels africains.',
+      title: 'Career & Employment',
+      subtitle: 'Professional Opportunities',
+      description: 'Find your dream job or recruit the best talent through our platform dedicated to African professionals.',
       backgroundImage: '/lovable-uploads/611d8d2c-d919-40e6-8768-c63118ad2867.png',
-      primaryButton: { text: 'Trouver un Emploi', link: '/jobs' },
-      secondaryButton: { text: 'Recruter', link: '/post-job' }
+      primaryButton: { text: 'Find a Job', link: '/jobs' },
+      secondaryButton: { text: 'Recruit', link: '/post-job' }
     },
     {
       id: 4,
-      title: 'Éducation & Bourses',
-      subtitle: 'Projets Communautaires',
-      description: 'Accédez à des bourses d\'études, projets éducatifs et programmes de développement personnel pour la jeunesse africaine.',
+      title: 'Education & Scholarships',
+      subtitle: 'Community Projects',
+      description: 'Access scholarships, educational projects and personal development programs for African youth.',
       backgroundImage: '/lovable-uploads/4c42bd0e-c389-4a41-881c-ca7ea44a1451.png',
-      primaryButton: { text: 'Voir Projets', link: '/about/projects' },
-      secondaryButton: { text: 'Demander Bourse', link: '/about/projects' }
+      primaryButton: { text: 'View Projects', link: '/about/projects' },
+      secondaryButton: { text: 'Apply for Scholarship', link: '/about/projects' }
     }
   ];
 

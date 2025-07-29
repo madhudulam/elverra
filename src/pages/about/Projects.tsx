@@ -40,10 +40,20 @@ const Projects = () => {
   };
 
   const handleContribute = async (projectId: string) => {
-    toast({
-      title: "Contribution",
-      description: "Contribution feature coming soon!",
-    });
+    try {
+      // Mock contribution process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      toast({
+        title: "Success",
+        description: "Thank you for your contribution!",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to process contribution",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

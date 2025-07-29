@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import PremiumBanner from '@/components/layout/PremiumBanner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +12,7 @@ const ChangingLives = () => {
       name: "Aisha Konate",
       location: "Bamako, Mali",
       membershipTier: "Premium",
-      story: "Through Club66's micro-loan program, I was able to expand my textile business. The 10% discount at partner stores helped me save money on raw materials, and now I employ 5 people in my community.",
+      story: "Through Elverra's micro-loan program, I was able to expand my textile business. The 10% discount at partner stores helped me save money on raw materials, and now I employ 5 people in my community.",
       impact: "Business Growth",
       date: "2024-02-15",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
@@ -23,7 +22,7 @@ const ChangingLives = () => {
       name: "Ousmane Diarra",
       location: "Dakar, Senegal",
       membershipTier: "Elite",
-      story: "The educational scholarships provided through Club66 helped my daughter pursue her engineering degree. She's now working as a software developer and giving back to our community.",
+      story: "The educational scholarships provided through Elverra helped my daughter pursue her engineering degree. She's now working as a software developer and giving back to our community.",
       impact: "Education",
       date: "2024-01-20",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
@@ -50,8 +49,8 @@ const ChangingLives = () => {
   return (
     <Layout>
       <PremiumBanner
-        title="Changing Lives"
-        description="Real stories from our members showing how Club66 Global is making a positive impact across African communities."
+        title="Empowerment and Progress"
+        description="Real stories from our clients showing how Elverra Global is making a positive impact across African communities."
         backgroundImage="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         showBackButton
         backUrl="/about"
@@ -74,9 +73,9 @@ const ChangingLives = () => {
             </div>
 
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Member Success Stories</h2>
+              <h2 className="text-3xl font-bold mb-4">Client Success Stories</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                These are just a few examples of how Club66 Global membership 
+                These are just a few examples of how Elverra Global clients 
                 is creating real, positive change in communities across Africa.
               </p>
             </div>

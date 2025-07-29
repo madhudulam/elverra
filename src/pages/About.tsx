@@ -45,7 +45,7 @@ const About = () => {
   return (
     <Layout>
       <PremiumBanner
-        title="About Club66 Global"
+        title="About Elverra Global"
         description="Learn about our mission, vision, and commitment to empowering African communities through innovative client benefits."
         backgroundImage="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />
@@ -73,7 +73,7 @@ const About = () => {
                 <CardHeader className="text-center">
                   <Users className="h-8 w-8 text-purple-600 mx-auto mb-2" />
                   <CardTitle className="text-lg">Our Team</CardTitle>
-                  <CardDescription>Meet the people behind Club66</CardDescription>
+                  <CardDescription>Meet the people behind Elverra</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <Button asChild variant="outline" className="w-full">

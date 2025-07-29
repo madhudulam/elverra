@@ -192,7 +192,7 @@ const PremiumMemberCard = ({
                 
                 <div className="flex-1">
                   <div className={`text-xs font-medium ${cardDesign.textSecondary} mb-1`}>
-                    Cardholder Name
+                    Client Name
                   </div>
                   <div className={`text-lg font-bold ${cardDesign.textPrimary} truncate`}>
                     {memberName}
@@ -204,7 +204,7 @@ const PremiumMemberCard = ({
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <div className={`text-xs font-medium ${cardDesign.textSecondary} mb-1`}>
-                    Member ID
+                    Client ID
                   </div>
                   <div className={`text-sm font-bold ${cardDesign.textPrimary} font-mono`}>
                     {memberID}

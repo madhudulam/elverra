@@ -14,7 +14,7 @@ const Privacy = () => {
           <p className="text-gray-500">Last updated: May 23, 2025</p>
           
           <p>
-            Club66 ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, or any Club66 services.
+            Elverra ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, or any Elverra services.
           </p>
           
           <h2>1. Information We Collect</h2>
@@ -41,7 +41,7 @@ const Privacy = () => {
             <li>To provide and maintain our services</li>
             <li>To process payments and manage your account</li>
             <li>To verify your identity and prevent fraud</li>
-            <li>To send you membership updates and promotional materials</li>
+            <li>To send you client updates and promotional materials</li>
             <li>To improve and personalize your experience</li>
             <li>To respond to your inquiries and provide customer support</li>
           </ul>
@@ -50,7 +50,7 @@ const Privacy = () => {
           <p>We may share your information with:</p>
           <ul>
             <li>Service providers who help us deliver our services</li>
-            <li>Partner merchants (limited to verification of membership status)</li>
+            <li>Partner merchants (limited to verification of client status)</li>
             <li>Legal authorities when required by law</li>
             <li>Other third parties with your consent</li>
           </ul>

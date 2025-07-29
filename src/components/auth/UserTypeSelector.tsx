@@ -14,7 +14,7 @@ const UserTypeSelector = ({ onSelect, selectedType }: UserTypeSelectorProps) => 
     {
       type: 'member',
       icon: User,
-      title: 'Regular Member',
+      title: 'Regular Client',
       description: 'Access discounts, benefits, and community features',
       color: 'bg-blue-50 border-blue-200'
     },

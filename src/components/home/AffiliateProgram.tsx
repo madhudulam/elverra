@@ -34,7 +34,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
               <h2 className="text-3xl font-bold mb-6">Earn While You Share</h2>
               
               <p className="text-gray-300 mb-6">
-                Join our affiliate program and earn 10% commission on membership fees paid by members you refer to
+                Join our affiliate program and earn 10% commission on client fees paid by clients you refer to
                 Elverra Global. It's simple, transparent, and rewarding.
               </p>
               

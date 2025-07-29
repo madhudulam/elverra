@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, User, LogOut, Settings, Briefcase, Building, Users, Search, Plus, ChevronDown, Info, UserCheck } from 'lucide-react';
@@ -134,7 +133,7 @@ const Header = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/about/mission" className="flex items-center">
-                    Changing Lives
+                    Empowerment and Progress
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

@@ -1,4 +1,3 @@
-
 import { CreditCard, Gift, Users, Award, Percent, Clock } from 'lucide-react';
 
 interface CMSPage {
@@ -57,7 +56,7 @@ const Benefits = ({ cmsContent }: BenefitsProps) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl font-bold mb-4">Client Benefits</h2>
           <p className="text-gray-600">
-            Discover the advantages of being a Club66 Global client and how our services
+            Discover the advantages of being an Elverra Global client and how our services
             can enhance your lifestyle, career, and financial wellbeing across West Africa.
           </p>
         </div>

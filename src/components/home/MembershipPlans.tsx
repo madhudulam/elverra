@@ -45,7 +45,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       textColor: 'text-gray-900',
       buttonVariant: 'outline',
       features: [
-        '5% discount at Club66 businesses',
+        '5% discount at Elverra businesses',
         'Digital Value & Privilege Card',
         'Access to partner discounts',
         'Client community access',
@@ -63,7 +63,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       buttonVariant: 'secondary',
       popular: true,
       features: [
-        '10% discount at Club66 businesses',
+        '10% discount at Elverra businesses',
         'Digital Value & Privilege Card',
         'Access to partner discounts',
         'Client community access',
@@ -82,7 +82,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       textColor: 'text-white',
       buttonVariant: 'default',
       features: [
-        '20% discount at Club66 businesses',
+        '20% discount at Elverra businesses',
         'Digital Value & Privilege Card',
         'Access to partner discounts',
         'Client community access',

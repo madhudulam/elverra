@@ -8,7 +8,7 @@ const Mission = () => {
     <Layout>
       <PremiumBanner
         title="Mission & Vision"
-        description="Our core purpose and aspirations that drive everything we do at Club66 Global"
+        description="Our core purpose and aspirations that drive everything we do at Elverra Global"
         backgroundImage="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         showBackButton
         backUrl="/about"
@@ -51,14 +51,14 @@ const Mission = () => {
             {/* About Us Section */}
             <Card className="mb-16">
               <CardHeader className="text-center">
-                <CardTitle className="text-3xl">About Club66 Global</CardTitle>
+                <CardTitle className="text-3xl">About Elverra Global</CardTitle>
                 <CardDescription className="text-lg mt-4">
                   Empowering communities through innovative services and partnerships
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-8">
                 <p className="text-lg leading-relaxed text-gray-700 text-justify">
-                  Club 66 Global is a company that offers a diverse range of services and platforms through our unique all-in-one astonishing product called ZENIKA. Our Zenika Card enables our clients to access discounts and special privileges on purchases of goods and services across our network of partners. Our service basket includes a Job Centre, Payday Loans, an Online Store with low hosting fees, a Free Online Library, and our most passionate "Ô Secours" services. Our mission is to provide valuable resources and opportunities for our clients. Through our TikTok campaign, "What saving lives really means to me," we're gathering feedback and stories to improve our services and better serve our community. With exciting initiatives and benefits, Club 66 Global aims to make a positive impact and support the growth and well-being of our clients worldwide.
+                  Elverra Global is a company that offers a diverse range of services and platforms through our unique all-in-one astonishing product called ZENIKA. Our Zenika Card enables our clients to access discounts and special privileges on purchases of goods and services across our network of partners. Our service basket includes a Job Centre, Payday Loans, an Online Store with low hosting fees, a Free Online Library, and our most passionate "Ô Secours" services. Our mission is to provide valuable resources and opportunities for our clients. Through our TikTok campaign, "What Empowerment and Progress really means to me," we're gathering feedback and stories to improve our services and better serve our community. With exciting initiatives and benefits, Elverra Global aims to make a positive impact and support the growth and well-being of our clients worldwide.
                 </p>
               </CardContent>
             </Card>

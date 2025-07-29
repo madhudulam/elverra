@@ -148,7 +148,7 @@ const Jobs = () => {
     <Layout>
       <PremiumBanner
         title="Find Your Dream Job"
-        description="Discover exclusive job opportunities with Club66 Global's premium job portal"
+        description="Discover exclusive job opportunities with Elverra Global's premium job portal"
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />
 

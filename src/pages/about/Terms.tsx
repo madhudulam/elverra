@@ -15,28 +15,28 @@ const Terms = () => {
           
           <h2>1. Acceptance of Terms</h2>
           <p>
-            By accessing or using the Club66 website, mobile application, or any Club66 services, you agree to be bound by these Terms of Use. If you do not agree to all of these terms, you may not access or use our services.
+            By accessing or using the Elverra website, mobile application, or any Elverra services, you agree to be bound by these Terms of Use. If you do not agree to all of these terms, you may not access or use our services.
           </p>
           
-          <h2>2. Membership</h2>
+          <h2>2. Client Services</h2>
           <p>
-            Club66 offers different membership tiers with varying benefits as described on our website. By purchasing a membership, you agree to:
+            Elverra offers different client tiers with varying benefits as described on our website. By becoming a client, you agree to:
           </p>
           <ul>
             <li>Provide accurate and complete information during registration</li>
-            <li>Pay all fees associated with your chosen membership tier</li>
+            <li>Pay all fees associated with your chosen client tier</li>
             <li>Maintain the security of your account credentials</li>
-            <li>Accept that memberships are valid for one year and subject to renewal</li>
+            <li>Accept that client services are valid for one year and subject to renewal</li>
           </ul>
           
-          <h3>2.1 Membership Tiers</h3>
+          <h3>2.1 Client Tiers</h3>
           <p>
-            Club66 offers three membership tiers with different benefits and fees:
+            Elverra offers three client tiers with different benefits and fees:
           </p>
           <ul>
-            <li><strong>Essential:</strong> CFA 10,000/year + 1,000/month → 5% discount at Club66 owned businesses</li>
-            <li><strong>Premium:</strong> CFA 10,000/year + 2,000/month → 10% discount at Club66 owned businesses</li>
-            <li><strong>Elite (VIP):</strong> CFA 10,000/year + 5,000/month → 20% discount at Club66 owned businesses</li>
+            <li><strong>Essential:</strong> CFA 10,000/year + 1,000/month → 5% discount at Elverra owned businesses</li>
+            <li><strong>Premium:</strong> CFA 10,000/year + 2,000/month → 10% discount at Elverra owned businesses</li>
+            <li><strong>Elite (VIP):</strong> CFA 10,000/year + 5,000/month → 20% discount at Elverra owned businesses</li>
           </ul>
           <p>All tiers receive equal discount access with partner merchants.</p>
           

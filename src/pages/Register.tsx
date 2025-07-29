@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
@@ -213,8 +212,8 @@ const Register = () => {
   return (
     <Layout>
       <PremiumBanner
-        title="Join Club66 Global"
-        description="Become a member and enjoy exclusive discounts, competitions, and networking opportunities."
+        title="Join Elverra Global"
+        description="Become a client and enjoy exclusive discounts, competitions, and networking opportunities."
         backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         variant="compact"
       />
@@ -224,7 +223,7 @@ const Register = () => {
           <div className="max-w-7xl mx-auto">
             <Tabs value={formData.user_type} onValueChange={(value) => setFormData(prev => ({ ...prev, user_type: value }))}>
               <TabsList className="grid w-full grid-cols-4 mb-8">
-                <TabsTrigger value="member">Regular Member</TabsTrigger>
+                <TabsTrigger value="member">Regular Client</TabsTrigger>
                 <TabsTrigger value="employee">Job Seeker / Employee</TabsTrigger>
                 <TabsTrigger value="employer">Employer / Company</TabsTrigger>
                 <TabsTrigger value="partner">Business Partner</TabsTrigger>

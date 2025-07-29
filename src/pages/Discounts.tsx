@@ -124,7 +124,7 @@ const Discounts = () => {
                         </SelectItem>
                       ))}
                     </SelectContent>
-                  </Select>
+                    Join millions of Elverra Global clients and unlock exclusive discounts across West Africa
                   <Button onClick={handleSearch} className="w-full">
                     <Search className="h-4 w-4 mr-2" />
                     Search
@@ -148,7 +148,7 @@ const Discounts = () => {
                 <div className="text-gray-600">Average Savings</div>
               </Card>
               <Card className="text-center p-6">
-                <div className="text-3xl font-bold text-purple-600 mb-2">{merchantStats.members}</div>
+                  <div className="text-gray-600">Happy Clients</div>
                 <div className="text-gray-600">Happy Clients</div>
               </Card>
             </div>

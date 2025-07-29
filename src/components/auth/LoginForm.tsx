@@ -107,7 +107,7 @@ const LoginForm = () => {
       <CardHeader>
         <CardTitle className="text-2xl">Log in to your account</CardTitle>
         <CardDescription>
-          Access your Club66 membership and benefits
+          Access your Elverra client benefits
         </CardDescription>
       </CardHeader>
       <CardContent>

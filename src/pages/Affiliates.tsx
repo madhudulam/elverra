@@ -105,8 +105,8 @@ const Affiliates = () => {
   return (
     <Layout>
       <PremiumBanner
-        title="Club66 Affiliate Network"
-        description="Join thousands of successful affiliates earning commissions by promoting Club66 membership across Africa"
+        title="Elverra Affiliate Network"
+        description="Join thousands of successful affiliates earning commissions by promoting Elverra clients across Africa"
         backgroundImage="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />
 

@@ -14,7 +14,7 @@ const MembershipStatus = ({ membershipTier, memberSince, expiryDate, nextPayment
   return (
     <Card className="mb-6">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-medium">Membership Status</CardTitle>
+        <CardTitle className="text-lg font-medium">Client Status</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
@@ -23,7 +23,7 @@ const MembershipStatus = ({ membershipTier, memberSince, expiryDate, nextPayment
             <span className="font-medium">{membershipTier}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Member Since:</span>
+            <span className="text-gray-600">Client Since:</span>
             <span>{memberSince}</span>
           </div>
           <div className="flex justify-between">

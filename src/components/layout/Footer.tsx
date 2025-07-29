@@ -57,7 +57,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-300 mb-6 text-sm">
-              Empowering communities across West Africa with exclusive member benefits,
+              Empowering communities across West Africa with exclusive client benefits,
               discounts, and opportunities for growth and prosperity.
             </p>
             <div className="space-y-3">

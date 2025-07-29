@@ -8,18 +8,18 @@ const Team = () => {
   const teamMembers = [
     {
       name: "Abou Diarrassouba",
-      position: "CEO, Club66 Global",
+      position: "Co-Founder & CEO, Elverra Global",
       role: "Chairman of the Board",
       image: "/lovable-uploads/ba0c4ad9-7117-4438-8970-8feb00891ba0.png",
-      description: "Abou Diarrassouba is the CEO of Club66 Global and Chairman of the Board. He brings over a decade of international professional experience, including executive leadership. He is also one of the pioneers of the IPASE close client network Platform intended for inauguration in Senegal in 2024, a crowd pulling model designed to serve almost like Club66 Global. His recognition as a 'good citizen' is based on his obsessive dedication to helping the local communities where his businesses reside. Mr. Diarrassouba's passion for entrepreneurship is complemented by an MBA from William Carey University in Hattiesburg, MS (USA).",
+      description: "Abou Diarrassouba is the CEO of Elverra Global and Chairman of the Board. He has brought over a decade of international professional experience, including executive leadership. He is also one of the pioneers of the IPASE close client network Platform intended for inauguration in Senegal in 2024, a crowd pulling model designed to serve almost like Elverra Global. His recognition as a 'good citizen' is based on his obsessive dedication to helping the local communities where his businesses reside. Mr. Diarrassouba's passion for entrepreneurship is complemented by an MBA from William Carey University in Hattiesburg, MS (USA).",
       expertise: ["Executive Leadership", "International Business", "Community Development", "Entrepreneurship"]
     },
     {
       name: "Modou Jobe",
-      position: "Deputy CEO, Club66 Global",
+      position: "Co-Founder & Deputy CEO, Elverra Global",
       role: "Board of Directors Member",
       image: "/lovable-uploads/b304db8d-403d-412c-aefd-66daa0aa85ac.png",
-      description: "Modou Jobe serves as the Deputy CEO of Club66 Global and a member of the Board of Directors. His education in Accounting and extensive work in banking and finance on international levels have enabled him to cultivate vast expertise. Modou is an expert in Business Structuring and Product Design, structured finance and commodity trade. He is an entrepreneur with passionate focus on Social Assurance Services. As a trained Accountant and Seasoned Banker, He explored his diverse experience and nurtured a brilliant career profile in Business Consulting, Trade Brokerage, Structured Finance, Asset & Liquidity Management and High Level Business Protocols within Africa. He is also one of the pioneers of the Club66 Global crowd pulling model and the IPASE close client network Platform intended for inauguration in Senegal in 2024. For him, 'giving back to the community is as paramount as paying back his shareholders'.",
+      description: "Modou Jobe serves as the Deputy CEO of Elverra Global and a member of the Board of Directors. His education in accounting and extensive work in banking and finance on international levels have enabled him to cultivate vast expertise. Modou is an expert in Business Structuring and Product Design, structured finance and commodity trade. He is an entrepreneur with a passionate focus on Social Assurance Services. As a trained Accountant and Seasoned Banker, He explored his diverse experience and nurtured a brilliant career profile in Business Consulting, Trade Brokerage, Structured Finance, Asset & Liquidity Management and High-Level Business Protocols within Africa. He is also one of the pioneers of the Elverra Global crowd pulling model and the IPASE close client network Platform intended for inauguration in Senegal in 2024. For him, 'giving back to the community is as paramount as paying back his shareholders'.",
       expertise: ["Banking & Finance", "Business Structuring", "Structured Finance", "Social Assurance"]
     }
   ];
@@ -49,7 +49,7 @@ const Team = () => {
               <h2 className="text-3xl font-bold mb-6">Experienced Leadership</h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                 A talented team of individuals with deep business experience and community networks has been 
-                established to lead Club66 Global. Their expertise and valuable knowledge of navigating local business 
+                established to lead Elverra Global. Their expertise and valuable knowledge of navigating local business 
                 regulations are key to driving successful initiatives.
               </p>
             </div>

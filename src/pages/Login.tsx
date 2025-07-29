@@ -10,7 +10,7 @@ const Login = () => {
     <Layout>
       <PremiumBanner
         title="Welcome Back"
-        description="Sign in to access your Club66 membership benefits and exclusive features."
+        description="Sign in to access your Elverra client benefits and exclusive features."
         backgroundImage="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         variant="compact"
       />
@@ -31,7 +31,7 @@ const Login = () => {
                 <CardHeader>
                   <CardTitle className="text-2xl">Welcome back</CardTitle>
                   <CardDescription>
-                    Sign in to access your Club66 membership benefits
+                    Sign in to access your Elverra client benefits
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

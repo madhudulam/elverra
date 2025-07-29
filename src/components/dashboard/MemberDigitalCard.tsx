@@ -98,7 +98,7 @@ const MemberDigitalCard = ({
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="text-center mb-4">
-        <h3 className="font-bold text-lg text-gray-900">Your Digital Membership Card</h3>
+        <h3 className="font-bold text-lg text-gray-900">Your Digital Value Card</h3>
         <p className="text-sm text-gray-500">Present this at participating merchants for discounts</p>
       </div>
       
@@ -169,7 +169,7 @@ const MemberDigitalCard = ({
                       showDownload={false}
                       showShare={false}
                       showData={false}
-                    />
+                    Client Name
                   </div>
                 </div>
               </div>

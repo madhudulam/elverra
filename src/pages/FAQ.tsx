@@ -14,23 +14,23 @@ const FAQ = () => {
 
   const faqData = [
     {
-      category: "Membership",
+      category: "Client Services",
       questions: [
         {
-          question: "How do I become a Club66 member?",
-          answer: "You can become a member by registering on our website. Simply provide your basic information, choose a membership tier, and complete the verification process. Membership activation takes 24-48 hours."
+          question: "How do I become an Elverra client?",
+          answer: "You can become a client by registering on our website. Simply provide your basic information, choose a client tier, and complete the verification process. Client activation takes 24-48 hours."
         },
         {
-          question: "What are the different membership tiers?",
-          answer: "We offer three membership tiers: Essential (basic benefits), Premium (enhanced features), and VIP (premium benefits). Each tier offers different benefits including discounts, access to services, and networking opportunities."
+          question: "What are the different client tiers?",
+          answer: "We offer three client tiers: Essential (basic benefits), Premium (enhanced features), and VIP (premium benefits). Each tier offers different benefits including discounts, access to services, and networking opportunities."
         },
         {
-          question: "Can I upgrade or downgrade my membership?",
-          answer: "Yes, you can change your membership tier at any time through your dashboard. Upgrades take effect immediately, while downgrades take effect at the next billing cycle."
+          question: "Can I upgrade or downgrade my client tier?",
+          answer: "Yes, you can change your client tier at any time through your dashboard. Upgrades take effect immediately, while downgrades take effect at the next billing cycle."
         },
         {
           question: "Is there a minimum commitment period?",
-          answer: "No, there's no minimum commitment period. You can cancel your membership at any time. For paid memberships, you'll continue to have access until the end of your billing period."
+          answer: "No, there's no minimum commitment period. You can cancel your client services at any time. For paid services, you'll continue to have access until the end of your billing period."
         }
       ]
     },
@@ -38,12 +38,12 @@ const FAQ = () => {
       category: "Card Services",
       questions: [
         {
-          question: "How do I activate my Club66 card?",
+          question: "How do I activate my Elverra card?",
           answer: "You can activate your card through our mobile app, website, or by calling our customer service. You'll need your card number and the activation code sent to your registered phone number."
         },
         {
-          question: "Where can I use my Club66 card?",
-          answer: "Your Club66 card can be used at all partner merchants, online stores that accept our payment network, and for various services within the Club66 ecosystem."
+          question: "Where can I use my Elverra card?",
+          answer: "Your Elverra card can be used at all partner merchants, online stores that accept our payment network, and for various services within the Elverra ecosystem."
         },
         {
           question: "What should I do if my card is lost or stolen?",
@@ -132,7 +132,7 @@ const FAQ = () => {
     <Layout>
       <PremiumBanner
         title="Frequently Asked Questions"
-        description="Find answers to common questions about Club66 services and membership benefits."
+        description="Find answers to common questions about Elverra services and client benefits."
       >
         <div className="relative max-w-2xl mx-auto">
           <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
