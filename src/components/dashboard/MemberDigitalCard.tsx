@@ -169,7 +169,7 @@ const MemberDigitalCard = ({
                       showDownload={false}
                       showShare={false}
                       showData={false}
-                    Client Name
+                    />
                   </div>
                 </div>
               </div>
