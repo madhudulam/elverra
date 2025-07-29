@@ -88,7 +88,7 @@ const Privacy = () => {
             If you have questions about this Privacy Policy, please contact us at:
           </p>
           <p>
-            Email: privacy@club66global.com<br />
+            Email: privacy@elverraglobal.com<br />
             Phone: +223 78 00 00 00<br />
             Address: 123 Main Street, Bamako, Mali
           </p>

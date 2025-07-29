@@ -335,7 +335,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
 
           <Button 
             type="submit" 
-            className="w-full bg-club66-purple hover:bg-club66-darkpurple"
+            className="w-full bg-elverra-purple hover:bg-elverra-purple/90"
             disabled={!paymentMethod || isProcessing}
           >
             {isProcessing ? (

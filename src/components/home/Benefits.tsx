@@ -19,32 +19,32 @@ interface BenefitsProps {
 const Benefits = ({ cmsContent }: BenefitsProps) => {
   const benefits = [
     {
-      icon: <Percent className="h-10 w-10 text-club66-purple" />,
+      icon: <Percent className="h-10 w-10 text-elverra-purple" />,
       title: 'Exclusive Discounts',
       description: 'Enjoy 5-20% discounts at thousands of partner businesses across West Africa.'
     },
     {
-      icon: <CreditCard className="h-10 w-10 text-club66-purple" />,
-      title: 'Digital Value & Privilege Card',
+      icon: <CreditCard className="h-10 w-10 text-elverra-purple" />,
+      title: 'Digital Value Card',
       description: 'Access your client benefits with a secure Zenika Card featuring QR verification.'
     },
     {
-      icon: <Users className="h-10 w-10 text-club66-purple" />,
+      icon: <Users className="h-10 w-10 text-elverra-purple" />,
       title: 'Professional Network',
       description: 'Connect with millions of clients and expand your professional network across West Africa.'
     },
     {
-      icon: <Gift className="h-10 w-10 text-club66-purple" />,
+      icon: <Gift className="h-10 w-10 text-elverra-purple" />,
       title: 'Social Benefits',
       description: 'Choose from benefits like startup capital, payday loans, land plots, and more.'
     },
     {
-      icon: <Award className="h-10 w-10 text-club66-purple" />,
+      icon: <Award className="h-10 w-10 text-elverra-purple" />,
       title: 'Job Opportunities',
       description: 'Get priority access to job opportunities through our dedicated job center portal.'
     },
     {
-      icon: <Clock className="h-10 w-10 text-club66-purple" />,
+      icon: <Clock className="h-10 w-10 text-elverra-purple" />,
       title: 'Flexible Payment Options',
       description: 'Pay via mobile money, bank transfers, or credit cards with instant confirmation.'
     }

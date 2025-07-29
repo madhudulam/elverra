@@ -145,7 +145,7 @@ const MembershipTiers = ({ selectedTier, onSelectTier, compact = false }: Member
             <button 
               className={`w-full mt-4 py-2 px-4 rounded transition-colors ${
                 selectedTier === tier.id 
-                  ? 'bg-club66-purple text-white' 
+                  ? 'bg-elverra-purple text-white' 
                   : 'bg-white border border-gray-300 text-gray-800 hover:bg-gray-50'
               }`}
               onClick={() => onSelectTier(tier.id)}

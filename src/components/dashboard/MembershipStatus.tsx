@@ -37,7 +37,7 @@ const MembershipStatus = ({ membershipTier, memberSince, expiryDate, nextPayment
         </div>
         
         <Button variant="outline" className="w-full mt-4">
-          Renew Membership
+          Renew Client Status
         </Button>
       </CardContent>
     </Card>

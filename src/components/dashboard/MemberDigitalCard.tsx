@@ -180,7 +180,7 @@ const MemberDigitalCard = ({
         {/* Changing Lives Footer */}
         <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-3 px-6">
           <h4 className="text-left italic text-lg" style={{ fontFamily: 'Times New Roman, serif' }}>
-            Changing Lives
+            Empowerment and Progress
           </h4>
         </div>
       </Card>

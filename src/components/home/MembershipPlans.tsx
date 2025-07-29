@@ -46,7 +46,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       buttonVariant: 'outline',
       features: [
         '5% discount at Elverra businesses',
-        'Digital Value & Privilege Card',
+        'Digital Value Card',
         'Access to partner discounts',
         'Client community access',
         'Access to job center',
@@ -64,7 +64,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       popular: true,
       features: [
         '10% discount at Elverra businesses',
-        'Digital Value & Privilege Card',
+        'Digital Value Card',
         'Access to partner discounts',
         'Client community access',
         'Access to job center',
@@ -83,7 +83,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
       buttonVariant: 'default',
       features: [
         '20% discount at Elverra businesses',
-        'Digital Value & Privilege Card',
+        'Digital Value Card',
         'Access to partner discounts',
         'Client community access',
         'Access to job center',
@@ -160,7 +160,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
           <p className="text-gray-500 mb-4">
             All client plans include the option to select additional social benefits
           </p>
-          <Button variant="link" className="text-club66-purple">
+          <Button variant="link" className="text-elverra-purple">
             Learn more about social benefits
           </Button>
         </div>

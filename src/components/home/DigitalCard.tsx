@@ -88,7 +88,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
             
             <div className="space-y-4 mb-8">
               <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-club66-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">1</div>
+                <div className="h-6 w-6 rounded-full bg-elverra-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">1</div>
                 <div>
                   <h3 className="font-medium mb-1">Instant Activation</h3>
                   <p className="text-sm text-gray-600">Your digital card is activated immediately after registration and payment.</p>
@@ -96,7 +96,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
               </div>
               
               <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-club66-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">2</div>
+                <div className="h-6 w-6 rounded-full bg-elverra-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">2</div>
                 <div>
                   <h3 className="font-medium mb-1">Secure QR Verification</h3>
                   <p className="text-sm text-gray-600">Partners scan your unique QR code to verify your card validity and apply discounts.</p>
@@ -104,7 +104,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
               </div>
               
               <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-club66-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">3</div>
+                <div className="h-6 w-6 rounded-full bg-elverra-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">3</div>
                 <div>
                   <h3 className="font-medium mb-1">Request Physical Card</h3>
                   <p className="text-sm text-gray-600">You can request a physical card through your client/customer dashboard if desired.</p>
@@ -112,7 +112,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
               </div>
             </div>
             
-            <Button asChild className="bg-club66-purple hover:bg-club66-darkpurple">
+            <Button asChild className="bg-elverra-purple hover:bg-elverra-purple/90">
               <Link to="/register">Get Your Digital Card</Link>
             </Button>
           </div>

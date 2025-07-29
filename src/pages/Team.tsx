@@ -48,9 +48,7 @@ const Team = () => {
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-6">Experienced Leadership</h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                A talented team of individuals with deep business experience and community networks has been 
-                established to lead Elverra Global. Their expertise and valuable knowledge of navigating local business 
-                regulations are key to driving successful initiatives.
+                A talented team of individuals with deep business experience and community networks has been established to lead Elverra Global. Their expertise and valuable knowledge of navigating local business regulations are key to driving successful initiatives.
               </p>
             </div>
 

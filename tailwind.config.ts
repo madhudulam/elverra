@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -78,7 +77,15 @@ export default {
                     gold: '#EFC044',
                     lightpurple: '#A78BFA',
                     darkpurple: '#6E3AD6',
-                }
+                },
+                'club66-purple': '#8B5CF6',
+                'club66-gold': '#EFC044',
+                'club66-lightpurple': '#A78BFA',
+                'club66-darkpurple': '#6E3AD6',
+                'elverra-purple': '#8B5CF6',
+                'elverra-gold': '#EFC044',
+                'elverra-lightpurple': '#A78BFA',
+                'elverra-darkpurple': '#6E3AD6',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

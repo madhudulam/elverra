@@ -40,17 +40,17 @@ const Terms = () => {
           </ul>
           <p>All tiers receive equal discount access with partner merchants.</p>
           
-          <h3>2.2 Membership Duration and Renewal</h3>
+          <h3>2.2 Client Duration and Renewal</h3>
           <p>
-            Your membership is valid for one year from the date of activation. Monthly subscription fees will be charged automatically on the same day each month. You will be notified before your annual renewal date, and the annual fee will be charged automatically unless you choose to cancel your membership.
+            Your client status is valid for one year from the date of activation. Monthly subscription fees will be charged automatically on the same day each month. You will be notified before your annual renewal date, and the annual fee will be charged automatically unless you choose to cancel your client status.
           </p>
           
           <h2>3. Payment Terms</h2>
           <p>
-            Membership fees consist of an annual registration fee and monthly subscription fees as specified for your membership tier. You authorize Club66 to charge the payment method you provide for these fees.
+            Client fees consist of an annual registration fee and monthly subscription fees as specified for your client tier. You authorize Elverra to charge the payment method you provide for these fees.
           </p>
           <p>
-            Monthly fees will be automatically charged on the same day each month. Failure to pay monthly fees may result in suspension of membership benefits until payment is made.
+            Monthly fees will be automatically charged on the same day each month. Failure to pay monthly fees may result in suspension of client benefits until payment is made.
           </p>
           
           <h3>3.1 Payment Methods</h3>
@@ -65,7 +65,7 @@ const Terms = () => {
           
           <h2>4. Membership Card</h2>
           <p>
-            Your digital membership card is personal to you and may not be transferred or shared with others. Any misuse of the membership card may result in termination of your membership without refund.
+            Your digital client card is personal to you and may not be transferred or shared with others. Any misuse of the client card may result in termination of your client status without refund.
           </p>
           <p>
             Physical cards can be requested for an additional fee and will be delivered to the address provided during registration.
@@ -73,17 +73,17 @@ const Terms = () => {
           
           <h2>5. Discounts and Benefits</h2>
           <p>
-            Discounts offered through Club66 are subject to the terms set by each participating merchant. Club66 does not guarantee the availability of specific discounts and reserves the right to modify the discount program at any time.
+            Discounts offered through Elverra are subject to the terms set by each participating merchant. Elverra does not guarantee the availability of specific discounts and reserves the right to modify the discount program at any time.
           </p>
           
           <h2>6. Intellectual Property</h2>
           <p>
-            All content on Club66 platforms, including but not limited to text, graphics, logos, and software, is the property of Club66 or its content suppliers and protected by intellectual property laws.
+            All content on Elverra platforms, including but not limited to text, graphics, logos, and software, is the property of Elverra or its content suppliers and protected by intellectual property laws.
           </p>
           
           <h2>7. Limitation of Liability</h2>
           <p>
-            Club66 shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.
+            Elverra shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.
           </p>
           
           <h2>8. Governing Law</h2>
@@ -93,7 +93,7 @@ const Terms = () => {
           
           <h2>9. Changes to Terms</h2>
           <p>
-            Club66 reserves the right to modify these Terms of Use at any time. We will notify members of significant changes via email or through our website.
+            Elverra reserves the right to modify these Terms of Use at any time. We will notify clients of significant changes via email or through our website.
           </p>
           
           <h2>10. Contact Information</h2>
@@ -101,7 +101,7 @@ const Terms = () => {
             If you have any questions about these Terms of Use, please contact us at:
           </p>
           <p>
-            Email: legal@club66global.com<br />
+            Email: legal@elverraglobal.com<br />
             Phone: +223 78 00 00 00<br />
             Address: 123 Main Street, Bamako, Mali
           </p>
