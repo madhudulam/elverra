@@ -121,7 +121,6 @@ const CardShowcase = () => {
           </div>
         </div>
       </div>
-      </div>
     </section>
   );
 };
