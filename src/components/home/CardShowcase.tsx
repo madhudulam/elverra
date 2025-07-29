@@ -74,7 +74,6 @@ const CardShowcase = () => {
 
                   {/* Member Info */}
                   <div className="mt-auto text-white">
-                    <>
                     <div className="mb-3">
                       <h3 className="text-lg font-semibold">{card.name}</h3>
                       <p className="text-sm opacity-90">Status: {card.tier}</p>
@@ -103,7 +102,6 @@ const CardShowcase = () => {
                           </div>
                         </div>
                       </div>
-                    </>
                     </div>
                   </div>
                 </div>
