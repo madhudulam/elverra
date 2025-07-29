@@ -62,6 +62,7 @@ const CardShowcase = () => {
                     <div className="absolute top-1 right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                       <div className="w-5 h-5 bg-white rounded-full opacity-90"></div>
                     </div>
+                  </div>
                 </div>
                 <div className="relative p-4 h-full flex flex-col">
                   {/* ZENIKA Header */}
@@ -77,6 +78,7 @@ const CardShowcase = () => {
                       <h3 className="text-lg font-semibold">{card.name}</h3>
                       <p className="text-sm opacity-90">Status: {card.tier}</p>
                       <p className="text-sm opacity-90">Sokorodji, Bamako, Mali</p>
+                    </div>
                     {/* Client Info */}
                     
                     <div className="flex items-center justify-between">
@@ -97,6 +99,7 @@ const CardShowcase = () => {
                               <div className="bg-white"></div>
                               <div className="bg-black"></div>
                             </div>
+                          </div>
                           <div className="w-6 h-6 bg-black opacity-80"></div>
                         </div>
                       </div>
@@ -117,9 +120,7 @@ const CardShowcase = () => {
           </div>
         </div>
       </div>
-    )
-    )
-    }
+      </div>
     </section>
   );
 };
