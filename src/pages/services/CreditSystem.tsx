@@ -163,7 +163,7 @@ const CreditSystem = () => {
                         onClick={handleApplyForLoan}
                         disabled={isSubmitting}
                       >
-                        {isSubmitting ? "Processing..." : "Apply for Loan"}
+                        {isSubmitting ? "Submitting..." : "Apply for Loan"}
                       </Button>
                     </CardFooter>
                   </Card>
@@ -426,7 +426,7 @@ const CreditSystem = () => {
                         <AlertCircle className="h-12 w-12 text-gray-300 mx-auto mb-2" />
                         <h4 className="font-medium text-gray-600">No loan history</h4>
                         <p className="text-sm text-gray-500 mt-1">
-                          You haven't taken any loans with Elverra Credit yet
+                          You haven't taken any loans with Club66 Credit yet
                         </p>
                       </div>
                       */}
