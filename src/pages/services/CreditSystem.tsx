@@ -70,7 +70,7 @@ const CreditSystem = () => {
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <h1 className="text-3xl font-bold">Credit System</h1>
-            <p className="text-gray-600">Access loans and manage your credit with Club66</p>
+            <p className="text-gray-600">Access loans and manage your credit with Elverra</p>
           </div>
           
           <Tabs defaultValue="payday-loans" className="w-full">
@@ -426,7 +426,7 @@ const CreditSystem = () => {
                         <AlertCircle className="h-12 w-12 text-gray-300 mx-auto mb-2" />
                         <h4 className="font-medium text-gray-600">No loan history</h4>
                         <p className="text-sm text-gray-500 mt-1">
-                          You haven't taken any loans with Club66 Credit yet
+                          You haven't taken any loans with Elverra Credit yet
                         </p>
                       </div>
                       */}

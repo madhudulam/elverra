@@ -27,7 +27,7 @@ const Distributors = () => {
     <Layout>
       <PremiumBanner
         title="Distribution Partners"
-        description="Meet our regional distribution partners expanding Club66 across Africa"
+        description="Meet our regional distribution partners expanding Elverra across Africa"
         backgroundImage="https://images.unsplash.com/photo-1469041797191-50ace28483c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         showBackButton
         backUrl="/affiliates"

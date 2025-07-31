@@ -59,7 +59,7 @@ const CreditAccount = () => {
               <div>
                 <h2 className="text-2xl font-bold mb-6">Financial Freedom at Your Fingertips</h2>
                 <p className="text-gray-600 mb-6">
-                  The Club66 Global Credit Account provides members with a flexible way to make purchases at 
+                  The Elverra Global Credit Account provides members with a flexible way to make purchases at 
                   our partner merchants and pay over time. Whether you're buying essential items, electronics, 
                   or services, our credit account offers competitive rates and convenient repayment options.
                 </p>
@@ -240,7 +240,7 @@ const CreditAccount = () => {
                   <div>
                     <h4 className="font-medium">Can I use my credit account at any business?</h4>
                     <p className="text-sm text-gray-600 mt-1">
-                      The credit account can be used at Club66 Global businesses and select partner merchants. 
+                      The credit account can be used at Elverra Global businesses and select partner merchants. 
                       A complete list of participating businesses is available in your member dashboard.
                     </p>
                   </div>
@@ -252,7 +252,7 @@ const CreditAccount = () => {
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">Ready to Apply?</h2>
             <p className="text-gray-600 mb-8">
-              Access your credit account through your Club66 Global membership and enjoy flexible 
+              Access your credit account through your Elverra Global membership and enjoy flexible 
               shopping at our partner merchants. Apply today and get a decision quickly.
             </p>
             <Button className="bg-club66-purple hover:bg-club66-darkpurple" size="lg">

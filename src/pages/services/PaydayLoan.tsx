@@ -1,4 +1,3 @@
-
 import { Banknote, Calendar, Calculator, ShieldCheck, Check } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -274,7 +273,7 @@ const PaydayLoan = () => {
                         <ul className="space-y-2">
                           <li className="flex items-center">
                             <Check className="h-5 w-5 text-green-500 mr-2" />
-                            <span>Active Club66 Global membership for at least 1 month</span>
+                            <span>Active Elverra Global membership for at least 1 month</span>
                           </li>
                           <li className="flex items-center">
                             <Check className="h-5 w-5 text-green-500 mr-2" />

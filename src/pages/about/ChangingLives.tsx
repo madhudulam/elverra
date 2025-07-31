@@ -132,8 +132,8 @@ const ChangingLives = () => {
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">Be Part of the Change</h3>
                 <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                  Join thousands of clients who are already benefiting from Elverra Global's 
-                  comprehensive client program. Your success story could be next.
+                  Join thousands of members who are already benefiting from Elverra Global's 
+                  comprehensive membership program. Your success story could be next.
                 </p>
                 <div className="space-x-4">
                   <Button size="lg" className="bg-purple-600 hover:bg-purple-700">

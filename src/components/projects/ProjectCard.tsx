@@ -69,7 +69,7 @@ const ProjectCard = ({ project, onContribute }: ProjectCardProps) => {
           {daysLeft > 0 && (
             <Button 
               onClick={() => onContribute(project.id)}
-              className="w-full bg-club66-purple hover:bg-club66-darkpurple"
+              className="w-full bg-elverra-purple hover:bg-elverra-darkpurple"
             >
               Contribute Now
             </Button>

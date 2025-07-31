@@ -237,7 +237,7 @@ const Register = () => {
                       <CardHeader>
                         <CardTitle>Create Your Account</CardTitle>
                         <CardDescription>
-                          Fill in your details to join Club66 Global
+                          Fill in your details to join Elverra Global
                           {referralCode && (
                             <Badge className="ml-2 bg-green-100 text-green-800">
                               Referral Code: {referralCode}

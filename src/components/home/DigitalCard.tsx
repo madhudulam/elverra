@@ -82,7 +82,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
           <div className="order-1 md:order-2">
             <h2 className="text-3xl font-bold mb-6">Your Digital Value Card</h2>
             <p className="text-gray-600 mb-6">
-              Access your Elverra Global client benefits instantly with our digital card. Available right on your 
+              Access your Elverra Global member benefits instantly with our digital card. Available right on your 
               phone, ready whenever you need it.
             </p>
             
@@ -107,7 +107,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
                 <div className="h-6 w-6 rounded-full bg-elverra-purple text-white flex items-center justify-center font-bold text-sm mr-3 mt-0.5">3</div>
                 <div>
                   <h3 className="font-medium mb-1">Request Physical Card</h3>
-                  <p className="text-sm text-gray-600">You can request a physical card through your client/customer dashboard if desired.</p>
+                  <p className="text-sm text-gray-600">You can request a physical card through your member dashboard if desired.</p>
                 </div>
               </div>
             </div>

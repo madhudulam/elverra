@@ -26,8 +26,8 @@ const PaydayAdvance = () => {
   ];
 
   const requirements = [
-    'Active Club66 Global client status',
-    'Minimum 3 months client history',
+    'Active Elverra Global membership',
+    'Minimum 3 months membership history',
     'Valid government-issued ID',
     'Proof of income or employment',
     'Bank account for disbursement'

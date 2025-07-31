@@ -31,7 +31,7 @@ const Login = () => {
                 <CardHeader>
                   <CardTitle className="text-2xl">Welcome back</CardTitle>
                   <CardDescription>
-                    Sign in to access your Elverra client benefits
+                    Sign in to access your Elverra member benefits
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

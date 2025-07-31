@@ -56,7 +56,7 @@ const News = () => {
   const getStaticNews = () => [
     {
       id: 1,
-      title: "Club66 Global Expands to Three New Countries",
+      title: "Elverra Global Expands to Three New Countries",
       excerpt: "We're excited to announce our expansion into Burkina Faso, Niger, and Guinea, bringing our membership benefits to even more African communities.",
       date: "2024-03-15",
       author: "Admin Team",

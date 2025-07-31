@@ -100,7 +100,7 @@ const ActivateCard = () => {
                   <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                   <h2 className="text-3xl font-bold text-green-600 mb-2">Card Activated!</h2>
                   <p className="text-gray-600">
-                    Your Club66 membership card has been successfully activated.
+                    Your Elverra membership card has been successfully activated.
                   </p>
                 </div>
 

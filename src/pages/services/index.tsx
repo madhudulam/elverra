@@ -59,7 +59,7 @@ const Services = () => {
   return (
     <Layout>
       <PremiumBanner
-        title="Club66 Products and Services"
+        title="Elverra Products and Services"
         description="Comprehensive solutions designed to meet your diverse needs"
         backgroundImage="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />

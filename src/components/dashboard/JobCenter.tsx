@@ -25,7 +25,7 @@ const JobCenter = () => {
               Career Opportunities
             </h3>
             <p className="text-gray-600 mb-6 max-w-md">
-              Access exclusive job listings and opportunities through our premium job portal. Find your next career move with Club66.
+              Access exclusive job listings and opportunities through our premium job portal. Find your next career move with Elverra.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Button asChild className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">

@@ -21,15 +21,15 @@ const CountrySelector = ({ onClose }: CountrySelectorProps) => {
   const { toast } = useToast();
   
   const countries: Country[] = [
-    { id: '1', name: 'Mali', code: 'ML', active: true, url: 'https://www.club66mali.com' },
-    { id: '2', name: 'Nigeria', code: 'NG', active: false, url: 'https://www.club66nigeria.com' },
-    { id: '3', name: 'Ghana', code: 'GH', active: false, url: 'https://www.club66ghana.com' },
-    { id: '4', name: 'Senegal', code: 'SN', active: false, url: 'https://www.club66senegal.com' },
-    { id: '5', name: 'South Africa', code: 'ZA', active: false, url: 'https://www.club66southafrica.com' },
-    { id: '6', name: 'Kenya', code: 'KE', active: false, url: 'https://www.club66kenya.com' },
-    { id: '7', name: 'Ivory Coast', code: 'CI', active: false, url: 'https://www.club66ivorycoast.com' },
-    { id: '8', name: 'Egypt', code: 'EG', active: false, url: 'https://www.club66egypt.com' },
-    { id: '9', name: 'International', code: 'GL', active: true, url: 'https://www.club66.net' },
+    { id: '1', name: 'Mali', code: 'ML', active: true, url: 'https://www.elverramali.com' },
+    { id: '2', name: 'Nigeria', code: 'NG', active: false, url: 'https://www.elverranigeria.com' },
+    { id: '3', name: 'Ghana', code: 'GH', active: false, url: 'https://www.elverraghana.com' },
+    { id: '4', name: 'Senegal', code: 'SN', active: false, url: 'https://www.elverrasenegal.com' },
+    { id: '5', name: 'South Africa', code: 'ZA', active: false, url: 'https://www.elverrasouthafrica.com' },
+    { id: '6', name: 'Kenya', code: 'KE', active: false, url: 'https://www.elverrakenya.com' },
+    { id: '7', name: 'Ivory Coast', code: 'CI', active: false, url: 'https://www.elverraivorycoast.com' },
+    { id: '8', name: 'Egypt', code: 'EG', active: false, url: 'https://www.elverraegypt.com' },
+    { id: '9', name: 'International', code: 'GL', active: true, url: 'https://www.elverra.net' },
   ];
 
   const [selectedCountry, setSelectedCountry] = useState<string>('Mali');

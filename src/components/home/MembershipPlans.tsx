@@ -158,7 +158,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
 
         <div className="mt-12 text-center">
           <p className="text-gray-500 mb-4">
-            All client plans include the option to select additional social benefits
+            All membership plans include the option to select additional social benefits
           </p>
           <Button variant="link" className="text-elverra-purple">
             Learn more about social benefits

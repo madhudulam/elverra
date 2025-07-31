@@ -67,7 +67,7 @@ const CardShowcase = () => {
                 <div className="relative p-4 h-full flex flex-col">
                   {/* ZENIKA Header */}
                   <div className="mb-6">
-                    <h2 className="text-2xl font-bold tracking-wider" style={{ color: card.zenikaColor }}>
+                    <h2 className="text-2xl font-bold tracking-wider text-green-500">
                       ZENIKA
                     </h2>
                   </div>

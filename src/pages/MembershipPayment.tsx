@@ -49,7 +49,7 @@ const MembershipPayment = () => {
             <CheckCircle className="h-24 w-24 text-green-500 mx-auto" />
             <h1 className="text-4xl font-bold text-gray-900">Payment Successful!</h1>
             <p className="text-lg text-gray-600">
-              Welcome to Club66 Global {plans[selectedTier as keyof typeof plans]?.name} membership!
+              Welcome to Elverra Global {plans[selectedTier as keyof typeof plans]?.name} membership!
             </p>
             <p className="text-gray-600">
               You will receive your digital membership card via email within 24 hours.

@@ -1,4 +1,3 @@
-
 import { ShoppingBag, Clock, Check, Percent, Smartphone } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -301,7 +300,7 @@ const HirePurchase = () => {
                           </li>
                           <li className="flex items-center">
                             <Check className="h-5 w-5 text-green-500 mr-2" />
-                            <span>Good payment history with Club66 Global</span>
+                            <span>Good payment history with Elverra Global</span>
                           </li>
                           <li className="flex items-center">
                             <Check className="h-5 w-5 text-green-500 mr-2" />

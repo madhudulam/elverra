@@ -207,7 +207,7 @@ const LoginForm = () => {
                 <User className="h-16 w-16 text-gray-400" />
               </div>
               <p className="text-gray-600">
-                This feature requires the Club66 Mobile App
+                This feature requires the Elverra Mobile App
               </p>
               <Button className="bg-club66-purple hover:bg-club66-darkpurple">
                 Download Our App

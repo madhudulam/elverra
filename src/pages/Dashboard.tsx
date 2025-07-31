@@ -192,7 +192,7 @@ const Dashboard = () => {
                 Welcome back, {profile?.full_name || user.email?.split('@')[0] || 'Client'}!
               </h1>
               <p className="text-gray-600">
-                Here's what's happening with your Elverra Global client account and job applications.
+                Here's what's happening with your Elverra Global member account and job applications.
               </p>
             </div>
 

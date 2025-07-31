@@ -13,7 +13,7 @@ const Contact = () => {
     <Layout>
       <PremiumBanner
         title="Contact Us"
-        description="Get in touch with Club66 team. We're here to help you with any questions or support you need."
+        description="Get in touch with Elverra team. We're here to help you with any questions or support you need."
         backgroundImage="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         showBackButton
         backUrl="/about"

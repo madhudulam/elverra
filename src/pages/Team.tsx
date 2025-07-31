@@ -37,7 +37,7 @@ const Team = () => {
     <Layout>
       <PremiumBanner
         title="Our Leadership Team"
-        description="Meet the talented individuals with deep business experience and community networks leading Club66 Global"
+        description="Meet the talented individuals with deep business experience and community networks leading Elverra Global"
         backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />
 

@@ -181,7 +181,7 @@ const HeroSlider = ({ cmsContent }: HeroSliderProps) => {
                             <Users className="h-6 w-6 text-blue-400" />
                           </div>
                           <p className="text-3xl font-bold text-white">2M+</p>
-                          <p className="text-sm text-gray-300">Clients</p>
+                          <p className="text-sm text-gray-300">Members</p>
                         </div>
                       </div>
                     </div>

@@ -155,7 +155,7 @@ const OnlineStore = () => {
             <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
               <div>
                 <h1 className="text-3xl font-bold mb-2">Browse Products</h1>
-                <p className="text-gray-600">Discover items posted by Club66 members</p>
+                <p className="text-gray-600">Discover items posted by Elverra members</p>
               </div>
               <Button onClick={handlePostProduct} className="mt-4 sm:mt-0">
                 <Plus className="w-4 h-4 mr-2" />

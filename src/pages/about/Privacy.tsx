@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/layout/Layout";
 
@@ -41,7 +40,7 @@ const Privacy = () => {
             <li>To provide and maintain our services</li>
             <li>To process payments and manage your account</li>
             <li>To verify your identity and prevent fraud</li>
-            <li>To send you client updates and promotional materials</li>
+            <li>To send you member updates and promotional materials</li>
             <li>To improve and personalize your experience</li>
             <li>To respond to your inquiries and provide customer support</li>
           </ul>
@@ -50,7 +49,7 @@ const Privacy = () => {
           <p>We may share your information with:</p>
           <ul>
             <li>Service providers who help us deliver our services</li>
-            <li>Partner merchants (limited to verification of client status)</li>
+            <li>Partner merchants (limited to verification of membership status)</li>
             <li>Legal authorities when required by law</li>
             <li>Other third parties with your consent</li>
           </ul>

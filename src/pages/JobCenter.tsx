@@ -325,7 +325,7 @@ const JobCenter = () => {
                   <TrendingUp className="h-16 w-16 mx-auto mb-6 opacity-90" />
                   <h2 className="text-3xl font-bold mb-4">Ready to Take the Next Step?</h2>
                   <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                    Join millions of professionals who have found their dream jobs through Club66 Global's Job Center.
+                    Join millions of professionals who have found their dream jobs through Elverra Global's Job Center.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
                     <Button 

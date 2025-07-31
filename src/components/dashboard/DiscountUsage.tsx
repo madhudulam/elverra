@@ -24,7 +24,7 @@ const DiscountUsageComponent = ({ discountUsage }: DiscountUsageProps) => {
           <Percent className="h-5 w-5 mr-2" />
           Recent Discount Usage
         </CardTitle>
-        <CardDescription>Track the savings from your Club66 membership</CardDescription>
+        <CardDescription>Track the savings from your Elverra membership</CardDescription>
       </CardHeader>
       <CardContent>
         {discountUsage.length > 0 ? (

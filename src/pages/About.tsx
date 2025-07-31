@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import PremiumBanner from '@/components/layout/PremiumBanner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -46,7 +45,7 @@ const About = () => {
     <Layout>
       <PremiumBanner
         title="About Elverra Global"
-        description="Learn about our mission, vision, and commitment to empowering African communities through innovative client benefits."
+        description="Learn about our mission, vision, and commitment to empowering African communities through innovative member benefits."
         backgroundImage="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
       />
 
