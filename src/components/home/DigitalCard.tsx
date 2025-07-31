@@ -35,7 +35,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
                       <div className="flex justify-between items-center">
                         <div className="text-white">
                           <div className="text-xs font-medium">Elverra Global</div>
-                          <div className="text-lg font-bold">Member Card</div>
+                          <div className="text-lg font-bold">Client Card</div>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
                           <span className="font-bold text-white">66</span>
