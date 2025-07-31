@@ -55,7 +55,7 @@ const Terms = () => {
           
           <h3>3.1 Payment Methods</h3>
           <p>
-            Club66 accepts the following payment methods:
+            Elverra Global accepts the following payment methods:
           </p>
           <ul>
             <li>Mobile Money: Orange, Moov, Wave</li>
