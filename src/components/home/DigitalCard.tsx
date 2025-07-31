@@ -42,12 +42,12 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
                         </div>
                       </div>
                       <div className="mt-8 mb-2">
-                        <div className="text-white/80 text-xs">Member Name</div>
+                        <div className="text-white/80 text-xs">Client Name</div>
                         <div className="text-white font-medium">Ahmed Traore</div>
                       </div>
                       <div className="mt-4 flex justify-between items-end">
                         <div>
-                          <div className="text-white/80 text-xs">Member ID</div>
+                          <div className="text-white/80 text-xs">Client ID</div>
                           <div className="text-white text-sm">C66-ML-21058</div>
                         </div>
                         <div>
