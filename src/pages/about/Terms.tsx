@@ -31,7 +31,7 @@ const Terms = () => {
           
           <h3>2.1 Client Tiers</h3>
           <p>
-            Elverra offers three membership tiers with different benefits and fees:
+            Elverra offers three Clients tiers with different benefits and fees:
           </p>
           <ul>
             <li><strong>Essential:</strong> CFA 10,000/year + 1,000/month → 5% discount at Elverra owned businesses</li>
@@ -63,9 +63,9 @@ const Terms = () => {
           </ul>
           <p>You agree to keep your payment information up-to-date.</p>
           
-          <h2>4. Membership Card</h2>
+          <h2>4. Client Card</h2>
           <p>
-            Your digital membership card is personal to you and may not be transferred or shared with others. Any misuse of the membership card may result in termination of your membership without refund.
+            Your digital client card is personal to you and may not be transferred or shared with others. Any misuse of the client card may result in termination of your client without refund.
           </p>
           <p>
             Physical cards can be requested for an additional fee and will be delivered to the address provided during registration.
