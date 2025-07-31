@@ -63,15 +63,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm text-gray-300">
                 <Phone className="h-4 w-4" />
-                <span>+223 71 77 77 60</span>
+                <span>+223 44 94 38 44</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-300">
                 <Mail className="h-4 w-4" />
-                <span>info@elverra.net</span>
+                <span>info@elverraglobal.com </span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-300">
                 <MapPin className="h-4 w-4" />
-                <span>Bamako, Mali</span>
+                <span>Faladiè-Sema, Carrefour IJA, Rue 801, Bamako, MALI</span>
               </div>
             </div>
           </div>
