@@ -94,7 +94,7 @@ const SocialBenefits = ({ cmsContent }: SocialBenefitsProps) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl font-bold mb-4">Optional Social Benefits</h2>
           <p className="text-gray-600">
-            As an Elverra member, you can choose from these additional social benefits to enhance your membership experience
+            As an Elverra global  member, you can choose from these additional social benefits to enhance your membership experience
             and achieve your personal goals. Each benefit comes with standard charges and eligibility requirements.
           </p>
         </div>
