@@ -25,7 +25,7 @@ const CTA = ({ cmsContent }: CTAProps) => {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Elverra Global?</h2>
           <p className="text-lg mb-8 opacity-90">
-            Become a member today and unlock a world of exclusive benefits, discounts, and opportunities.
+            Become a Client today and unlock a world of exclusive benefits, discounts, and opportunities.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
