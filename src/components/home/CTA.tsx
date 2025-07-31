@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 interface CMSPage {
   id: string;
   title: string;
-  slug: string;
+  slug: string;c
   content: string;
   meta_description?: string;
   meta_keywords?: string;
