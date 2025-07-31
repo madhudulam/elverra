@@ -34,7 +34,7 @@ const DigitalCard = ({ cmsContent }: DigitalCardProps) => {
                     <div className="card-gradient rounded-xl overflow-hidden shadow-lg p-4 mt-8">
                       <div className="flex justify-between items-center">
                         <div className="text-white">
-                          <div className="text-xs font-medium">Club66</div>
+                          <div className="text-xs font-medium">Elverra Global</div>
                           <div className="text-lg font-bold">Member Card</div>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
