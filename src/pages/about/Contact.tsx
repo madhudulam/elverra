@@ -74,21 +74,22 @@ const Contact = () => {
                       <MapPin className="h-5 w-5 text-purple-600" />
                       <div>
                         <p className="font-medium">Address</p>
-                        <p className="text-sm text-gray-600">Bamako, Mali</p>
+                        <p className="text-sm text-gray-600">Faladiè-Sema, Carrefour IJA, Rue 801, Bamako, MALI</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Phone className="h-5 w-5 text-purple-600" />
                       <div>
                         <p className="font-medium">Phone</p>
-                        <p className="text-sm text-gray-600">+223 20 22 15 30</p>
+                        <p className="text-sm text-gray-600">+223 44 94 38 44
+</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Mail className="h-5 w-5 text-purple-600" />
                       <div>
                         <p className="font-medium">Email</p>
-                        <p className="text-sm text-gray-600">info@club66.org</p>
+                        <p className="text-sm text-gray-600">info@elverraglobal.com</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
