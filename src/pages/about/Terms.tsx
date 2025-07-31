@@ -102,8 +102,8 @@ const Terms = () => {
           </p>
           <p>
             Email: legal@elverraglobal.com<br />
-            Phone: +223 78 00 00 00<br />
-            Address: 123 Main Street, Bamako, Mali
+            Phone: +223 44 94 38 44<br />
+            Address: Faladiè-Sema, Carrefour IJA, Rue 801, Bamako, MALI.
           </p>
         </div>
       </div>
