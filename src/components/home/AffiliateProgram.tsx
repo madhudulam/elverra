@@ -76,7 +76,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
                 <div className="space-y-6">
                   <div className="bg-gray-700/50 rounded-md p-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300">Essential Membership</span>
+                      <span className="text-gray-300">Essential Client</span>
                       <div className="text-club66-gold font-semibold">
                         CFA 1,000/month
                       </div>
@@ -91,7 +91,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
                   
                   <div className="bg-gray-700/50 rounded-md p-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300">Premium Membership</span>
+                      <span className="text-gray-300">Premium Client</span>
                       <div className="text-club66-gold font-semibold">
                         CFA 2,000/month
                       </div>
@@ -106,7 +106,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
                   
                   <div className="bg-gray-700/50 rounded-md p-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300">Elite Membership</span>
+                      <span className="text-gray-300">Elite Client</span>
                       <div className="text-club66-gold font-semibold">
                         CFA 5,000/month
                       </div>
@@ -131,7 +131,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
                 
                 <div className="mt-6 pt-4 border-t border-gray-700">
                   <p className="text-sm text-gray-400">
-                    Commissions are paid monthly for as long as your referrals remain active members.
+                    Commissions are paid monthly for as long as your referrals remain active Clients.
                   </p>
                 </div>
               </div>
