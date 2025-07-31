@@ -131,7 +131,7 @@ const AffiliateProgram = ({ cmsContent }: AffiliateProgramProps) => {
                 
                 <div className="mt-6 pt-4 border-t border-gray-700">
                   <p className="text-sm text-gray-400">
-                    Commissions are paid monthly for as long as your referrals remain active Clients.
+                    Commissions are paid monthly for as long as your referrals remain active clients.
                   </p>
                 </div>
               </div>
