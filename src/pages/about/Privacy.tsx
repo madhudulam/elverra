@@ -49,7 +49,7 @@ const Privacy = () => {
           <p>We may share your information with:</p>
           <ul>
             <li>Service providers who help us deliver our services</li>
-            <li>Partner merchants (limited to verification of membership status)</li>
+            <li>Partner merchants (limited to verification of Clients status)</li>
             <li>Legal authorities when required by law</li>
             <li>Other third parties with your consent</li>
           </ul>
