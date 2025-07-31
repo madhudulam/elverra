@@ -1,4 +1,3 @@
-
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -122,7 +121,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
               <CardHeader className={`${plan.color} rounded-t-lg ${plan.textColor}`}>
                 <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
                 <CardDescription className={plan.name === 'Elite' ? 'text-gray-100' : 'text-gray-700'}>
-                  {plan.discount} discount on all Club66 services
+                  {plan.discount} discount on all Elverra services
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-6">
