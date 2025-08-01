@@ -144,7 +144,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
               <CardFooter>
                 <Button 
                   onClick={() => handleSelectPlan(plan.name)}
-                  className={`w-full ${plan.buttonVariant === 'default' ? 'bg-club66-purple hover:bg-club66-darkpurple' : ''}`}
+                  className={`w-full ${plan.buttonVariant === 'default' ? 'bg-purple-600 hover:bg-purple-700' : ''}`}
                   variant={plan.buttonVariant === 'default' ? 'default' : 
                           plan.buttonVariant === 'secondary' ? 'secondary' : 'outline'}
                 >
@@ -159,7 +159,7 @@ const MembershipPlans = ({ cmsContent }: MembershipPlansProps) => {
           <p className="text-gray-500 mb-4">
             All membership plans include the option to select additional social benefits
           </p>
-          <Button variant="link" className="text-elverra-purple">
+          <Button variant="link" className="text-purple-600">
             Learn more about social benefits
           </Button>
         </div>

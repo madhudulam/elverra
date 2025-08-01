@@ -1,12 +1,12 @@
 
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import MembershipTiers from '@/components/membership/MembershipTiers';
 import PaymentForm from '@/components/membership/PaymentForm';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const MembershipPayment = () => {
   const [searchParams] = useSearchParams();
@@ -15,19 +15,19 @@ const MembershipPayment = () => {
   const [showPayment, setShowPayment] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
 
-  // Auto-select plan from URL if provided
-  useState(() => {
-    if (planFromUrl && plans[planFromUrl as keyof typeof plans]) {
-      setSelectedTier(planFromUrl);
-      setShowPayment(true);
-    }
-  }, [planFromUrl]);
-
   const plans = {
     essential: { name: 'Essential', price: '10,000', monthly: '1,000' },
     premium: { name: 'Premium', price: '10,000', monthly: '2,000' },
     elite: { name: 'Elite', price: '10,000', monthly: '5,000' },
   };
+
+  // Auto-select plan from URL if provided
+  useEffect(() => {
+    if (planFromUrl && plans[planFromUrl as keyof typeof plans]) {
+      setSelectedTier(planFromUrl);
+      setShowPayment(true);
+    }
+  }, [planFromUrl]);
 
   const handleSelectTier = (tier: string) => {
     setSelectedTier(tier);

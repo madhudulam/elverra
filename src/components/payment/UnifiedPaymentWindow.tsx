@@ -42,24 +42,24 @@ const UnifiedPaymentWindow = ({ isOpen, onClose, onSuccess, preSelectedService }
     {
       id: 'membership_essential',
       name: 'Essential Membership',
-      description: 'Monthly membership fee',
-      amount: 1000,
+      description: 'Registration + First month fee',
+      amount: 11000, // 10,000 registration + 1,000 monthly
       currency: 'CFA',
       category: 'membership'
     },
     {
       id: 'membership_premium',
       name: 'Premium Membership',
-      description: 'Monthly membership fee',
-      amount: 2000,
+      description: 'Registration + First month fee',
+      amount: 12000, // 10,000 registration + 2,000 monthly
       currency: 'CFA',
       category: 'membership'
     },
     {
       id: 'membership_elite',
       name: 'Elite Membership',
-      description: 'Monthly membership fee',
-      amount: 5000,
+      description: 'Registration + First month fee',
+      amount: 15000, // 10,000 registration + 5,000 monthly
       currency: 'CFA',
       category: 'membership'
     },

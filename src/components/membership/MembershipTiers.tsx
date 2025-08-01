@@ -1,5 +1,7 @@
 
 import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
 
 interface MembershipTiersProps {
   selectedTier: string;
@@ -8,6 +10,9 @@ interface MembershipTiersProps {
 }
 
 const MembershipTiers = ({ selectedTier, onSelectTier, compact = false }: MembershipTiersProps) => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
   const tiers = [
     {
       id: 'essential',
@@ -64,6 +69,16 @@ const MembershipTiers = ({ selectedTier, onSelectTier, compact = false }: Member
       ],
     },
   ];
+
+  const handleSelectPlan = (planId: string) => {
+    if (user) {
+      // User is logged in, go directly to payment with plan selected
+      navigate(`/membership-payment?plan=${planId}`);
+    } else {
+      // User not logged in, redirect to register with plan info
+      navigate(`/register?plan=${planId}`);
+    }
+  };
 
   // Compact version shows minimal information suitable for forms
   if (compact) {
@@ -145,10 +160,15 @@ const MembershipTiers = ({ selectedTier, onSelectTier, compact = false }: Member
             <button 
               className={`w-full mt-4 py-2 px-4 rounded transition-colors ${
                 selectedTier === tier.id 
-                  ? 'bg-elverra-purple text-white' 
+                  ? 'bg-purple-600 text-white' 
                   : 'bg-white border border-gray-300 text-gray-800 hover:bg-gray-50'
               }`}
-              onClick={() => onSelectTier(tier.id)}
+              onClick={() => {
+                onSelectTier(tier.id);
+                if (!compact) {
+                  handleSelectPlan(tier.id);
+                }
+              }}
             >
               {selectedTier === tier.id ? 'Selected' : 'Select Plan'}
             </button>

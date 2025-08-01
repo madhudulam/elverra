@@ -5,9 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CreditCard, Smartphone, DollarSign, QrCode } from 'lucide-react';
+import { CreditCard, Smartphone, DollarSign, QrCode, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import UnifiedPaymentWindow from '@/components/payment/UnifiedPaymentWindow';
+import { usePaymentGateways } from '@/hooks/usePaymentGateways';
+import { paymentService } from '@/services/paymentService';
 
 interface PaymentFormProps {
   selectedPlan: {
@@ -19,6 +21,7 @@ interface PaymentFormProps {
 }
 
 const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
+  const { getActiveGateways, getGatewayById } = usePaymentGateways();
   const [paymentMethod, setPaymentMethod] = useState<string>('');
   const [showUnifiedPayment, setShowUnifiedPayment] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -32,108 +35,62 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
     moovPin: '',
   });
 
+  const activeGateways = getActiveGateways();
+  const totalAmount = parseInt(selectedPlan.price) + parseInt(selectedPlan.monthly);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!paymentMethod) {
+      toast.error('Please select a payment method');
+      return;
+    }
+
+    if (!formData.email) {
+      toast.error('Please provide your email address');
+      return;
+    }
+
+    const gateway = getGatewayById(paymentMethod);
+    if (!gateway) {
+      toast.error('Invalid payment method selected');
+      return;
+    }
+
     setIsProcessing(true);
 
     try {
-      // Simulate payment processing based on method
-      switch (paymentMethod) {
-        case 'orange':
-          await processOrangeMoneyPayment();
-          break;
-        case 'moov':
-          await processMoovMoneyPayment();
-          break;
-        case 'wave':
-          await processWavePayment();
-          break;
-        case 'card':
-          await processStripePayment();
-          break;
-        default:
-          throw new Error('Please select a payment method');
-      }
+      const paymentRequest = {
+        serviceId: `membership_${selectedPlan.name.toLowerCase()}`,
+        gatewayId: paymentMethod,
+        amount: totalAmount,
+        currency: 'CFA',
+        customerInfo: {
+          name: formData.email.split('@')[0], // Use email prefix as name if not provided
+          email: formData.email,
+          phone: formData.phoneNumber
+        },
+        metadata: {
+          membershipTier: selectedPlan.name,
+          planPrice: selectedPlan.price,
+          monthlyFee: selectedPlan.monthly
+        }
+      };
 
-      toast.success('Payment processed successfully!');
-      onPaymentComplete();
+      const response = await paymentService.processPayment(gateway, paymentRequest);
+
+      if (response.success) {
+        toast.success('Payment processed successfully!');
+        onPaymentComplete();
+      } else {
+        toast.error(response.error || 'Payment failed. Please try again.');
+      }
     } catch (error: any) {
       toast.error(error.message || 'Payment failed. Please try again.');
     } finally {
       setIsProcessing(false);
     }
   };
-
-  const processOrangeMoneyPayment = async () => {
-    // Simulate Orange Money API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // In real implementation, this would call Orange Money API
-    if (!formData.phoneNumber || !formData.orangePin) {
-      throw new Error('Please provide phone number and PIN');
-    }
-    
-    // Simulate success/failure
-    if (Math.random() > 0.1) { // 90% success rate for demo
-      return { success: true, transactionId: 'OM' + Date.now() };
-    } else {
-      throw new Error('Orange Money payment failed. Please check your PIN and balance.');
-    }
-  };
-
-  const processMoovMoneyPayment = async () => {
-    // Simulate Moov Money API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    if (!formData.phoneNumber || !formData.moovPin) {
-      throw new Error('Please provide phone number and PIN');
-    }
-    
-    // Simulate success/failure
-    if (Math.random() > 0.1) {
-      return { success: true, transactionId: 'MM' + Date.now() };
-    } else {
-      throw new Error('Moov Money payment failed. Please check your PIN and balance.');
-    }
-  };
-
-  const processWavePayment = async () => {
-    // Simulate Wave API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    if (!formData.phoneNumber) {
-      throw new Error('Please provide phone number');
-    }
-    
-    // Simulate success/failure
-    if (Math.random() > 0.1) {
-      return { success: true, transactionId: 'WV' + Date.now() };
-    } else {
-      throw new Error('Wave payment failed. Please try again.');
-    }
-  };
-
-  const processStripePayment = async () => {
-    // Simulate Stripe API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    if (!formData.cardNumber || !formData.expiryDate || !formData.cvv) {
-      throw new Error('Please fill in all card details');
-    }
-    
-    // Basic validation
-    if (formData.cardNumber.replace(/\s/g, '').length < 16) {
-      throw new Error('Please enter a valid card number');
-    }
-    
-    // Simulate success/failure
-    if (Math.random() > 0.1) {
-      return { success: true, transactionId: 'ST' + Date.now() };
-    } else {
-      throw new Error('Card payment failed. Please check your card details.');
-    }
-  };
-
   const handleUnifiedPayment = () => {
     setShowUnifiedPayment(true);
   };
@@ -159,47 +116,25 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="payment-method">Payment Method</Label>
-            <Select value={paymentMethod} onValueChange={setPaymentMethod} required>
+            <Select value={paymentMethod} onValueChange={setPaymentMethod}>
               <SelectTrigger>
                 <SelectValue placeholder="Select payment method" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="orange">
-                  <div className="flex items-center">
-                    <Smartphone className="h-4 w-4 mr-2 text-orange-500" />
-                    Orange Money
-                  </div>
-                </SelectItem>
-                <SelectItem value="sama_money">
-                  <div className="flex items-center">
-                    <Smartphone className="h-4 w-4 mr-2 text-green-500" />
-                    SAMA Money
-                  </div>
-                </SelectItem>
-                <SelectItem value="moov">
-                  <div className="flex items-center">
-                    <Smartphone className="h-4 w-4 mr-2 text-blue-500" />
-                    Moov Money
-                  </div>
-                </SelectItem>
-                <SelectItem value="wave">
-                  <div className="flex items-center">
-                    <DollarSign className="h-4 w-4 mr-2 text-green-500" />
-                    Wave
-                  </div>
-                </SelectItem>
-                <SelectItem value="card">
-                  <div className="flex items-center">
-                    <CreditCard className="h-4 w-4 mr-2 text-gray-600" />
-                    Credit/Debit Card (Stripe)
-                  </div>
-                </SelectItem>
+                {activeGateways.map((gateway) => (
+                  <SelectItem key={gateway.id} value={gateway.id}>
+                    <div className="flex items-center">
+                      <span className="mr-2">{gateway.icon}</span>
+                      {gateway.name}
+                    </div>
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
 
           {/* Orange Money Fields */}
-          {paymentMethod === 'orange' && (
+          {paymentMethod === 'orange_money' && (
             <>
               <div>
                 <Label htmlFor="phone">Orange Money Phone Number</Label>
@@ -226,7 +161,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
             </>
           )}
 
-          {/* Moov Money Fields */}
+          {/* SAMA Money Fields */}
           {paymentMethod === 'sama_money' && (
             <>
               <div>
@@ -247,7 +182,8 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
             </>
           )}
 
-          {paymentMethod === 'moov' && (
+          {/* Moov Money Fields */}
+          {paymentMethod === 'moov_money' && (
             <>
               <div>
                 <Label htmlFor="phone">Moov Money Phone Number</Label>
@@ -275,7 +211,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
           )}
 
           {/* Wave Fields */}
-          {paymentMethod === 'wave' && (
+          {paymentMethod === 'wave_money' && (
             <div>
               <Label htmlFor="phone">Wave Phone Number</Label>
               <Input
@@ -292,7 +228,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
           )}
 
           {/* Stripe Card Fields */}
-          {paymentMethod === 'card' && (
+          {paymentMethod === 'stripe' && (
             <>
               <div>
                 <Label htmlFor="card-number">Card Number</Label>
@@ -355,16 +291,16 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
 
           <Button 
             type="submit" 
-            className="w-full bg-elverra-purple hover:bg-elverra-purple/90"
+            className="w-full bg-purple-600 hover:bg-purple-700"
             disabled={!paymentMethod || isProcessing}
           >
             {isProcessing ? (
               <div className="flex items-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 Processing...
               </div>
             ) : (
-              `Pay CFA ${selectedPlan.price}`
+              `Pay CFA ${totalAmount.toLocaleString()}`
             )}
           </Button>
 
@@ -381,12 +317,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
 
           {paymentMethod && (
             <div className="text-xs text-gray-500 text-center mt-2">
-              Your payment will be processed securely through {
-                paymentMethod === 'orange' ? 'Orange Money' :
-                paymentMethod === 'moov' ? 'Moov Money' :
-                paymentMethod === 'wave' ? 'Wave' :
-                'Stripe'
-              }
+              Your payment will be processed securely through {getGatewayById(paymentMethod)?.name}
             </div>
           )}
         </form>
