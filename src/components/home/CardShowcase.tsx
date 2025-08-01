@@ -33,6 +33,14 @@ const CardShowcase = () => {
             Experience the prestige of ZENIKA cards designed for the modern African professional
           </p>
         </div>
+        <div class="cards"><div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jZjc4ZTYwZS05YjFlLTRhZDAtYmUwMC1hYjc0MzQ3ZGRjZjAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJlbHZlcnJhL2Vzc2VudGlhbC5wbmciLCJpYXQiOjE3NTQwNTgyNDQsImV4cCI6NDkwNzY1ODI0NH0.uzweTegSHDSSWiPGf1muxMqTwEP_45lpB2hLLTAHsL8);">
+</div>
+
+<div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jZjc4ZTYwZS05YjFlLTRhZDAtYmUwMC1hYjc0MzQ3ZGRjZjAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJlbHZlcnJhL3ByZW1pdW0ucG5nIiwiaWF0IjoxNzU0MDU4MjA2LCJleHAiOjQ5MDc2NTgyMDZ9.VR06xTkWYqJSpvSfQBvuPi5eo--YxONKbwljunXLgmA);">
+</div>
+
+<div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jZjc4ZTYwZS05YjFlLTRhZDAtYmUwMC1hYjc0MzQ3ZGRjZjAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJlbHZlcnJhL2VsaXRlLnBuZyIsImlhdCI6MTc1NDA1ODA1NiwiZXhwIjo0OTA3NjU4MDU2fQ.MVdoDJBTFfK6fP9y0PCBme_fCv_v0tfcOTMEyfxrSMo);">
+</div></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {cards.map((card, index) => (
             <div key={index} className="flex justify-center">
