@@ -146,17 +146,10 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
                   required
                 />
               </div>
-              <div>
-                <Label htmlFor="orange-pin">Orange Money PIN</Label>
-                <Input
-                  id="orange-pin"
-                  type="password"
-                  placeholder="Enter your 4-digit PIN"
-                  maxLength={4}
-                  value={formData.orangePin}
-                  onChange={(e) => setFormData({ ...formData, orangePin: e.target.value })}
-                  required
-                />
+              <div className="bg-orange-50 p-3 rounded-lg">
+                <p className="text-sm text-orange-700">
+                  You will receive a payment request on your Orange Money account to complete the transaction.
+                </p>
               </div>
             </>
           )}

@@ -1,5 +1,6 @@
 import { PaymentGateway, PaymentRequest, PaymentResponse } from '@/types/payment';
 import { samaMoneyService } from './samaMoneyService';
+import { orangeMoneyService } from './orangeMoneyService';
 
 class PaymentService {
   async processPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
@@ -30,26 +31,43 @@ class PaymentService {
   }
 
   private async processOrangeMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
-    // Simulate Orange Money API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // In production, this would make actual API calls to Orange Money
-    const mockResponse = {
-      success: Math.random() > 0.1, // 90% success rate
-      transactionId: `OM_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      gatewayResponse: {
-        status: 'completed',
-        reference: `OM${Date.now()}`,
+    try {
+      // Prepare Orange Money API request
+      const orangeConfig = gateway.config;
+      
+      const paymentData = {
         amount: request.amount,
-        currency: request.currency
+        currency: request.currency,
+        customerPhone: request.customerInfo.phone,
+        customerName: request.customerInfo.name,
+        customerEmail: request.customerInfo.email,
+        transactionReference: `OM_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        callbackUrl: `${window.location.origin}/payment/callback/orange`,
+        returnUrl: `${window.location.origin}/payment/success`
+      };
+
+      const response = await orangeMoneyService.initiatePayment(paymentData);
+      
+      if (!response.success) {
+        throw new Error(response.error || 'Orange Money payment failed. Please check your balance and try again.');
       }
-    };
 
-    if (!mockResponse.success) {
-      throw new Error('Orange Money payment failed. Please check your balance and try again.');
+      return {
+        success: true,
+        transactionId: response.transactionId,
+        paymentUrl: response.paymentUrl,
+        gatewayResponse: {
+          status: response.status || 'initiated',
+          reference: response.transactionId,
+          amount: request.amount,
+          currency: request.currency,
+          merchantCode: orangeConfig.merchantCode
+        }
+      };
+    } catch (error) {
+      console.error('Orange Money payment error:', error);
+      throw new Error('Orange Money payment failed. Please try again.');
     }
-
-    return mockResponse;
   }
 
   private async processSamaMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {

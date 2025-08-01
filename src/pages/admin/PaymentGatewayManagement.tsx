@@ -175,6 +175,43 @@ const PaymentGatewayManagement = () => {
                             placeholder="Enter merchant ID"
                             disabled={!isEditing}
                           />
+                          {gateway.id === 'orange_money' && (
+                            <>
+                              <Label htmlFor={`${gateway.id}-merchant-key`} className="mt-2">Merchant Key</Label>
+                              <Input
+                                id={`${gateway.id}-merchant-key`}
+                                value={config.config?.merchantKey ?? gateway.config.merchantKey}
+                                onChange={(e) => handleConfigChange(gateway.id, 'config', {
+                                  ...gateway.config,
+                                  merchantKey: e.target.value
+                                })}
+                                placeholder="Enter merchant key"
+                                disabled={!isEditing}
+                              />
+                              <Label htmlFor={`${gateway.id}-client-id`} className="mt-2">Client ID</Label>
+                              <Input
+                                id={`${gateway.id}-client-id`}
+                                value={config.config?.clientId ?? gateway.config.clientId}
+                                onChange={(e) => handleConfigChange(gateway.id, 'config', {
+                                  ...gateway.config,
+                                  clientId: e.target.value
+                                })}
+                                placeholder="Enter client ID"
+                                disabled={!isEditing}
+                              />
+                              <Label htmlFor={`${gateway.id}-merchant-login`} className="mt-2">Merchant Login</Label>
+                              <Input
+                                id={`${gateway.id}-merchant-login`}
+                                value={config.config?.merchantLogin ?? gateway.config.merchantLogin}
+                                onChange={(e) => handleConfigChange(gateway.id, 'config', {
+                                  ...gateway.config,
+                                  merchantLogin: e.target.value
+                                })}
+                                placeholder="Enter merchant login"
+                                disabled={!isEditing}
+                              />
+                            </>
+                          )}
                           {gateway.id === 'sama_money' && (
                             <>
                               <Label htmlFor={`${gateway.id}-merchant-code`} className="mt-2">Merchant Code</Label>

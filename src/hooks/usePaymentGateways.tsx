@@ -16,8 +16,14 @@ export const usePaymentGateways = () => {
       isActive: true,
       config: {
         baseUrl: 'https://api.orange.com/orange-money-webpay/dev/v1',
+        merchantKey: 'cb6d6c61',
+        clientId: '9wEq2T01mDG1guXINVTKsc3jxFUOyd3A',
+        merchantLogin: 'MerchantWP00100',
+        merchantAccountNumber: '7701900100',
+        merchantCode: '101021',
+        merchantName: 'CLUB 66 GLOBAL',
+        environment: 'test',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: import.meta.env.VITE_ORANGE_MERCHANT_ID || ''
       },
       fees: { percentage: 1.5, fixed: 0 },
       icon: '📱',

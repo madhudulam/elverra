@@ -171,10 +171,10 @@ const UnifiedPaymentWindow = ({ isOpen, onClose, onSuccess, preSelectedService }
                 required
               />
             </div>
-            {selectedGatewayData?.id === 'sama_money' ? (
+            {selectedGatewayData?.id === 'sama_money' || selectedGatewayData?.id === 'orange_money' ? (
               <div className="bg-green-50 p-3 rounded-lg">
                 <p className="text-sm text-green-700">
-                  You will receive a payment request on your SAMA Money account to authorize the transaction.
+                  You will receive a payment request on your {selectedGatewayData.name} account to authorize the transaction.
                 </p>
               </div>
             ) : (
