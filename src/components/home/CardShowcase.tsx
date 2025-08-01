@@ -35,15 +35,15 @@ const CardShowcase = () => {
         </div>
         <div class="cards">
           <div class="flex justify-center">
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png">
+<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png" />
 </div>
 
 <div class="flex justify-center">
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png">
+<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png" />
 </div>
 
 <div class="flex justify-center" >
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png">
+<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png" />
 </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
