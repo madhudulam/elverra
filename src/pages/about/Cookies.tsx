@@ -58,12 +58,10 @@ const Cookies = () => {
                   <section>
                     <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
                     <p className="text-gray-700">
-                      If you have questions about our Cookie Policy, please contact us at:
-                      <br />
-                      Email: privacy@club66.org
-                      <br />
-                      Phone: +223 71 77 77 60
-                    </p>
+            Email: legal@elverraglobal.com<br />
+            Phone: +223 44 94 38 44<br />
+            Address: Faladiè-Sema, Carrefour IJA, Rue 801, Bamako, MALI.
+          </p>
                   </section>
                 </div>
               </CardContent>
