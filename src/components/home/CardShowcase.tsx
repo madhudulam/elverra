@@ -33,19 +33,46 @@ const CardShowcase = () => {
             Experience the prestige of ZENIKA cards designed for the modern African professional
           </p>
         </div>
-        <div class="cards" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-<div class="flex justify-center" style="flex-direction: column;  align-items: center;">
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png" />
+        <div
+  className="cards"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1rem',
+    flexWrap: 'wrap',
+  }}
+>
+  <div
+    className="flex justify-center"
+    style={{
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png" />
+  </div>
+
+  <div
+    className="flex justify-center"
+    style={{
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png" />
+  </div>
+
+  <div
+    className="flex justify-center"
+    style={{
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png" />
+  </div>
 </div>
 
-<div class="flex justify-center" style="flex-direction: column;  align-items: center;">
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png" />
-</div>
-
-<div class="flex justify-center" style="flex-direction: column;  align-items: center;">
-<img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png" />
-</div>
-</div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {cards.map((card, index) => (
             <div key={index} className="flex justify-center">
