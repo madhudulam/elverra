@@ -42,7 +42,7 @@ const CardShowcase = () => {
 <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png">
 </div>
 
-<div class="flex justify-center">
+<div class="flex justify-center" >
 <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png">
 </div>
         </div>
