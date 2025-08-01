@@ -54,41 +54,56 @@ class PaymentService {
 
   private async processSamaMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     try {
-      // Use the dedicated SAMA Money service
-      const samaRequest = {
+      // Prepare SAMA Money API request
+      const samaConfig = gateway.config;
+      const apiUrl = `${samaConfig.baseUrl}payment/initiate`;
+      
+      const paymentData = {
+        merchant_code: samaConfig.merchantCode,
+        user_id: samaConfig.userId,
         amount: request.amount,
         currency: request.currency,
-        customerPhone: request.customerInfo.phone,
-        customerName: request.customerInfo.name,
-        customerEmail: request.customerInfo.email,
+        customer_phone: request.customerInfo.phone,
+        customer_name: request.customerInfo.name,
+        customer_email: request.customerInfo.email,
         transaction_reference: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        callbackUrl: `${window.location.origin}/payment/callback/sama`,
-        returnUrl: `${window.location.origin}/payment/success`
+        callback_url: `${window.location.origin}/payment/callback/sama`,
+        return_url: `${window.location.origin}/payment/success`,
+        public_key: samaConfig.publicKey
       };
 
-      const result = await samaMoneyService.initiatePayment(samaRequest);
-
-      if (!result.success) {
-        throw new Error(result.error || 'SAMA Money payment failed');
-      }
-
-      return {
-        success: true,
-        transactionId: result.transactionId,
-        paymentUrl: result.paymentUrl,
+      // In a real implementation, you would make the actual API call here
+      // For now, we'll simulate the response
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Simulate API response
+      const mockResponse = {
+        success: Math.random() > 0.1,
+        transactionId: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        paymentUrl: `${samaConfig.baseUrl}payment/redirect/${paymentData.transaction_reference}`,
         gatewayResponse: {
-          status: result.status,
-          message: result.message
+          status: 'initiated',
+          reference: paymentData.transaction_reference,
+          amount: request.amount,
+          currency: request.currency,
+          merchant_code: samaConfig.merchantCode
         }
       };
+
+      if (!mockResponse.success) {
+        throw new Error('SAMA Money payment initiation failed. Please verify your account details.');
+      }
+
+      return mockResponse;
     } catch (error) {
       console.error('SAMA Money payment error:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'SAMA Money payment failed'
-      };
+      throw new Error('SAMA Money payment failed. Please try again.');
     }
   }
+
+  private async processSamaMoneyPaymentLegacy(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
+    // Simulate Sama Money API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
     const mockResponse = {
       success: Math.random() > 0.1,
