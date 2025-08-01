@@ -49,7 +49,7 @@ const CardShowcase = () => {
       alignItems: 'center',
     }}
   >
-    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png" />
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/public/elverra/essential.png" />
   </div>
 
   <div
@@ -59,7 +59,7 @@ const CardShowcase = () => {
       alignItems: 'center',
     }}
   >
-    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png" />
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/public/elverra/premium.png" />
   </div>
 
   <div
@@ -69,7 +69,7 @@ const CardShowcase = () => {
       alignItems: 'center',
     }}
   >
-    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png" />
+    <img src="https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/public/elverra/elite.png" />
   </div>
 </div>
 
