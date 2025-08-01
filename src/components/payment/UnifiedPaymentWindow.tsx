@@ -171,26 +171,18 @@ const UnifiedPaymentWindow = ({ isOpen, onClose, onSuccess, preSelectedService }
                 required
               />
             </div>
-            {selectedGatewayData?.id === 'sama_money' ? (
-              <div className="bg-green-50 p-3 rounded-lg">
-                <p className="text-sm text-green-700">
-                  You will receive a payment request on your SAMA Money account to authorize the transaction.
-                </p>
-              </div>
-            ) : (
-              <div>
-                <Label htmlFor="pin">PIN</Label>
-                <Input
-                  id="pin"
-                  type="password"
-                  value={paymentDetails.pin}
-                  onChange={(e) => setPaymentDetails(prev => ({ ...prev, pin: e.target.value }))}
-                  placeholder="Enter your PIN"
-                  maxLength={4}
-                  required
-                />
-              </div>
-            )}
+            <div>
+              <Label htmlFor="pin">PIN</Label>
+              <Input
+                id="pin"
+                type="password"
+                value={paymentDetails.pin}
+                onChange={(e) => setPaymentDetails(prev => ({ ...prev, pin: e.target.value }))}
+                placeholder="Enter your PIN"
+                maxLength={4}
+                required
+              />
+            </div>
           </div>
         );
 
@@ -281,7 +273,7 @@ const UnifiedPaymentWindow = ({ isOpen, onClose, onSuccess, preSelectedService }
                       <span>{service.name}</span>
                       <Badge variant="outline" className="ml-2">
                         {service.amount.toLocaleString()} {service.currency}
-                      SAMA Money
+                      </Badge>
                     </div>
                   </SelectItem>
                 ))}
