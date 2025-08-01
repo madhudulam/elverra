@@ -173,7 +173,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
                 <SelectItem value="sama_money">
                   <div className="flex items-center">
                     <Smartphone className="h-4 w-4 mr-2 text-green-500" />
-                    Sama Money
+                    SAMA Money
                   </div>
                 </SelectItem>
                 <SelectItem value="moov">
@@ -227,6 +227,26 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
           )}
 
           {/* Moov Money Fields */}
+          {paymentMethod === 'sama_money' && (
+            <>
+              <div>
+                <Label htmlFor="phone">SAMA Money Phone Number</Label>
+                <Input
+                  id="phone"
+                  placeholder="+223 XX XX XX XX"
+                  value={formData.phoneNumber}
+                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="bg-green-50 p-3 rounded-lg">
+                <p className="text-sm text-green-700">
+                  You will receive a payment request on your SAMA Money account to complete the transaction.
+                </p>
+              </div>
+            </>
+          )}
+
           {paymentMethod === 'moov' && (
             <>
               <div>

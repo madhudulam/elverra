@@ -233,7 +233,7 @@ const LoginForm = () => {
           </Button>
           <Button variant="outline" className="w-full">
             <Phone className="mr-2 h-4 w-4" />
-            Wave
+            SAMA Money
           </Button>
         </div>
         

@@ -175,6 +175,32 @@ const PaymentGatewayManagement = () => {
                             placeholder="Enter merchant ID"
                             disabled={!isEditing}
                           />
+                          {gateway.id === 'sama_money' && (
+                            <>
+                              <Label htmlFor={`${gateway.id}-merchant-code`} className="mt-2">Merchant Code</Label>
+                              <Input
+                                id={`${gateway.id}-merchant-code`}
+                                value={config.config?.merchantCode ?? gateway.config.merchantCode}
+                                onChange={(e) => handleConfigChange(gateway.id, 'config', {
+                                  ...gateway.config,
+                                  merchantCode: e.target.value
+                                })}
+                                placeholder="Enter merchant code"
+                                disabled={!isEditing}
+                              />
+                              <Label htmlFor={`${gateway.id}-user-id`} className="mt-2">User ID</Label>
+                              <Input
+                                id={`${gateway.id}-user-id`}
+                                value={config.config?.userId ?? gateway.config.userId}
+                                onChange={(e) => handleConfigChange(gateway.id, 'config', {
+                                  ...gateway.config,
+                                  userId: e.target.value
+                                })}
+                                placeholder="Enter user ID"
+                                disabled={!isEditing}
+                              />
+                            </>
+                          )}
                         </div>
                       )}
 

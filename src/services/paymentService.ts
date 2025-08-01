@@ -1,4 +1,5 @@
 import { PaymentGateway, PaymentRequest, PaymentResponse } from '@/types/payment';
+import { samaMoneyService } from './samaMoneyService';
 
 class PaymentService {
   async processPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
@@ -52,8 +53,42 @@ class PaymentService {
   }
 
   private async processSamaMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
-    // Simulate Sama Money API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Use the dedicated SAMA Money service
+      const samaRequest = {
+        amount: request.amount,
+        currency: request.currency,
+        customerPhone: request.customerInfo.phone,
+        customerName: request.customerInfo.name,
+        customerEmail: request.customerInfo.email,
+        transaction_reference: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        callbackUrl: `${window.location.origin}/payment/callback/sama`,
+        returnUrl: `${window.location.origin}/payment/success`
+      };
+
+      const result = await samaMoneyService.initiatePayment(samaRequest);
+
+      if (!result.success) {
+        throw new Error(result.error || 'SAMA Money payment failed');
+      }
+
+      return {
+        success: true,
+        transactionId: result.transactionId,
+        paymentUrl: result.paymentUrl,
+        gatewayResponse: {
+          status: result.status,
+          message: result.message
+        }
+      };
+    } catch (error) {
+      console.error('SAMA Money payment error:', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'SAMA Money payment failed'
+      };
+    }
+  }
     
     const mockResponse = {
       success: Math.random() > 0.1,

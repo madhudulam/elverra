@@ -29,9 +29,14 @@ export const usePaymentGateways = () => {
       type: 'mobile_money',
       isActive: true,
       config: {
-        baseUrl: 'https://api.sama.money/v1',
+        baseUrl: 'https://smarchandamatest.sama.money/V1/',
+        merchantCode: 'b109',
+        merchantName: 'ELVERRA GLOBAL',
+        userId: '-486247242941374572',
+        publicKey: '@Ub1#2HVZjQIKYOMP4t@yFAez5X9AhCz9',
+        transactionKey: 'cU+ZJ69Si8wkW2x59:VktuDM7@k~PaJ;d{S]F!R5gd4,5G(7%a2_785K#}kC3*[e',
         supportedCurrencies: ['XOF', 'CFA'],
-        merchantId: import.meta.env.VITE_SAMA_MERCHANT_ID || ''
+        environment: 'test'
       },
       fees: { percentage: 1.2, fixed: 0 },
       icon: '💰',

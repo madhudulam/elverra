@@ -6,7 +6,13 @@ export interface PaymentGateway {
   config: {
     apiKey?: string;
     merchantId?: string;
+    merchantCode?: string;
+    merchantName?: string;
+    userId?: string;
+    publicKey?: string;
+    transactionKey?: string;
     baseUrl?: string;
+    environment?: 'test' | 'production';
     supportedCurrencies: string[];
   };
   fees: {
