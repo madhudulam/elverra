@@ -33,15 +33,7 @@ const CardShowcase = () => {
             Experience the prestige of ZENIKA cards designed for the modern African professional
           </p>
         </div>
-        <div class="cards">
-        <div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/essential.png);">
-</div>
-
-<div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/premium.png);">
-</div>
-
-<div class="flex justify-center" style="background-repeat: no-repeat; background: url(https://tklwdscpbddieykqfbdy.supabase.co/storage/v1/object/sign/elverra/elite.png);">
-</div>
+        <div class="cards">        
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {cards.map((card, index) => (
