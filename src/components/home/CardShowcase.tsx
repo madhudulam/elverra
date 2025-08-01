@@ -73,7 +73,9 @@ const CardShowcase = () => {
   </div>
 </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"  style={{
+      display: 'none',
+    }}>
           {cards.map((card, index) => (
             <div key={index} className="flex justify-center">
               <div 
