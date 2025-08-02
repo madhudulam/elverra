@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import ProtectedRoute from '@/components/layout/ProtectedRoute';
+import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -171,6 +172,7 @@ const AdminDashboard = () => {
 
   return (
     <ProtectedRoute requireAdmin={true}>
+    <ProtectedRoute requireAdmin={true}>
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="mb-8">
@@ -291,6 +293,7 @@ const AdminDashboard = () => {
           </div>
         </div>
       </Layout>
+    </ProtectedRoute>
     </ProtectedRoute>
   );
 };

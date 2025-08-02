@@ -45,6 +45,15 @@ export class SamaMoneyService {
    */
   async initiatePayment(request: SamaMoneyPaymentRequest): Promise<SamaMoneyPaymentResponse> {
     try {
+      // Validate input parameters
+      if (!request.amount || request.amount <= 0) {
+        throw new Error('Invalid payment amount');
+      }
+      
+      if (!request.customerPhone || !request.transactionReference) {
+        throw new Error('Missing required payment parameters');
+      }
+
       const paymentData = {
         merchant_code: this.config.merchantCode,
         merchant_name: this.config.merchantName,
@@ -61,17 +70,21 @@ export class SamaMoneyService {
         timestamp: new Date().toISOString()
       };
 
-      // For demo/test environment, simulate successful response without actual API call
-      // In production, uncomment the actual API call below
-      return {
-        success: true,
-        transactionId: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        paymentUrl: `${this.config.baseUrl}/payment/redirect/${paymentData.transaction_reference}`,
-        status: 'initiated',
-        message: 'Payment request sent to your SAMA Money account'
-      };
+      // For demo/test environment, simulate successful response
+      if (this.config.environment === 'test') {
+        // Simulate processing delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        return {
+          success: true,
+          transactionId: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          paymentUrl: `${this.config.baseUrl}payment/redirect/${paymentData.transaction_reference}`,
+          status: 'initiated',
+          message: 'Payment request sent to your SAMA Money account'
+        };
+      }
 
-      /* Uncomment for production API calls:
+      // Production API call
       const response = await fetch(`${this.config.baseUrl}/payment/initiate`, {
         method: 'POST',
         headers: {
@@ -85,12 +98,16 @@ export class SamaMoneyService {
       });
 
       if (!response.ok) {
-        throw new Error(`SAMA Money API error: ${response.status}`);
+        const errorText = await response.text();
+        console.error('SAMA Money API error response:', errorText);
+        throw new Error(`SAMA Money API error: ${response.status} - ${errorText.substring(0, 200)}`);
       }
       
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Invalid response format - expected JSON');
+        const responseText = await response.text();
+        console.error('Non-JSON response from SAMA Money:', responseText.substring(0, 500));
+        throw new Error(`Invalid response format - expected JSON but got ${contentType}. Response: ${responseText.substring(0, 100)}...`);
       }
 
       const result = await response.json();
@@ -102,10 +119,18 @@ export class SamaMoneyService {
         status: result.status,
         message: result.message || result.description
       };
-      */
 
     } catch (error) {
       console.error('SAMA Money payment error:', error);
+      
+      // Check if it's a network error
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        return {
+          success: false,
+          error: 'Network error - please check your internet connection'
+        };
+      }
+      
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Payment initiation failed'
