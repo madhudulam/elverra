@@ -182,6 +182,7 @@ export const usePaymentGateways = () => {
         .order('name', { ascending: true });
 
       if (fetchError) {
+      }
       console.warn('Error fetching payment gateways, using defaults:', err);
       setGateways(DEFAULT_GATEWAYS);
       setError(null); // Don't show error to user, just use defaults
