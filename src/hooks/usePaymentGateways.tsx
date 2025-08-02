@@ -118,37 +118,24 @@ export const usePaymentGateways = () => {
   };
 
   const updateGateway = async (id: string, updates: Partial<PaymentGateway>) => {
-    // Update local state only (since we're using default gateways)
-    setGateways(prev => prev.map(gateway => 
-      gateway.id === id ? { ...gateway, ...updates } : gateway
-    ));
-    
-    // Show success message
-    toast.success('Payment gateway updated successfully');
+    try {
+      // Update local state only (since we're using default gateways)
+      setGateways(prev => prev.map(gateway => 
+        gateway.id === id ? { ...gateway, ...updates } : gateway
+      ));
+      
+      // Show success message
+      toast.success('Payment gateway updated successfully');
+    } catch (error) {
+      console.error('Error updating payment gateway:', error);
+      throw error;
+    }
   };
 
   const fetchGateways = async () => {
     // Refresh with default gateways
     setGateways(DEFAULT_GATEWAYS);
     setLoading(false);
-  };
-
-  return {
-    gateways,
-    loading,
-    updateGateway,
-    getActiveGateways,
-    getGatewayById,
-    refetch: fetchGateways
-  };
-};
-      setGateways(prev => prev.map(gateway => 
-        gateway.id === id ? { ...gateway, ...updates } : gateway
-      ));
-    } catch (error) {
-      console.error('Error updating payment gateway:', error);
-      throw error;
-    }
   };
 
   return {
