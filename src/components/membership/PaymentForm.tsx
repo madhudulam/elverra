@@ -95,10 +95,11 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
           onPaymentComplete();
         }
       } else {
-        toast.error(response.error || 'Payment failed. Please try again.');
+        toast.error(response.error || 'Payment failed. Please check your details and try again.');
       }
     } catch (error: any) {
-      toast.error(error.message || 'Payment failed. Please try again.');
+      console.error('Payment error:', error);
+      toast.error('Payment processing failed. Please check your connection and try again.');
     } finally {
       setIsProcessing(false);
     }

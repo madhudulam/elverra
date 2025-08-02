@@ -57,14 +57,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         .single();
 
       if (membership) {
-        // User has active membership, go to dashboard
+        // If table doesn't exist or no membership found, user needs to select a plan
+        console.warn('No active membership found:', error);
         window.location.href = '/dashboard';
       } else {
         // User needs to select membership plan
         window.location.href = '/membership-payment';
       }
     } catch (error) {
-      // If error checking membership, redirect to membership payment
+      console.warn('Error checking membership status, assuming no membership:', error);
       window.location.href = '/membership-payment';
     }
   };

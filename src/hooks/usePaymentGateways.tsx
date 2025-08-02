@@ -118,7 +118,7 @@ export const usePaymentGateways = () => {
         .order('name');
 
       if (error) {
-        console.error('Error fetching payment gateways:', error);
+        console.warn('Payment gateways table not found, using default gateways:', error);
         setGateways(defaultGateways);
       } else {
         // Transform database data to match PaymentGateway interface
@@ -132,10 +132,10 @@ export const usePaymentGateways = () => {
           icon: gateway.icon || '💳',
           description: gateway.description || ''
         }));
-        setGateways(transformedGateways);
+        setGateways(transformedGateways.length > 0 ? transformedGateways : defaultGateways);
       }
     } catch (error) {
-      console.error('Error fetching payment gateways:', error);
+      console.warn('Failed to fetch payment gateways, using defaults:', error);
       setGateways(defaultGateways);
     } finally {
       setLoading(false);
