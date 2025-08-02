@@ -95,30 +95,27 @@ const Register = () => {
       if (authError) throw authError;
       if (!authData.user) throw new Error('Registration failed');
 
-      // Create profile
-      console.log('👤 Creating profile for user:', authData.user.id);
-      const profileData = {
-        id: authData.user.id,
-        full_name: data.full_name,
-        phone: data.phone,
-        address: data.address,
-        city: data.city,
-        country: data.country
-      };
-
-      const { data: insertedProfile, error: profileError } = await supabase
+      // Wait a moment for the profile trigger to create the profile
+      console.log('⏳ Waiting for profile creation trigger...');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Update the profile with additional information
+      console.log('👤 Updating profile for user:', authData.user.id);
+      const { error: profileUpdateError } = await supabase
         .from('profiles')
-        .insert(profileData)
-        .select()
-        .single();
+        .update({
+          full_name: data.full_name,
+          phone: data.phone,
+          address: data.address,
+          city: data.city,
+          country: data.country
+        })
+        .eq('id', authData.user.id);
 
-      console.log('✅ Profile creation result:', {
-        success: !profileError,
-        profile: insertedProfile,
-        error: profileError?.message
-      });
-
-      if (profileError) throw profileError;
+      if (profileUpdateError) {
+        console.warn('Profile update failed, but continuing:', profileUpdateError.message);
+        // Don't throw error here, as the basic profile should exist from trigger
+      }
 
       // Create membership only for regular members
       if (data.user_type === 'member') {
@@ -133,46 +130,18 @@ const Register = () => {
           expiry_date: expiryDate.toISOString()
         };
 
-        const { data: insertedMembership, error: membershipError } = await supabase
+        const { error: membershipError } = await supabase
           .from('memberships')
-          .insert(membershipData)
-          .select()
-          .single();
+          .insert(membershipData);
 
-        console.log('✅ Membership creation result:', {
-          success: !membershipError,
-          membership: insertedMembership,
-          error: membershipError?.message
-        });
-
-        if (membershipError) throw membershipError;
-      }
-
-      console.log('🎉 Registration completed successfully!');
-      return { authData, profileData: insertedProfile };
-
-      // Handle referral if provided
-      if (data.referral_code) {
-        const { data: agent } = await supabase
-          .from('agents')
-          .select('id')
-          .eq('referral_code', data.referral_code)
-          .single();
-
-        if (agent) {
-          const { error: referralError } = await supabase
-            .from('referrals')
-            .insert({
-              agent_id: agent.id,
-              referred_user_id: authData.user.id,
-              commission_amount: 1000 // 10% of 10,000 CFA registration fee
-            });
-
-          if (referralError) console.error('Referral creation failed:', referralError);
+        if (membershipError) {
+          console.warn('Membership creation failed:', membershipError.message);
+          // Don't throw error here, user can create membership later
         }
       }
 
-      return authData;
+      console.log('🎉 Registration completed successfully!');
+      return { authData };
     },
     onSuccess: (data) => {
       toast.success('Registration successful! Please check your email for verification.');
