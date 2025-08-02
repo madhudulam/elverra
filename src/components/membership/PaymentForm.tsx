@@ -38,6 +38,9 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
   const activeGateways = getActiveGateways();
   const totalAmount = parseInt(selectedPlan.price) + parseInt(selectedPlan.monthly);
 
+  console.log('Active gateways:', activeGateways);
+  console.log('All gateways:', gateways);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

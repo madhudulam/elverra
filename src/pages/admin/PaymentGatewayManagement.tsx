@@ -17,6 +17,8 @@ const PaymentGatewayManagement = () => {
   const [editingGateway, setEditingGateway] = useState<string | null>(null);
   const [gatewayConfigs, setGatewayConfigs] = useState<Record<string, Partial<PaymentGateway>>>({});
 
+  console.log('Admin gateways:', gateways);
+
   const handleConfigChange = (gatewayId: string, field: string, value: any) => {
     setGatewayConfigs(prev => ({
       ...prev,
