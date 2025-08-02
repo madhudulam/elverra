@@ -64,7 +64,7 @@ export class SamaMoneyService {
       const response = await fetch(`${this.config.baseUrl}payment/initiate`, {
       // For demo/test environment, simulate successful response without actual API call
       // In production, uncomment the actual API call below
-      }
+      });
 
       const result = await response.json();
       
