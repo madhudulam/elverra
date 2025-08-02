@@ -158,7 +158,9 @@ export const usePaymentGateways = () => {
     // Always use default gateways to avoid database errors
     setGateways(DEFAULT_GATEWAYS);
     setLoading(false);
+    try {
       toast.error('Failed to update payment gateway');
+    } catch (error) {
     }
   };
 
@@ -209,7 +211,6 @@ export const usePaymentGateways = () => {
   return {
     gateways,
     loading,
-    updateGateway,
     updateGateway,
     getActiveGateways,
     getGatewayById,
