@@ -3,6 +3,49 @@ import { supabase } from '@/integrations/supabase/client';
 import { PaymentGateway } from '@/types/payment';
 import { toast } from 'sonner';
 
+// Default payment gateways when database table doesn't exist
+const DEFAULT_GATEWAYS: PaymentGateway[] = [
+  {
+    id: 'sama_money',
+    name: 'SAMA Money',
+    type: 'mobile_money',
+    is_active: true,
+    config: {
+      baseUrl: 'https://smarchandamatest.sama.money/V1/',
+      merchantCode: 'b109',
+      merchantName: 'CLUB 66 GLOBAL',
+      userId: '-486247242941374572',
+      publicKey: '@Ub1#2HVZjQIKYOMP4t@yFAez5X9AhCz9',
+      transactionKey: 'cU+ZJ69Si8wkW2x59:VktuDM7@k~PaJ;d{S]F!R5gd4,5G(7%a2_785K#}kC3*[e',
+      environment: 'test',
+      supportedCurrencies: ['XOF', 'CFA']
+    },
+    fees: { percentage: 1.2, fixed: 0 },
+    icon: '💰',
+    description: 'Pay with SAMA Money digital wallet'
+  },
+  {
+    id: 'orange_money',
+    name: 'Orange Money',
+    type: 'mobile_money',
+    is_active: true,
+    config: {
+      baseUrl: 'https://api.orange.com/orange-money-webpay/dev/v1',
+      merchantKey: 'cb6d6c61',
+      clientId: '9wEq2T01mDG1guXINVTKsc3jxFUOyd3A',
+      merchantLogin: 'MerchantWP00100',
+      merchantAccountNumber: '7701900100',
+      merchantCode: '101021',
+      merchantName: 'CLUB 66 GLOBAL',
+      environment: 'test',
+      supportedCurrencies: ['XOF', 'CFA']
+    },
+    fees: { percentage: 1.5, fixed: 0 },
+    icon: '📱',
+    description: 'Pay with Orange Money mobile wallet'
+  }
+];
+
 export const usePaymentGateways = () => {
   const [gateways, setGateways] = useState<PaymentGateway[]>([]);
   const [loading, setLoading] = useState(true);
@@ -113,56 +156,17 @@ export const usePaymentGateways = () => {
       setLoading(true);
       
       const { data, error } = await supabase
+      // Check if table exists first by trying a simple query
+      const { error: tableCheckError } = await supabase
         .from('payment_gateways')
-        .select('*')
-        .order('name');
+        .select('id')
+        .limit(1);
 
-      if (error) {
-        console.warn('Payment gateways table not found, using default gateways:', error);
-        setGateways(defaultGateways);
-      } else {
-        // Transform database data to match PaymentGateway interface
-        const transformedGateways = (data || []).map(gateway => ({
-          id: gateway.id,
-          name: gateway.name,
-          type: gateway.type,
-          isActive: gateway.is_active,
-          config: gateway.config || {},
-          fees: gateway.fees || { percentage: 0, fixed: 0 },
-          icon: gateway.icon || '💳',
-          description: gateway.description || ''
-        }));
-        setGateways(transformedGateways.length > 0 ? transformedGateways : defaultGateways);
-      }
-    } catch (error) {
-      console.warn('Failed to fetch payment gateways, using defaults:', error);
-      setGateways(defaultGateways);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updateGateway = async (gatewayId: string, updates: Partial<PaymentGateway>) => {
-    try {
-      // Transform updates to match database schema
-      const dbUpdates: any = {};
-      if (updates.name) dbUpdates.name = updates.name;
-      if (updates.type) dbUpdates.type = updates.type;
-      if (updates.isActive !== undefined) dbUpdates.is_active = updates.isActive;
-      if (updates.config) dbUpdates.config = updates.config;
-      if (updates.fees) dbUpdates.fees = updates.fees;
-      if (updates.icon) dbUpdates.icon = updates.icon;
-      if (updates.description) dbUpdates.description = updates.description;
-
-      console.log('Updating gateway:', gatewayId, 'with updates:', dbUpdates);
-      const { error } = await supabase
-        .from('payment_gateways')
-        .update(dbUpdates)
-        .eq('id', gatewayId);
-
-      if (error) {
-        console.error('Supabase error updating payment gateway:', error);
-        toast.error('Failed to save gateway settings');
+      if (tableCheckError && tableCheckError.code === '42P01') {
+        // Table doesn't exist, use default gateways
+        console.warn('Payment gateways table not found, using default gateways');
+        setGateways(DEFAULT_GATEWAYS);
+        setLoading(false);
         return;
       } else {
         toast.success('Payment gateway updated successfully');
@@ -170,7 +174,18 @@ export const usePaymentGateways = () => {
         await fetchGateways();
       }
     } catch (error) {
-      console.error('Error updating payment gateway:', error);
+      // Table exists, fetch data
+      const { data, error: fetchError } = await supabase
+        .from('payment_gateways')
+        .select('*')
+        .eq('is_active', true)
+        .order('name', { ascending: true });
+
+      if (fetchError) {
+      console.warn('Error fetching payment gateways, using defaults:', err);
+      setGateways(DEFAULT_GATEWAYS);
+      setError(null); // Don't show error to user, just use defaults
+      setGateways(data || DEFAULT_GATEWAYS);
       toast.error('Failed to update payment gateway');
     }
   };
