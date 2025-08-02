@@ -21,7 +21,7 @@ interface PaymentFormProps {
 }
 
 const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
-  const { getActiveGateways, getGatewayById } = usePaymentGateways();
+  const { gateways, getActiveGateways, getGatewayById } = usePaymentGateways();
   const [paymentMethod, setPaymentMethod] = useState<string>('');
   const [showUnifiedPayment, setShowUnifiedPayment] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
