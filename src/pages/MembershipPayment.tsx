@@ -1,12 +1,15 @@
 
 import { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/layout/Layout';
 import MembershipTiers from '@/components/membership/MembershipTiers';
 import PaymentForm from '@/components/membership/PaymentForm';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 const MembershipPayment = () => {
   const [searchParams] = useSearchParams();
@@ -38,7 +41,34 @@ const MembershipPayment = () => {
   };
 
   const handlePaymentComplete = () => {
-    setPaymentComplete(true);
+    // Create membership record and then show success
+    createMembershipRecord();
+  };
+
+  const createMembershipRecord = async () => {
+    if (!user || !selectedTier) return;
+
+    try {
+      const expiryDate = new Date();
+      expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+
+      const { error } = await supabase
+        .from('memberships')
+        .insert({
+          user_id: user.id,
+          tier: selectedTier,
+          physical_card_requested: false,
+          expiry_date: expiryDate.toISOString(),
+          is_active: true
+        });
+
+      if (error) throw error;
+
+      setPaymentComplete(true);
+    } catch (error) {
+      console.error('Error creating membership:', error);
+      toast.error('Payment successful but membership creation failed. Please contact support.');
+    }
   };
 
   if (paymentComplete) {

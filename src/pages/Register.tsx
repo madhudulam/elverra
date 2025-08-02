@@ -177,23 +177,8 @@ const Register = () => {
     onSuccess: (data) => {
       toast.success('Registration successful! Please check your email for verification.');
       
-      // Redirect based on user type
-      switch (formData.user_type) {
-        case 'member':
-          navigate('/membership-payment');
-          break;
-        case 'employee':
-          navigate('/job-dashboard/employee');
-          break;
-        case 'employer':
-          navigate('/job-dashboard/employer');
-          break;
-        case 'partner':
-          navigate('/affiliate-dashboard');
-          break;
-        default:
-          navigate('/dashboard');
-      }
+      // Always redirect to thank you page after registration
+      navigate('/thank-you');
     },
     onError: (error: any) => {
       toast.error(error.message || 'Registration failed. Please try again.');

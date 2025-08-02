@@ -37,7 +37,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (event === 'SIGNED_IN' && session?.user && window.location.pathname === '/login') {
           console.log('User signed in, redirecting to dashboard...');
           setTimeout(() => {
-            window.location.href = '/dashboard';
+            // Check if user has completed membership payment
+            checkMembershipStatus(session.user.id);
           }, 100);
         }
       }
@@ -45,6 +46,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const checkMembershipStatus = async (userId: string) => {
+    try {
+      const { data: membership } = await supabase
+        .from('memberships')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('is_active', true)
+        .single();
+
+      if (membership) {
+        // User has active membership, go to dashboard
+        window.location.href = '/dashboard';
+      } else {
+        // User needs to select membership plan
+        window.location.href = '/membership-payment';
+      }
+    } catch (error) {
+      // If error checking membership, redirect to membership payment
+      window.location.href = '/membership-payment';
+    }
+  };
 
   const signUp = async (email: string, password: string, userData: any) => {
     const { data, error } = await supabase.auth.signUp({

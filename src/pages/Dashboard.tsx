@@ -21,6 +21,60 @@ import { Calendar, MapPin, Users, Star, TrendingUp, Briefcase } from 'lucide-rea
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useJobApplications } from '@/hooks/useJobs';
 
+interface MembershipCheckProps {
+  children: React.ReactNode;
+}
+
+const MembershipCheck = ({ children }: MembershipCheckProps) => {
+  const { user } = useAuth();
+  const [membershipStatus, setMembershipStatus] = useState<'loading' | 'active' | 'none'>('loading');
+
+  useEffect(() => {
+    const checkMembership = async () => {
+      if (!user) return;
+
+      try {
+        const { data: membership } = await supabase
+          .from('memberships')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('is_active', true)
+          .single();
+
+        if (membership) {
+          setMembershipStatus('active');
+        } else {
+          setMembershipStatus('none');
+        }
+      } catch (error) {
+        setMembershipStatus('none');
+      }
+    };
+
+    checkMembership();
+  }, [user]);
+
+  if (membershipStatus === 'loading') {
+    return (
+      <Layout>
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 py-8">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center h-64">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (membershipStatus === 'none') {
+    return <Navigate to="/membership-payment" replace />;
+  }
+
+  return <>{children}</>;
+};
+
 const Dashboard = () => {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
@@ -182,19 +236,20 @@ const Dashboard = () => {
   }
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 py-8">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Welcome Header */}
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome back, {profile?.full_name || user.email?.split('@')[0] || 'Client'}!
-              </h1>
-              <p className="text-gray-600">
-                Here's what's happening with your Elverra Global member account and job applications.
-              </p>
-            </div>
+    <MembershipCheck>
+      <Layout>
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 py-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              {/* Welcome Header */}
+              <div className="mb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  Welcome back, {profile?.full_name || user.email?.split('@')[0] || 'Client'}!
+                </h1>
+                <p className="text-gray-600">
+                  Here's what's happening with your Elverra Global member account and job applications.
+                </p>
+              </div>
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -315,6 +370,7 @@ const Dashboard = () => {
                   membershipTier={membership?.tier || 'Essential'}
                   profileImage={profile?.profile_image_url}
                   address={profile?.address || `${profile?.city || ''}, ${profile?.country || ''}`.replace(', ,', '').trim() || 'Address not provided'}
+                  isPaymentComplete={!!membership}
                 />
 
                 {/* Job Center Quick Access */}
@@ -339,11 +395,12 @@ const Dashboard = () => {
                 nextPaymentDate="February 1, 2024"
                 nextPaymentAmount="CFA 5,000"
               />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </MembershipCheck>
   );
 };
 

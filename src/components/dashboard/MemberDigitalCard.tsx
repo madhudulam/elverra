@@ -11,6 +11,7 @@ interface MemberDigitalCardProps {
   membershipTier: 'Essential' | 'Premium' | 'Elite';
   profileImage?: string;
   address?: string;
+  isPaymentComplete?: boolean;
 }
 
 const MemberDigitalCard = ({ 
@@ -19,7 +20,8 @@ const MemberDigitalCard = ({
   expiryDate, 
   membershipTier,
   profileImage,
-  address
+  address,
+  isPaymentComplete = true
 }: MemberDigitalCardProps) => {
   const [showQR, setShowQR] = useState(false);
   
@@ -30,6 +32,28 @@ const MemberDigitalCard = ({
     tier: membershipTier,
     expiry: expiryDate
   });
+
+  // Don't show card if payment is not complete
+  if (!isPaymentComplete) {
+    return (
+      <div className="w-full max-w-md mx-auto">
+        <div className="text-center mb-4">
+          <h3 className="font-bold text-lg text-gray-900">Your Digital Value Card</h3>
+          <p className="text-sm text-gray-500">Complete payment to access your membership card</p>
+        </div>
+        
+        <div className="bg-gray-200 rounded-xl p-8 mb-4 text-center">
+          <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span className="text-gray-500 text-2xl">🔒</span>
+          </div>
+          <h3 className="text-lg font-medium text-gray-600 mb-2">Card Locked</h3>
+          <p className="text-sm text-gray-500">
+            Your membership card will be available after payment completion
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // Get card styling based on membership tier
   const getTierColors = () => {

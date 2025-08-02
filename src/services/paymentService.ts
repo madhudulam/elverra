@@ -32,9 +32,6 @@ class PaymentService {
 
   private async processOrangeMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     try {
-      // Prepare Orange Money API request
-      const orangeConfig = gateway.config;
-      
       const paymentData = {
         amount: request.amount,
         currency: request.currency,
@@ -42,74 +39,58 @@ class PaymentService {
         customerName: request.customerInfo.name,
         customerEmail: request.customerInfo.email,
         transactionReference: `OM_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        callbackUrl: `${window.location.origin}/payment/callback/orange`,
+        callbackUrl: `${window.location.origin}/api/payment/callback/orange`,
         returnUrl: `${window.location.origin}/payment/success`
       };
 
       const response = await orangeMoneyService.initiatePayment(paymentData);
       
       if (!response.success) {
-        throw new Error(response.error || 'Orange Money payment failed. Please check your balance and try again.');
+        throw new Error(response.error || 'Orange Money payment failed');
       }
 
       return {
         success: true,
         transactionId: response.transactionId,
         paymentUrl: response.paymentUrl,
-        gatewayResponse: {
-          status: response.status || 'initiated',
-          reference: response.transactionId,
-          amount: request.amount,
-          currency: request.currency,
-          merchantCode: orangeConfig.merchantCode
-        }
+        gatewayResponse: response
       };
     } catch (error) {
       console.error('Orange Money payment error:', error);
-      throw new Error('Orange Money payment failed. Please try again.');
+      throw error;
     }
   }
 
   private async processSamaMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     try {
-      // Prepare SAMA Money API request
-      const samaConfig = gateway.config;
-      const apiUrl = `${samaConfig.baseUrl}payment/initiate`;
-      
       const paymentData = {
-        merchant_code: samaConfig.merchantCode,
-        user_id: samaConfig.userId,
         amount: request.amount,
         currency: request.currency,
-        customer_phone: request.customerInfo.phone,
-        customer_name: request.customerInfo.name,
-        customer_email: request.customerInfo.email,
+        customerPhone: request.customerInfo.phone,
+        customerName: request.customerInfo.name,
+        customerEmail: request.customerInfo.email,
         transaction_reference: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        callback_url: `${window.location.origin}/payment/callback/sama`,
-        return_url: `${window.location.origin}/payment/success`,
-        public_key: samaConfig.publicKey
+        callbackUrl: `${window.location.origin}/api/payment/callback/sama`,
+        returnUrl: `${window.location.origin}/payment/success`
       };
 
-      // In a real implementation, you would make the actual API call here
-      // For now, we'll simulate the response
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await samaMoneyService.initiatePayment(paymentData);
       
-      // Simulate API response
-      const mockResponse = {
-        success: Math.random() > 0.1,
-        transactionId: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        paymentUrl: `${samaConfig.baseUrl}payment/redirect/${paymentData.transaction_reference}`,
-        gatewayResponse: {
-          status: 'initiated',
-          reference: paymentData.transaction_reference,
-          amount: request.amount,
-          currency: request.currency,
-          merchant_code: samaConfig.merchantCode
-        }
-      };
+      if (!response.success) {
+        throw new Error(response.error || 'SAMA Money payment failed');
+      }
 
-      if (!mockResponse.success) {
-        throw new Error('SAMA Money payment initiation failed. Please verify your account details.');
+      return {
+        success: true,
+        transactionId: response.transactionId,
+        paymentUrl: response.paymentUrl,
+        gatewayResponse: response
+      };
+    } catch (error) {
+      console.error('SAMA Money payment error:', error);
+      throw error;
+    }
+  }
       }
 
       return mockResponse;

@@ -11,6 +11,7 @@ import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
+import ThankYou from '@/pages/ThankYou';
 import Services from '@/pages/services/index';
 import CreditAccount from '@/pages/services/CreditAccount';
 import CreditSystem from '@/pages/services/CreditSystem';
@@ -346,6 +347,10 @@ const routes = [
   {
     path: '/reset-password',
     element: <ResetPassword />,
+  },
+  {
+    path: '/thank-you',
+    element: <ThankYou />,
   },
   {
     path: '/admin/payments',
