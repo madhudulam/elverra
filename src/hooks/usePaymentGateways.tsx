@@ -199,9 +199,46 @@ export const usePaymentGateways = () => {
     return gateways.find(gateway => gateway.id === id);
   };
 
+  const updateGateway = async (id: string, updates: Partial<PaymentGateway>) => {
+    try {
+      // Check if table exists first
+      const { error: tableCheckError } = await supabase
+        .from('payment_gateways')
+        .select('id')
+        .limit(1);
+
+      if (tableCheckError && tableCheckError.code === '42P01') {
+        // Table doesn't exist, update local state only
+        setGateways(prev => prev.map(gateway => 
+          gateway.id === id ? { ...gateway, ...updates } : gateway
+        ));
+        return;
+      }
+
+      // Table exists, update in database
+      const { error } = await supabase
+        .from('payment_gateways')
+        .update(updates)
+        .eq('id', id);
+
+      if (error) {
+        throw error;
+      }
+
+      // Update local state
+      setGateways(prev => prev.map(gateway => 
+        gateway.id === id ? { ...gateway, ...updates } : gateway
+      ));
+    } catch (error) {
+      console.error('Error updating payment gateway:', error);
+      throw error;
+    }
+  };
+
   return {
     gateways,
     loading,
+    updateGateway,
     updateGateway,
     getActiveGateways,
     getGatewayById,
