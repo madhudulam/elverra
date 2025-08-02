@@ -171,8 +171,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     isAdmin,
     signUp,
     signIn,
-    signOut
-    checkUserRole,
+    signOut,
+    checkUserRole
   };
 
   return (
