@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const initialLoadRef = useRef(true);
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           checkUserRole();
         } else {
           setUserRole(null);
+          setIsAdmin(false);
         }
 
         // Only redirect on successful sign in from login page
@@ -63,15 +65,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const checkUserRole = async (): Promise<string> => {
     try {
+      if (!user) {
+        setUserRole(null);
+        setIsAdmin(false);
+        return 'user';
+      }
+
       const { data, error } = await supabase.rpc('get_user_role');
       if (error) throw error;
       
       const role = data || 'user';
       setUserRole(role);
+      setIsAdmin(role === 'admin');
       return role;
     } catch (error) {
       console.error('Error checking user role:', error);
       setUserRole('user');
+      setIsAdmin(false);
       return 'user';
     }
   };
@@ -160,9 +170,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signOut = async () => {
     await supabase.auth.signOut();
     setUserRole(null);
+    setIsAdmin(false);
   };
-
-  const isAdmin = userRole === 'admin';
 
   const value = {
     user,
