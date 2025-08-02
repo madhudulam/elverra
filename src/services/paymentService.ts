@@ -91,14 +91,6 @@ class PaymentService {
       throw error;
     }
   }
-      }
-
-      return mockResponse;
-    } catch (error) {
-      console.error('SAMA Money payment error:', error);
-      throw new Error('SAMA Money payment failed. Please try again.');
-    }
-  }
 
   private async processSamaMoneyPaymentLegacy(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     // Simulate Sama Money API call
