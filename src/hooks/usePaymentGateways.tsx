@@ -148,45 +148,16 @@ export const usePaymentGateways = () => {
   ];
 
   useEffect(() => {
-    fetchGateways();
+    // Use default gateways immediately without checking database
+    // This prevents Supabase errors when table doesn't exist
+    setGateways(DEFAULT_GATEWAYS);
+    setLoading(false);
   }, []);
 
   const fetchGateways = async () => {
-    try {
-      setLoading(true);
-      
-      const { data, error } = await supabase
-      // Check if table exists first by trying a simple query
-      const { error: tableCheckError } = await supabase
-        .from('payment_gateways')
-        .select('id')
-        .limit(1);
-
-      if (tableCheckError && tableCheckError.code === '42P01') {
-        // Table doesn't exist, use default gateways
-        console.warn('Payment gateways table not found, using default gateways');
-        setGateways(DEFAULT_GATEWAYS);
-        setLoading(false);
-        return;
-      } else {
-        toast.success('Payment gateway updated successfully');
-        // Refetch data to ensure consistency
-        await fetchGateways();
-      }
-    } catch (error) {
-      // Table exists, fetch data
-      const { data, error: fetchError } = await supabase
-        .from('payment_gateways')
-        .select('*')
-        .eq('is_active', true)
-        .order('name', { ascending: true });
-
-      if (fetchError) {
-      }
-      console.warn('Error fetching payment gateways, using defaults:', err);
-      setGateways(DEFAULT_GATEWAYS);
-      setError(null); // Don't show error to user, just use defaults
-      setGateways(data || DEFAULT_GATEWAYS);
+    // Always use default gateways to avoid database errors
+    setGateways(DEFAULT_GATEWAYS);
+    setLoading(false);
       toast.error('Failed to update payment gateway');
     }
   };
