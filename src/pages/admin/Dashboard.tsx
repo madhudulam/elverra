@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@/components/layout/Layout';
+import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -169,126 +170,128 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage your Elverra platform from here</p>
-        </div>
+    <ProtectedRoute requireAdmin={true}>
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+            <p className="text-gray-600">Manage your Elverra platform from here</p>
+          </div>
 
-        {/* Logo Upload Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Logo Management</CardTitle>
-            <CardDescription>Upload and manage the platform logo</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="logo-upload">Upload New Logo</Label>
-                <Input
-                  id="logo-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
-                  className="mt-1"
-                />
-              </div>
-              <Button 
-                onClick={handleLogoUpload} 
-                disabled={!logoFile || uploading}
-                className="w-full sm:w-auto"
-              >
-                {uploading ? 'Uploading...' : 'Upload Logo'}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <Card key={index}>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                      <Badge variant="secondary" className="mt-1">
-                        {stat.change}
-                      </Badge>
-                    </div>
-                    <Icon className={`h-8 w-8 ${stat.color}`} />
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Admin Modules */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Admin Modules</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {adminModules.map((module, index) => {
-              const Icon = module.icon;
-              return (
-                <Card 
-                  key={index} 
-                  className={`cursor-pointer transition-all duration-200 ${module.color}`}
-                  onClick={() => navigate(module.route)}
+          {/* Logo Upload Section */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>Logo Management</CardTitle>
+              <CardDescription>Upload and manage the platform logo</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="logo-upload">Upload New Logo</Label>
+                  <Input
+                    id="logo-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+                    className="mt-1"
+                  />
+                </div>
+                <Button 
+                  onClick={handleLogoUpload} 
+                  disabled={!logoFile || uploading}
+                  className="w-full sm:w-auto"
                 >
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <Icon className="h-6 w-6 text-gray-700" />
-                      <CardTitle className="text-lg">{module.title}</CardTitle>
+                  {uploading ? 'Uploading...' : 'Upload Logo'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <Card key={index}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                        <Badge variant="secondary" className="mt-1">
+                          {stat.change}
+                        </Badge>
+                      </div>
+                      <Icon className={`h-8 w-8 ${stat.color}`} />
                     </div>
-                    <CardDescription>{module.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button variant="outline" className="w-full">
-                      Access Module
-                    </Button>
                   </CardContent>
                 </Card>
               );
             })}
           </div>
-        </div>
 
-        {/* Quick Actions */}
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button 
-              onClick={() => navigate('/admin/secours')}
-              className="p-6 h-auto flex-col space-y-2"
-            >
-              <Shield className="h-6 w-6" />
-              <span>Process Rescue Requests</span>
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={() => navigate('/admin/cms')}
-              className="p-6 h-auto flex-col space-y-2"
-            >
-              <FileText className="h-6 w-6" />
-              <span>Manage Content</span>
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={() => navigate('/admin/jobs')}
-              className="p-6 h-auto flex-col space-y-2"
-            >
-              <Users className="h-6 w-6" />
-              <span>Manage Jobs</span>
-            </Button>
+          {/* Admin Modules */}
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Admin Modules</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {adminModules.map((module, index) => {
+                const Icon = module.icon;
+                return (
+                  <Card 
+                    key={index} 
+                    className={`cursor-pointer transition-all duration-200 ${module.color}`}
+                    onClick={() => navigate(module.route)}
+                  >
+                    <CardHeader>
+                      <div className="flex items-center space-x-3">
+                        <Icon className="h-6 w-6 text-gray-700" />
+                        <CardTitle className="text-lg">{module.title}</CardTitle>
+                      </div>
+                      <CardDescription>{module.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button variant="outline" className="w-full">
+                        Access Module
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Button 
+                onClick={() => navigate('/admin/secours')}
+                className="p-6 h-auto flex-col space-y-2"
+              >
+                <Shield className="h-6 w-6" />
+                <span>Process Rescue Requests</span>
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/admin/cms')}
+                className="p-6 h-auto flex-col space-y-2"
+              >
+                <FileText className="h-6 w-6" />
+                <span>Manage Content</span>
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/admin/jobs')}
+                className="p-6 h-auto flex-col space-y-2"
+              >
+                <Users className="h-6 w-6" />
+                <span>Manage Jobs</span>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </ProtectedRoute>
   );
 };
 

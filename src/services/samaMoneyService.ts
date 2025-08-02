@@ -61,13 +61,8 @@ export class SamaMoneyService {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch(`${this.config.baseUrl}payment/initiate`, {
       // For demo/test environment, simulate successful response without actual API call
       // In production, uncomment the actual API call below
-      });
-
-      const result = await response.json();
-      
       return {
         success: true,
         transactionId: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
@@ -80,7 +75,7 @@ export class SamaMoneyService {
       const response = await fetch(`${this.config.baseUrl}/payment/initiate`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
           'Authorization': `Bearer ${this.config.publicKey}`,
           'Accept': 'application/json',
           'X-Merchant-Code': this.config.merchantCode,
@@ -91,6 +86,11 @@ export class SamaMoneyService {
 
       if (!response.ok) {
         throw new Error(`SAMA Money API error: ${response.status}`);
+      }
+      
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Invalid response format - expected JSON');
       }
 
       const result = await response.json();

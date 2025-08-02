@@ -2,13 +2,17 @@
 import { useState, useEffect, createContext, useContext, useRef } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  userRole: string | null;
+  isAdmin: boolean;
   signUp: (email: string, password: string, userData: any) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
+  checkUserRole: () => Promise<string>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,6 +20,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const initialLoadRef = useRef(true);
 
   useEffect(() => {
@@ -24,6 +29,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUser(session?.user ?? null);
       setLoading(false);
       initialLoadRef.current = false;
+      if (session?.user) {
+        checkUserRole();
+      }
     });
 
     // Listen for auth changes
@@ -32,6 +40,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         console.log('Auth event:', event, 'User:', session?.user?.email);
         setUser(session?.user ?? null);
         setLoading(false);
+        
+        if (session?.user) {
+          checkUserRole();
+        } else {
+          setUserRole(null);
+        }
 
         // Only redirect on successful sign in from login page
         if (event === 'SIGNED_IN' && session?.user && window.location.pathname === '/login') {
@@ -46,6 +60,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const checkUserRole = async (): Promise<string> => {
+    try {
+      const { data, error } = await supabase.rpc('get_user_role');
+      if (error) throw error;
+      
+      const role = data || 'user';
+      setUserRole(role);
+      return role;
+    } catch (error) {
+      console.error('Error checking user role:', error);
+      setUserRole('user');
+      return 'user';
+    }
+  };
 
   const checkMembershipStatus = async (userId: string) => {
     try {
@@ -130,14 +159,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     await supabase.auth.signOut();
+    setUserRole(null);
   };
+
+  const isAdmin = userRole === 'admin';
 
   const value = {
     user,
     loading,
+    userRole,
+    isAdmin,
     signUp,
     signIn,
     signOut
+    checkUserRole,
   };
 
   return (

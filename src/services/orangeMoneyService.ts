@@ -81,7 +81,7 @@ export class OrangeMoneyService {
       const response = await fetch(`${this.config.baseUrl}/webpayment`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
           'Authorization': `Bearer ${this.config.merchantKey}`,
           'Accept': 'application/json',
           'X-Merchant-Code': this.config.merchantCode,
@@ -92,6 +92,11 @@ export class OrangeMoneyService {
 
       if (!response.ok) {
         throw new Error(`Orange Money API error: ${response.status}`);
+      }
+      
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Invalid response format - expected JSON');
       }
 
       const result = await response.json();
