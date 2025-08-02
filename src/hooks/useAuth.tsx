@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -37,6 +38,9 @@ const AdminDashboard = () => {
   const handleLogoUpload = async () => {
     if (!logoFile) return;
 
+    try {
+      setUploading(true);
+      
       const fileExt = logoFile.name.split('.').pop();
       const fileName = `logo.${fileExt}`;
       
@@ -46,13 +50,6 @@ const AdminDashboard = () => {
       
       if (!bucketExists) {
         const { error: bucketError } = await supabase.storage.createBucket('club66', {
-        
-        if (session?.user) {
-          checkUserRole();
-        } else {
-          setUserRole(null);
-          setIsAdmin(false);
-        }
           public: true,
           fileSizeLimit: 5242880, // 5MB
           allowedMimeTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
@@ -68,29 +65,6 @@ const AdminDashboard = () => {
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('club66')
         .upload(fileName, logoFile, { upsert: true });
-  const checkUserRole = async (): Promise<string> => {
-    try {
-      if (!user) {
-        setUserRole(null);
-        setIsAdmin(false);
-        return 'user';
-      }
-
-      const { data, error } = await supabase.rpc('get_user_role');
-      if (error) throw error;
-      
-      const role = data || 'user';
-      setUserRole(role);
-      setIsAdmin(role === 'admin');
-      return role;
-    } catch (error) {
-      console.error('Error checking user role:', error);
-      setUserRole('user');
-      setIsAdmin(false);
-      return 'user';
-    }
-  };
-
 
       if (uploadError) throw uploadError;
 
@@ -108,8 +82,6 @@ const AdminDashboard = () => {
     } finally {
       setUploading(false);
     }
-    setUserRole(null);
-    setIsAdmin(false);
   };
 
   const stats = [
@@ -211,12 +183,9 @@ const AdminDashboard = () => {
       title: "Payment Gateway Management",
       description: "Configure payment methods and gateways",
       icon: CreditCard,
-    userRole,
-    isAdmin,
       route: "/admin/payment-gateways",
       color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200"
     }
-    checkUserRole
   ];
 
   return (
