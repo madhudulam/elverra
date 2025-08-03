@@ -23,6 +23,15 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!emailOrPhone || !password) {
+      toast({
+        title: "Missing credentials",
+        description: "Please enter both email/phone and password.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     // Prevent multiple submissions
     if (loading) return;
 
@@ -32,19 +41,42 @@ const LoginForm = () => {
       const { data, error } = await signIn(emailOrPhone, password);
 
       if (error) {
+        console.error('Login error:', error);
         toast({
           title: "Login failed",
-          description: error.message,
+          description: error.message || "Invalid credentials. Please check your email and password.",
           variant: "destructive"
         });
         setLoading(false);
       } else if (data.user) {
+        console.log('Login successful for user:', data.user.email);
         toast({
           title: "Login successful!",
           description: "Redirecting to your dashboard..."
         });
-        // Don't set loading to false, let the redirect happen
-        // The auth context will handle the redirect
+        
+        // Check user role and redirect accordingly
+        try {
+          const { data: roleData } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', data.user.id)
+            .eq('role', 'admin')
+            .single();
+
+          if (roleData) {
+            console.log('Admin user detected, redirecting to admin dashboard');
+            navigate('/admin/dashboard');
+          } else {
+            console.log('Regular user, redirecting to dashboard');
+            navigate('/dashboard');
+          }
+        } catch (roleError) {
+          console.log('No admin role found, redirecting to regular dashboard');
+          navigate('/dashboard');
+        }
+        
+        setLoading(false);
       }
     } catch (error) {
       console.error('Login error:', error);
