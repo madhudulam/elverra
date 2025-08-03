@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
   user: User | null;
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const navigate = useNavigate();
 
   const checkUserRole = async () => {
     if (!user) {
@@ -131,28 +129,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       password,
     });
 
-    if (!error && data.user) {
-      // Check if user is admin and redirect accordingly
-      setTimeout(async () => {
-        try {
-          const { data: roleData } = await supabase
-            .from('user_roles')
-            .select('role')
-            .eq('user_id', data.user.id)
-            .eq('role', 'admin')
-            .single();
-
-          if (roleData) {
-            navigate('/admin/dashboard');
-          } else {
-            navigate('/dashboard');
-          }
-        } catch (error) {
-          navigate('/dashboard');
-        }
-      }, 500);
-    }
-
     return { data, error };
   };
 
@@ -163,7 +139,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setSession(null);
       setUserRole(null);
       setIsAdmin(false);
-      navigate('/');
     }
   };
 

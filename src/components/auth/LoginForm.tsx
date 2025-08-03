@@ -9,6 +9,7 @@ import { LockIcon, KeyIcon, Mail, Phone, User } from 'lucide-react';
 import OTPVerification from './OTPVerification';
 import { toast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 
 const LoginForm = () => {
   const navigate = useNavigate();
