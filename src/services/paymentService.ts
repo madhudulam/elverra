@@ -1,6 +1,5 @@
+import { supabase } from '@/integrations/supabase/client';
 import { PaymentGateway, PaymentRequest, PaymentResponse } from '@/types/payment';
-import { samaMoneyService } from './samaMoneyService';
-import { orangeMoneyService } from './orangeMoneyService';
 
 class PaymentService {
   async processPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
@@ -32,6 +31,13 @@ class PaymentService {
 
   private async processOrangeMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     try {
+      // Use Supabase Edge Function for Orange Money payments
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        throw new Error('User not authenticated');
+      }
+
       const paymentData = {
         amount: request.amount,
         currency: request.currency,
@@ -43,17 +49,27 @@ class PaymentService {
         returnUrl: `${window.location.origin}/payment/success`
       };
 
-      const response = await orangeMoneyService.initiatePayment(paymentData);
-      
-      if (!response.success) {
-        throw new Error(response.error || 'Orange Money payment failed');
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/orange-money-payment`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Orange Money payment failed');
       }
 
+      const result = await response.json();
+      
       return {
-        success: true,
-        transactionId: response.transactionId,
-        paymentUrl: response.paymentUrl,
-        gatewayResponse: response
+        success: result.success,
+        transactionId: result.transactionId,
+        paymentUrl: result.paymentUrl,
+        gatewayResponse: result
       };
     } catch (error) {
       console.error('Orange Money payment error:', error);
@@ -63,28 +79,45 @@ class PaymentService {
 
   private async processSamaMoneyPayment(gateway: PaymentGateway, request: PaymentRequest): Promise<PaymentResponse> {
     try {
+      // Use Supabase Edge Function for SAMA Money payments
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        throw new Error('User not authenticated');
+      }
+
       const paymentData = {
         amount: request.amount,
         currency: request.currency,
         customerPhone: request.customerInfo.phone,
         customerName: request.customerInfo.name,
         customerEmail: request.customerInfo.email,
-        transaction_reference: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        transactionReference: `SAMA_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         callbackUrl: `${window.location.origin}/api/payment/callback/sama`,
         returnUrl: `${window.location.origin}/payment/success`
       };
 
-      const response = await samaMoneyService.initiatePayment(paymentData);
-      
-      if (!response.success) {
-        throw new Error(response.error || 'SAMA Money payment failed');
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sama-money-payment`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'SAMA Money payment failed');
       }
 
+      const result = await response.json();
+      
       return {
-        success: true,
-        transactionId: response.transactionId,
-        paymentUrl: response.paymentUrl,
-        gatewayResponse: response
+        success: result.success,
+        transactionId: result.transactionId,
+        paymentUrl: result.paymentUrl,
+        gatewayResponse: result
       };
     } catch (error) {
       console.error('SAMA Money payment error:', error);

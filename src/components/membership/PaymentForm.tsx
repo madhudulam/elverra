@@ -176,7 +176,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
               </div>
               <div className="bg-orange-50 p-3 rounded-lg">
                 <p className="text-sm text-orange-700">
-                  You will receive a payment request on your Orange Money account to complete the transaction.
+                  You will receive a payment notification on your Orange Money account. Please approve the transaction to complete payment.
                 </p>
               </div>
             </>
@@ -197,7 +197,7 @@ const PaymentForm = ({ selectedPlan, onPaymentComplete }: PaymentFormProps) => {
               </div>
               <div className="bg-green-50 p-3 rounded-lg">
                 <p className="text-sm text-green-700">
-                  You will receive a payment request on your SAMA Money account to complete the transaction.
+                  You will receive a payment notification on your SAMA Money account. Please approve the transaction to complete payment.
                 </p>
               </div>
             </>

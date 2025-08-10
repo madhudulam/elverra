@@ -142,20 +142,17 @@ const UnifiedPaymentWindow = ({ isOpen, onClose, onSuccess, preSelectedService }
       if (response.success && response.transactionId) {
         toast.success('Payment completed successfully!');
         
-        // If payment has a redirect URL, redirect to gateway
+        toast.success('Payment initiated successfully!');
+        
         if (response.paymentUrl) {
-          window.open(response.paymentUrl, '_blank');
-          toast.info('Complete payment in the opened window, then return here');
-          
-          // For demo purposes, simulate success after delay
-          setTimeout(() => {
-            onSuccess(response.transactionId!);
-            onClose();
-          }, 5000);
-        } else {
-          onSuccess(response.transactionId);
-          onClose();
+          toast.info('You will receive a payment notification on your mobile money account. Please approve the transaction.');
         }
+        
+        // For demo purposes, simulate success after delay
+        setTimeout(() => {
+          toast.success('Payment completed successfully!');
+          onSuccess(response.transactionId!);
+        }, 3000);
       } else {
         toast.error(response.error || 'Payment failed');
       }
